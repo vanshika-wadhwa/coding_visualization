@@ -1,0 +1,62 @@
+/* --root{
+    --background-color:#ffffff;
+    --text-color:#333333;
+
+}
+html{
+    background-color: var(--background-color);
+    color:var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+button{
+    cursor:pointer;
+    
+} */
+:root {
+    --background-color: #ffffff;
+    --text-color: #333333;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.fixed_navigation {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.5s ease;
+}
+
+.fixed_navigation ul {
+    list-style-type: none;
+    display: flex;
+    gap: 15px;
+}
+
+.fixed_navigation li {
+    color: var(--text-color);
+}
+
+.fixed_navigation input[type="text"] {
+    padding: 5px;
+    border: 1px solid var(--text-color);
+}
+
+.srchbtn {
+    padding: 5px;
+    background-color: var(--text-color);
+    color: var(--background-color);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.srchbtn:hover {
+    background-color: var(--text-color);
+    color: var(--background-color);
+}

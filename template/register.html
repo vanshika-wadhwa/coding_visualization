@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/responsive.css">
+</head>
+<body>
+    <div class="w-full h-screen bg-zinc-900 text-white">
+        <h1 class="text-3xl">create a user</h1>
+        <form method="post" action="/create">
+            <div class="p-2 text-black">
+                <input type="text" placeholder="name" name="name">
+            </div>
+            <div class="p-2 text-black">
+                <input type="text" placeholder="username" name="username">
+            </div>
+            <div class="p-2 text-black">
+                <input type="email" placeholder="email" name="email">
+            </div>
+            <div class="p-2 text-black">
+                <input type="password" placeholder="password" name="password" id="p1">
+            </div>
+            <div class="p-2 text-black">
+                <input type="password" placeholder="confirm password" name="confirmPass" id="p2">
+            </div>
+            
+            <input class="border-2 border-white rounded-md m-2 bg-blue-400" type="submit" value="register">
+        </form>
+    </div>
+</body>
+</html>

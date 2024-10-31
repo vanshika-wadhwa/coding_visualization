@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/responsive.css">
+</head>
+<body>
+    <div class="m-8 w-50 h-82 bg-zinc-900 text-white">
+        <h1 class="p-2 text-3xl">Login</h1>
+        <form action="login" method="POST">
+            <div class="p-2 text-black">
+                <input type="text" placeholder="username" name="username">
+            </div>
+            <div class="p-2 text-black">
+                <input type="email" placeholder="email" name="email">
+            </div>
+            <div class="p-2 text-black">
+                <input type="password" placeholder="password" name="password" id="p1">
+            </div>
+            <input class="border-2 border-white rounded-md m-2 bg-blue-400 p-2" type="submit" value="Login" >
+        </form>
+        
+        <div class="p-2">
+            <p>Forgot password? <input class="border-2 border-white rounded-md bg-blue-400" type="button" value="New password"></p>
+            <br>
+            <p>Don't have account? <input class="border-2 border-white rounded-md bg-blue-400 " type="button" value="Register"></p>
+        </div>
+    </div>
+</body>
+</html>

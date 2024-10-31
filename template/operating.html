@@ -1,0 +1,176 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Operating System - Scheduling Algorithms</title>
+     <link rel="stylesheet" href="/static/responsive.css">
+     <style>
+         /* Basic Reset */
+         * {
+             margin: 0;
+             padding: 0;
+             box-sizing: border-box;
+         }
+ 
+         /* Navbar Styling */
+         .navbar {
+             display: flex;
+             align-items: center;
+             justify-content: space-between;
+             background-color: #2c3e50;
+             padding: 10px 20px;
+         }
+ 
+         .navbar h1 {
+             color: #ecf0f1;
+             font-size: 1.5em;
+         }
+ 
+         .navbar ul {
+             list-style-type: none;
+             display: flex;
+             gap: 20px;
+         }
+ 
+         .navbar ul li {
+             position: relative;
+         }
+ 
+         .navbar ul li a {
+             color: #ecf0f1;
+             text-decoration: none;
+             font-weight: 500;
+             padding: 8px 12px;
+             transition: color 0.3s ease;
+         }
+ 
+         .navbar ul li a:hover {
+             color: #3498db;
+         }
+ 
+         /* Dropdown Styling */
+         .navbar ul li .dropdown {
+             display: none;
+             position: absolute;
+             top: 100%;
+             left: 0;
+             background-color: #34495e;
+             border-radius: 4px;
+             min-width: 180px;
+             padding: 10px 0;
+             z-index: 1;
+         }
+ 
+         .navbar ul li:hover .dropdown {
+             display: block;
+         }
+ 
+         .dropdown a {
+             display: block;
+             color: #ecf0f1;
+             padding: 8px 16px;
+             text-decoration: none;
+         }
+ 
+         .dropdown a:hover {
+             background-color: #2c3e50;
+             color: #3498db;
+         }
+ 
+         /* Responsive Design */
+         @media (max-width: 768px) {
+             .navbar {
+                 flex-direction: column;
+                 align-items: flex-start;
+             }
+ 
+             .navbar ul {
+                 flex-direction: column;
+                 width: 100%;
+             }
+ 
+             .navbar ul li {
+                 width: 100%;
+             }
+ 
+             .dropdown {
+                 position: static;
+                 width: 100%;
+             }
+         }
+     </style>
+ </head>
+ <body>
+     <div class="navbar">
+         <h1>Operating Systems</h1>
+         <ul>
+             <li><a href="home.html">Home</a></li>
+             <li><a href="#">Introduction</a></li>
+             <li>
+                 <a href="#">Scheduling Algorithms</a>
+                 <div class="dropdown">
+                     <a href="fcfs.html">First Come First Serve (FCFS)</a>
+                     <a href="sjf.html">Shortest Job First (SJF)</a>
+                     <a href="priority.html">Priority Scheduling</a>
+                     <a href="rr.html">Round Robin (RR)</a>
+                     <a href="mlfq.html">Multi-Level Queue (MLQ)</a>
+                     <a href="multilevel_feedback_queue.html">Multi-Level Feedback Queue</a>
+                 </div>
+             </li>
+             <li><a href="memory_management.html">Memory Management</a></li>
+             <li><a href="file_systems.html">File Systems</a></li>
+             <li><a href="contact.html">Contact</a></li>
+         </ul>
+     </div>
+     
+    <div class="content">
+        <h1>Introduction to Operating Systems</h1>
+        <p>
+            An Operating System (OS) is system software that acts as an intermediary between a computer user and the computer hardware.
+            It manages the hardware resources of a computer and provides services for computer programs, ensuring they operate smoothly and efficiently.
+        </p>
+        
+        <h2>What is an Operating System?</h2>
+        <p>
+            The operating system is the most critical software that runs on a computer, responsible for managing all other applications and 
+            allowing users to interact with the system. It handles resource allocation, scheduling, input/output control, and file management.
+        </p>
+
+        <h3>Key Functions of an Operating System</h3>
+        <ul>
+            <li><strong>Process Management:</strong> Controls the execution of processes and manages resources for multitasking.</li>
+            <li><strong>Memory Management:</strong> Manages system memory, allocating space for processes, and optimizing memory usage.</li>
+            <li><strong>File System Management:</strong> Handles storage, retrieval, and organization of data on storage drives.</li>
+            <li><strong>Device Management:</strong> Manages input/output devices like printers, monitors, and keyboards.</li>
+            <li><strong>Security and Access Control:</strong> Protects system resources and data from unauthorized access.</li>
+        </ul>
+
+        <h2>Types of Operating Systems</h2>
+        <ul>
+            <li><strong>Batch Operating System:</strong> Executes a series of jobs without user interaction. Popular in mainframes.</li>
+            <li><strong>Time-Sharing Operating System:</strong> Allows multiple users to use the system simultaneously by sharing time slices.</li>
+            <li><strong>Distributed Operating System:</strong> Manages a group of computers working together as a single system.</li>
+            <li><strong>Real-Time Operating System:</strong> Provides immediate processing and responsiveness, used in critical systems like medical devices.</li>
+            <li><strong>Network Operating System:</strong> Manages network resources and allows multiple computers to communicate and share resources.</li>
+        </ul>
+
+        <h2>Popular Operating Systems</h2>
+        <ul>
+            <li><strong>Windows:</strong> Developed by Microsoft, widely used in personal computers and businesses.</li>
+            <li><strong>macOS:</strong> Developed by Apple, known for its smooth integration with Apple hardware and user-friendly interface.</li>
+            <li><strong>Linux:</strong> Open-source OS popular among developers and for server environments due to its flexibility and security.</li>
+            <li><strong>Android:</strong> Mobile OS developed by Google, primarily used on smartphones and tablets.</li>
+            <li><strong>iOS:</strong> Mobile OS developed by Apple, known for its performance and exclusive features on Apple devices.</li>
+        </ul>
+
+        <h2>Why Study Operating Systems?</h2>
+        <p>
+            Understanding operating systems is essential for anyone working in IT, software development, or computer science.
+            Knowledge of how an OS functions helps developers create efficient programs and understand the interaction between hardware and software.
+            Additionally, it improves problem-solving skills related to system performance, resource management, and security.
+        </p>
+    </div>
+ </body>
+ </html>
+ 

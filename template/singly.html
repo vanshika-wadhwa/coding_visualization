@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Singly Linked List Visualization</title>
+  <link rel="stylesheet" href="/static/responsive.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+  <div class="bg-white shadow-lg rounded-lg p-8 max-w-lg w-full">
+    <h1 class="text-2xl font-bold mb-6 text-center">Singly Linked List Visualization</h1>
+
+    <!-- Node Input and Insert Options -->
+    <div class="flex items-center justify-between mb-4">
+      <input id="nodeValue" type="text" placeholder="Enter Node Value" class="p-2 border rounded w-1/2 mr-2 focus:outline-none focus:border-blue-400">
+      <select id="insertPosition" class="p-2 border rounded w-1/2 focus:outline-none focus:border-blue-400">
+        <option value="start">Insert at Head</option>
+        <option value="end">Insert at Tail</option>
+        <option value="index">Insert at Index</option>
+      </select>
+    </div>
+
+    <div id="indexInput" class="hidden mb-4">
+      <input id="indexValue" type="number" min="0" placeholder="Enter Index" class="p-2 border rounded w-full focus:outline-none focus:border-blue-400">
+    </div>
+
+    <!-- Insert Button -->
+    <div class="flex justify-center mb-6">
+      <button onclick="insertNode()" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition">Insert Node</button>
+    </div>
+
+    <!-- Linked List Visualization -->
+    <div id="linkedList" class="flex items-center justify-start overflow-x-auto p-4 bg-gray-200 rounded-lg min-h-[100px]">
+      <p class="text-gray-500">No nodes yet!</p>
+    </div>
+  </div>
+
+  <script>
+    class Node {
+      constructor(value) {
+        this.value = value;
+        this.next = null;
+      }
+    }
+
+    class SinglyLinkedList {
+      constructor() {
+        this.head = null;
+        this.size = 0;
+      }
+
+      insertAtHead(value) {
+        const newNode = new Node(value);
+        if (this.head === null) {
+          this.head = newNode;
+        } else {
+          newNode.next = this.head;
+          this.head = newNode;
+        }
+        this.size++;
+        this.visualize();
+      }
+
+      insertAtTail(value) {
+        const newNode = new Node(value);
+        if (this.head === null) {
+          this.head = newNode;
+        } else {
+          let temp = this.head;
+          while (temp.next !== null) {
+            temp = temp.next;
+          }
+          temp.next = newNode;
+        }
+        this.size++;
+        this.visualize();
+      }
+
+      insertAtIndex(value, index) {
+        if (index < 0 || index > this.size) {
+          alert("Invalid index!");
+          return;
+        }
+        if (index === 0) {
+          this.insertAtHead(value);
+          return;
+        }
+        const newNode = new Node(value);
+        let current = this.head;
+        let previous = null;
+        let count = 0;
+        while (count < index) {
+          previous = current;
+          current = current.next;
+          count++;
+        }
+        previous.next = newNode;
+        newNode.next = current;
+        this.size++;
+        this.visualize();
+      }
+       
+      removeAtHead(){}
+      removeAtTail(){}
+      removeAtIndex(index){}
+      linearSearch(value){}
+
+      visualize() {
+        const listContainer = document.getElementById('linkedList');
+        listContainer.innerHTML = '';
+        let current = this.head;
+        while (current !== null) {
+          // Create a visual node
+          const nodeDiv = document.createElement('div');
+          nodeDiv.classList.add('flex', 'items-center', 'mr-4');
+
+          const nodeCircle = document.createElement('div');
+          nodeCircle.classList.add('w-16', 'h-16', 'bg-blue-500', 'text-white', 'flex', 'items-center', 'justify-center', 'rounded-full', 'font-bold', 'text-xl');
+          nodeCircle.textContent = current.value;
+
+          nodeDiv.appendChild(nodeCircle);
+
+          // Create arrow (if there's a next node)
+          if (current.next !== null) {
+            const arrow = document.createElement('div');
+            arrow.classList.add('mx-2', 'text-2xl', 'text-gray-500');
+            arrow.innerHTML = '&rarr;';
+            nodeDiv.appendChild(arrow);
+          }
+
+          listContainer.appendChild(nodeDiv);
+          current = current.next;
+        }
+      }
+    }
+
+    const linkedList = new SinglyLinkedList();
+
+    function insertNode() {
+      const value = document.getElementById('nodeValue').value;
+      const position = document.getElementById('insertPosition').value;
+
+      if (value === '') {
+        alert('Please enter a node value');
+        return;
+      }
+
+      if (position === 'start') {
+        linkedList.insertAtHead(value);
+      } else if (position === 'end') {
+        linkedList.insertAtTail(value);
+      } else if (position === 'index') {
+        const index = parseInt(document.getElementById('indexValue').value);
+        linkedList.insertAtIndex(value, index);
+      }
+
+      // Clear the input field
+      document.getElementById('nodeValue').value = '';
+    }
+
+    // Show/hide index input based on selection
+    document.getElementById('insertPosition').addEventListener('change', function () {
+      const indexInput = document.getElementById('indexInput');
+      if (this.value === 'index') {
+        indexInput.classList.remove('hidden');
+      } else {
+        indexInput.classList.add('hidden');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubble Input</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/responsive.css">
+    <style>
+        .element-container {
+            position: relative;
+            height: 100px; /* Adjust as needed */
+            border: 2px solid #4A5568; /* Border around the visualization area */
+            padding: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .element {
+            position: absolute;
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background-color: #4A5568; /* Tailwind gray-700 */
+            border-radius: 5px;
+            transition: all 0.5s ease-in-out;
+        }
+        .swapped {
+            background-color: #F56565; /* Tailwind red-500 */
+        }
+        .info {
+            margin-top: 10px;
+        }
+        .iteration {
+            margin-bottom: 20px;
+        }
+        .swap-info {
+            margin-left: 10px;
+            color: #F56565; /* Tailwind red-500 */
+        }
+        .swap-count {
+            margin-top: 5px;
+            font-weight: bold;
+        }
+        .movement-log {
+            margin-top: 10px;
+        }
+        .complexity-info {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="w-full min-h-screen bg-zinc-900 text-white p-10">
+        <h3 class="text-3xl mb-5">Bubble Input</h3>
+        <form id="sizeForm">
+            <input class="px-3 py-2 rounded-md bg-transparent border-2 outline-none border-zinc-800" type="text" placeholder="Size" id="size" name="size">
+            <input class="px-3 py-2 rounded-md bg-blue-500 border-2 outline-none border-zinc-800" type="submit" value="Create Array">
+        </form>
+
+        <form id="inputForm" style="display:none;" action="/bubbleinput" method="POST">
+            <!-- input boxes -->
+            <div id="inputContainer" class="input-container"></div>
+            <input class="px-3 py-2 rounded-md bg-blue-500 border-2 outline-none border-zinc-800" type="submit" value="Sort Array">
+        </form>
+
+        <div id="visualization" class="mt-5"></div>
+        <div id="info" class="info text-xl"></div>
+        <div id="complexity" class="complexity-info text-lg"></div>
+    </div>
+<script src="../script/bubbleVisual.js"></script>
+</body>
+
+</html>

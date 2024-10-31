@@ -1,0 +1,7 @@
+/* chatbot.css */
+.chatbot{
+    position:fixed;
+    right:20px;
+    bottom:60px;
+    background-color: blueviolet;
+}

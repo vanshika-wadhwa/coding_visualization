@@ -1,0 +1,56 @@
+<!-- playground.html -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playground</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/responsive.css">
+ </head>
+ <body>
+    <h1 class="text-3xl mx-10"> Playground</h1>
+    <div class=" border-2 border-solid "></div> 
+    <nav class="list-none">
+        <ul class="flex inline-flex gap-5 p-2 ">
+            <li>GO</li>
+            <li>Java</li>
+            <li>CPP</li>
+            <li>C</li>
+            <li>Python</li>
+            <li>Javascript</li>
+        </ul>
+        <ul class="flex inline-flex gap-5">
+            <li><img src="../images/sun.svg" alt="sun"></li>
+            <li><img src="../images/run.svg" alt="run"></li>
+        </ul>
+    </nav>
+    <div>
+        
+        <div class="inputbox grid grid-cols-2 h-screen">
+   
+            <!-- Left Side -->
+        <div class="bg-blue-500 p-4">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-2xl font-semibold mb-2">Write Your Code</h1>
+                
+                <textarea id="cppCodeInput" class="w-full h-96 p-2 text-sm font-mono bg-gray-900 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="// Write your C++ code here..."></textarea>
+                
+            </div>
+        </div>
+
+        <!-- Right Side -->
+        <div class="relative bg-gray-200 p-4">
+            <h1 class="text-black text-xl">Right Side</h1>
+            <p>This is the right side of the page.</p>
+            
+            <!-- Image Positioned at the Right Corner -->
+            <div class="fixed bottom-4 right-4">
+                <img src="../images/chatbot.png" alt="chatbot" width="50px" height="50px">
+            </div>
+        </div>
+        </div>
+        </div>
+    </div>
+ </body>
+ </html>

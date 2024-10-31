@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge Sort Explanation</title>
+    <link rel="stylesheet" href="/static/responsive.css">
+</head>
+<body>
+    <h1>Merge Sort</h1>
+    <h1>Copied from chatGPT </h1>
+    <p>Merge sort is an efficient, stable, comparison-based sorting algorithm that uses the divide-and-conquer approach to sort an array. It divides the array into smaller subarrays, sorts each subarray, and then merges the sorted subarrays to produce a sorted array.</p>
+    
+    <h2>Steps of Merge Sort:</h2>
+    <ul>
+        <li><strong>Divide:</strong> Split the array into two halves.</li>
+        <li><strong>Conquer:</strong> Recursively sort each half.</li>
+        <li><strong>Combine:</strong> Merge the two sorted halves into a single sorted array.</li>
+    </ul>
+    
+    <h2>Example:</h2>
+    <p>Consider sorting the array <code>[38, 27, 43, 3, 9, 82, 10]</code>:</p>
+    <ol>
+        <li><strong>Initial Array:</strong> <code>[38, 27, 43, 3, 9, 82, 10]</code></li>
+        <li><strong>Divide:</strong> <code>[38, 27, 43]</code> and <code>[3, 9, 82, 10]</code></li>
+        <li><strong>Conquer:</strong>
+            <ul>
+                <li>Sort <code>[38, 27, 43]</code> to <code>[27, 38, 43]</code></li>
+                <li>Sort <code>[3, 9, 82, 10]</code> to <code>[3, 9, 10, 82]</code></li>
+            </ul>
+        </li>
+        <li><strong>Combine:</strong> Merge <code>[27, 38, 43]</code> and <code>[3, 9, 10, 82]</code> to get <code>[3, 9, 10, 27, 38, 43, 82]</code></li>
+    </ol>
+    
+    <h2>Pseudocode:</h2>
+    <pre><code>
+function mergeSort(arr):
+    if length of arr &lt;= 1:
+        return arr
+    middle = length of arr // 2
+    left = mergeSort(arr[0:middle])
+    right = mergeSort(arr[middle:])
+    return merge(left, right)
+
+function merge(left, right):
+    result = []
+    while left is not empty and right is not empty:
+        if left[0] &lt;= right[0]:
+            append left[0] to result
+            remove left[0] from left
+        else:
+            append right[0] to result
+            remove right[0] from right
+    while left is not empty:
+        append left[0] to result
+        remove left[0] from left
+    while right is not empty:
+        append right[0] to result
+        remove right[0] from right
+    return result
+    </code></pre>
+    
+    <h2>Time Complexity:</h2>
+    <ul>
+        <li><strong>Best-case time complexity:</strong> <code>O(n log n)</code></li>
+        <li><strong>Average-case time complexity:</strong> <code>O(n log n)</code></li>
+        <li><strong>Worst-case time complexity:</strong> <code>O(n log n)</code></li>
+    </ul>
+    
+    <h2>Space Complexity:</h2>
+    <p><strong>Space complexity:</strong> <code>O(n)</code>, due to the auxiliary space used for merging.</p>
+    
+    <p>Merge sort is particularly effective for large datasets and is preferred when stable sorting is required.</p>
+</body>
+</html>

@@ -1,0 +1,34 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+:root{
+    --navcolor: rgb(15, 143, 98);
+    --navtextcolor:white;
+    --pagecolor:rgb(188, 86, 86);
+}
+
+.nav{
+    
+    background-color: var(--navcolor);
+    /* border:2px solid black; */
+
+}
+.nav ul{
+    display:flex;
+    /* color:antiquewhite; */
+    position:relative;
+}
+.nav ul li{
+    list-style:none;
+    padding:10px;
+    /* color:aliceblue; */
+}
+.nav ul li ul{
+    display: flexbox;
+    
+}
+.nav ul li a{
+    text-decoration:none;
+    color: var(--navtextcolor);
+}

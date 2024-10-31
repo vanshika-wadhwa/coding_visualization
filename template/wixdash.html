@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wix dashboard</title>
+    <!-- <link rel="stylesheet" href="./static/utility.css"> -->
+    <!-- <link rel="stylesheet" href="/static/wixdash.css"> -->
+    <!-- <link rel="stylesheet" href="./static/PgNavbar.css"> -->
+    <!-- <link rel="stylesheet" href="./static/lefticon.css"> -->
+    <!-- <link rel="stylesheet" href="./static/chatbot.css"> -->
+    <!-- <link rel="stylesheet" href="./static/loginpg.css"> -->
+    <!-- <link rel="stylesheet" href="./static/sorting.css"> -->
+    <!-- <link rel="stylesheet" href="./static/carousel.css"> -->
+    <link rel="preload" href="/static/wixdash.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="stylesheet" href="/animation/css/mode.css">
+    <!-- Google Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/static/responsive.css">
+
+
+</head>
+
+<body>
+    
+    <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
+    
+    <div class="pgnavigation">
+        <ul>
+            
+            <li><a href="#">Home</a></li>
+            <li><a href="sortingContent.html"  target="_blank" rel="noopener noreferrer">Sorting</a></li>
+            <li><a href="#" >Shortest Path</a>
+                
+                <ul class="dropdown">
+                    <li><a href="prims.html">Prims</a></li>
+                    <li><a href="dijakstar.html">Dijkstra</a></li>
+                </ul>
+            </li>
+            <li><a href="linkedlistContent.html" target="_blank" rel="noopener noreferrer">Linked list</a></li>
+            <li><a href="stackContent.html" target="_blank" rel="noopener noreferrer">Stack</a></li>       </li>
+            <li><a href="queueContent.html" target="_blank" rel="noopener noreferrer">Queue</a></li>
+            
+            <li><a href="treeContent.html" target="_blank" rel="noopener noreferrer">Tree</a></li>
+            <li><a href="feedback.html" target="_blank" rel="noopener noreferrer">Feedback</a></li>
+            <li><a href="#"><span class="material-icons">logout</span>Signout</a></li>
+
+        </ul>
+    </div>
+    <!-- ---------------------------------------fixed position icons----------------------------------------------- -->
+    <div class="leftfixedicon">
+        <img class="lefticon" src="/images/lefticon.svg" alt="lefticon">
+        <ul>
+            <li><a class="whtsp" href="https://www.whatsapp.com/" target="_blank"><img src="/images/whtsp.png" width="50px"
+                        alt="whtsp"></a></li>
+            <li><a class="insta" href="https://www.instagram.com/"></a><img src="/images/insta.png" width="50px" alt="insta">
+            </li>
+        </ul>
+    </div>
+    <div class="chatbot">
+        <img src="/images/chatbotimage.png" width="50px" alt="chatbot">
+    </div>
+
+    <!-- ----------------------------------------login card------------------------------------------------------------ -->
+    <!-- 
+    <div class="card">
+        <h1>login to DSA</h1>
+        <div class="email">
+            <label for="email">Email</label>
+            <input type="email" placeholder="example@gmail.com">
+        </div>
+        <div class="password">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+        </div>
+        <div class="signup">
+            <button type="submit">sign up</button>
+        </div>
+
+        <div class="signUpOption">
+            or sign up with
+        </div>
+        <div class="capsules">
+            <button type="button"><a href="https://www.google.com/"></a><img src="google.png" alt="google"
+                    width="30px"></button>
+            <button type="button"><a href="https://www.facebook.com/"></a><img src="facebook.png" alt="facebook"
+                    width="60px"></button>
+            <button type="button"><a href="https://www.apple.com/"></a><img src="apple.png" alt="apple"
+                    width="30px"></button>
+        </div> 
+        <div class="footer">
+            <p>Have an account? <a href="register.html">Sign In</a></p>
+        </div> -->
+
+    <!-- -------------------------------------- content -------------------------------------------------- -->
+    <!-- <div class="carousel">
+        <div class="slider-wrapper"> all images r navgigate 
+            <div class="slider">
+
+                <img id="slider-1" src="dl1.jfif" alt="dl1" width="400" height="350">
+
+
+                <img id="slider-2" src="dl2.jfif" alt="dl2" "width=" 400" height="350">
+
+
+                <img id="slider-3" src="dl3.png" alt="dl3" "width=" 400" height="350">
+
+
+                <img id="slider-4" src="ll.jfif" alt="ll" "width=" 400" height="350">
+
+
+                <img id="slider-5" src="cl.jfif" alt="cl" "width=" 400" height="350">
+
+            </div>
+            <div class="slider-nav">
+                <a href="#slider-1"></a>
+                <a href="#slider-2"></a>
+                <a href="#slider-3"></a>
+                <a href="#slider-4"></a>
+                <a href="#slider-5"></a>
+            </div>
+            <div class="righticon">
+                <img src="/images/righticon.svg" alt="right icon">
+            </div>
+        </div>
+    </div> -->
+    <div class="content">
+        <div class="sorting">
+            <h1>Sorting</h1>
+            <dl>
+                <dt>Definition</dt>
+                <dd>Sorting is a technique which sorts the data. There are many techniques which sort data with
+                    different time
+                    complexity and with different space complexity. Some techniques are written below:</dd>
+
+                <dt>Types of Sorting</dt>
+                <dd>Insertion Sort</dd>
+                <dd>Bubble Sort</dd>
+                <dd>Selection Sort</dd>
+                <dd>Merge Sort</dd>
+                <dd>Quick Sort</dd>
+                <dd>Count Sort</dd>
+                <dd>Radix Sort</dd>
+            </dl>
+        </div>
+    </div>
+    </div>
+    </div>
+    <script src="/animation/js/mode.js"></script>
+    <script>
+        // Load navbar content
+        fetch("logoNav.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("include-content").innerHTML = data;
+
+                // Load mode.js after navbar is injected to ensure it has access to the toggle button
+                const modeScript = document.createElement("script");
+                modeScript.src = "/animation/js/mode.js";
+                document.body.appendChild(modeScript);
+            })
+            .catch(error => console.error("Error loading navbar content:", error));    
+    </script>
+</body>
+
+</html>

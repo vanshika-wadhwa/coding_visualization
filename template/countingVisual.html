@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counting Sort Input</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/responsive.css">
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .array-element {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 18px;
+            background-color: #4A5568; /* Tailwind gray-700 */
+            color: white;
+            border-radius: 5px;
+            transition: transform 0.5s ease-in-out, background-color 0.5s ease-in-out;
+        }
+        .sorted-element {
+            background-color: #68D391; /* Tailwind green-400 */
+            transform: translateY(20px);
+           
+            padding: 10px;
+        }
+        .highlight {
+            background-color: #F56565; /* Tailwind red-500 */
+        }
+        .info {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        .step {
+            margin-bottom: 10px;
+        }
+        .container-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="w-full min-h-screen bg-white text-black p-10">
+        <h3 class="text-3xl mb-5">Counting Sort Visualization</h3>
+        <form id="sizeForm">
+            <input class="px-3 py-2 rounded-md bg-transparent border-2 outline-none border-zinc-800" type="text" placeholder="Size" id="size" name="size">
+            <input class="px-3 py-2 rounded-md bg-blue-500 border-2 outline-none border-zinc-800" type="submit" value="Create Array">
+        </form>
+
+        <form id="inputForm" style="display:none;" action="/countingsort" method="POST">
+            <div id="inputContainer" class="input-container"></div>
+            <input class="px-3 py-2 rounded-md bg-blue-500 border-2 outline-none border-zinc-800 mt-4" type="submit" value="Sort Array">
+        </form>
+
+        <div class="container-title text-xl mt-5">Original Array</div>
+        <div id="originalArray" class="container"></div>
+
+        <div class="container-title text-xl mt-5">Counting Array</div>
+        <div id="countingArray" class="container"></div>
+
+        <div class="container-title text-xl mt-5">Sorted Array</div>
+        <div id="sortedArray" class="container"></div>
+
+        <div id="info" class="info text-lg mt-5"></div>
+    </div>
+
+    <script src="../script/countingVisual.js"></script>
+</body>
+</html>

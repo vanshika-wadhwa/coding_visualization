@@ -1,0 +1,102 @@
+/* 
+*{
+    margin: 0;
+    padding: 0;
+}
+.pgnavigation{
+    height:10vh;
+    width:100%;
+    position:relative;
+    top:1px;
+    background-color: #fccb96;
+    justify-content:center;
+    display:flex;
+
+}
+.pgnavigation ul{
+    display:flex;
+    list-style: none;
+    gap:70px;
+    padding:10px;
+}
+.pgnavigation ul li ul{
+    display:block;
+
+}
+.dropdownicon{
+    height: 10px;
+    width:10px;
+}
+.pgnavigation ul a{
+    color:chocolate;
+    text-decoration: none;
+}
+.pgnavigation ul li:hover{
+    color:#ba7206;
+   
+} */
+
+/* PgNavbar.css */
+* {
+    margin: 0;
+    padding: 0;
+}
+.pgnavigation {
+    height: 10vh;
+    width: 100%;
+    position: relative;
+    top: 1px;
+    background-color: #fccb96;
+    justify-content: center;
+    display: flex;
+}
+.pgnavigation ul {
+    display: flex;
+    list-style: none;
+    gap: 70px;
+    padding: 10px;
+}
+.pgnavigation ul li {
+    position: relative;
+}
+.pgnavigation ul li ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fccb96;
+    padding: 10px;
+    list-style: none;
+    border: 1px solid #ba7206;
+    border-radius: 5px;
+}
+.pgnavigation ul li:hover ul {
+    display: block;
+}
+.dropdownicon {
+    height: 10px;
+    width: 10px;
+    margin-left: 5px;
+}
+.pgnavigation ul a {
+    color: chocolate;
+    text-decoration: none;
+}
+.pgnavigation ul li:hover > a {
+    color: #ba7206;
+}
+.pgnavigation ul li:hover ul li a:hover {
+    color: #ba7206;
+}
+.pgnavigation ul li:hover {
+    background-color: #ffd9b3;
+    border-radius: 10px;
+    padding: 5px;
+}
+.pgnavigation ul li ul li {
+    padding: 5px 0;
+}
+.pgnavigation ul li ul li a {
+    display: block;
+    padding: 5px;
+}

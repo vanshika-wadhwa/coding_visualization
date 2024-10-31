@@ -1,0 +1,15 @@
+/* loginpg.css */
+
+.card{
+    margin:100px;
+    height:225px;
+    width:425px;
+    padding:20px;
+    border:2px solid green;
+    background-color: yellow;
+    position:relative;
+    top:0px;
+    display:grid;
+    justify-content: center;
+}
+

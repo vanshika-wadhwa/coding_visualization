@@ -1,0 +1,17 @@
+/* lefticon.css */
+.leftfixedicon{
+    background-color: #d6d2cc;
+    border:2px solid rgb(192, 186, 186);
+    position:fixed;
+    right:20px;
+    bottom:280px;
+    /* transition:transform 1s ; */
+    /* transform:translateX(10vw) ; */
+    transition: right 1s ease-in 2s;
+    /* top:100px; */
+
+}
+.leftfixedicon ul{
+    list-style: none;
+
+}

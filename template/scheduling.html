@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scheduling Algorithm Visualization</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/responsive.css">
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md">
+        <h1 class="text-2xl font-bold text-center mb-6">Scheduling Algorithm Visualization</h1>
+
+        <!-- Task Input Section -->
+        <div class="mb-6">
+            <input id="taskName" type="text" placeholder="Task Name" class="p-2 border rounded-md mb-2 w-full">
+            <input id="burstTime" type="number" placeholder="Burst Time" class="p-2 border rounded-md mb-2 w-full">
+            <button onclick="addTask()" class="w-full bg-blue-500 text-white py-2 rounded-md">Add Task</button>
+        </div>
+
+        <!-- Algorithm Selection -->
+        <div class="mb-6">
+            <label for="algorithm" class="block font-bold mb-2">Select Algorithm:</label>
+            <select id="algorithm" class="p-2 border rounded-md w-full">
+                <option value="fcfs">First-Come, First-Served (FCFS)</option>
+                <option value="sjf">Shortest Job First (SJF)</option>
+                <option value="roundRobin">Round Robin</option>
+            </select>
+        </div>
+
+        <!-- Execute Button -->
+        <button onclick="executeAlgorithm()" class="w-full bg-green-500 text-white py-2 rounded-md mb-6">Execute</button>
+
+        <!-- Visualization Section -->
+        <div id="visualization" class="bg-gray-100 p-4 rounded-lg">
+            <p>No tasks scheduled yet.</p>
+        </div>
+    </div>
+    <script src="/script/scheduling.js"></script>
+</body>
+</html>

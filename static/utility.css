@@ -1,0 +1,315 @@
+/* utility.css */
+:root{
+    --bodycolor:#f5f8fc;
+}
+.display{
+    display:flex;
+}
+.line-style{
+    list-style: none;
+}
+body{
+    background-color: var(--bodycolor);
+}
+/* utility.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* wixdash.css */
+.fixed_navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f4f4f4;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.fixed_navigation .left ul,
+.fixed_navigation .right ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.fixed_navigation .left li,
+.fixed_navigation .right li {
+    margin: 0 10px;
+    font-size: 14px;
+}
+
+.fixed_navigation .left li {
+    color: #555;
+}
+
+.fixed_navigation .right li {
+    display: flex;
+    align-items: center;
+}
+
+.fixed_navigation .right input {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.fixed_navigation .right .srchbtn {
+    background-color: #007BFF;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    padding: 5px 10px;
+}
+
+.fixed_navigation .right .mode {
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.pgnavigation {
+    display: flex;
+    justify-content: center;
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 0;
+    position: fixed;
+    top: 60px;
+    width: 100%;
+    z-index: 1000;
+}
+
+.pgnavigation ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pgnavigation li {
+    position: relative;
+    margin: 0 15px;
+    font-size: 16px;
+}
+
+.pgnavigation a {
+    color: #fff;
+    padding: 10px;
+    display: block;
+}
+
+.pgnavigation .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    color: #333;
+    list-style: none;
+    padding: 0;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pgnavigation .dropdown a {
+    padding: 10px;
+    color: #333;
+}
+
+.pgnavigation li:hover .dropdown {
+    display: block;
+}
+
+.leftfixedicon {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.leftfixedicon ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.leftfixedicon li {
+    margin: 0 5px;
+}
+
+.chatbot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007BFF;
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chatbot img {
+    width: 40px;
+}
+
+.carousel {
+    margin-top: 100px; /* Adjust this value to ensure carousel is visible below the fixed navigation */
+}
+
+.carousel .slider-wrapper {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.carousel .slider {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel img {
+    width: 100%;
+    height: auto;
+}
+
+.carousel .slider-nav {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.carousel .slider-nav a {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #007BFF;
+    border-radius: 50%;
+    margin: 0 5px;
+    transition: background-color 0.3s;
+}
+
+.carousel .slider-nav a:hover,
+.carousel .slider-nav a.active {
+    background-color: #0056b3;
+}
+
+.carousel .righticon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.content {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.content .sorting {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.content h1 {
+    color: #007BFF;
+}
+
+.content dl {
+    margin: 0;
+    padding: 0;
+}
+
+.content dt {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.content dd {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+/* loginpg.css */
+.card {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card h1 {
+    text-align: center;
+    color: #007BFF;
+}
+
+.card .email,
+.card .password {
+    margin-bottom: 15px;
+}
+
+.card label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.card input[type="email"],
+.card input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.card button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.card .signUpOption {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.card .capsules {
+    display: flex;
+    justify-content: center;
+}
+
+.card .capsules button {
+    border: none;
+    background: none;
+    margin: 0 5px;
+}
+
+.card .footer {
+    text-align: center;
+    margin-top: 10px;
+}

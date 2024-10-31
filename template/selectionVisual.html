@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>selection visual representation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/responsive.css">
+</head>
+<body>
+    <div class="m-2 p-2">
+    <h1 m-2>Selection visualization</h1>
+    <form id="sizeform">
+        
+        <input class="px-3 py-2 rounded-md bg-transparent border-2 outline-none border-zinc-800"type="text" placeholder="enter size" id="size" name="size">
+        <input class="px-3 py-2 rounded-md bg-blue-500 border-2 outline-none border-zinc-800" type="submit" value="Create Array">
+    </form>
+
+    <form id="inputForm" action="selectionInput" method="post">
+        <!-- input boxes -->
+        <div id="inputContainer" class="input-container"></div>
+
+        <input class="px-3 py-2 rounded-md bg-blue-500 border-2 outline-none border-zinc-800" type="submit" value="Sort Array">
+    </form>
+        <div id="visualization" class="mt-5"></div>
+        <div id="info" class="info text-xl"></div>
+        <div id="complexity" class="complexity-info text-lg"></div>
+
+    </div>
+    <script src="../script/selectionVisual.js"></script>
+</body>
+</html>

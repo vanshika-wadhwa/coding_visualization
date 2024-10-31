@@ -1,0 +1,21 @@
+/* Navbar for mobile */
+@media (max-width: 600px) {
+    .fixed_navigation {
+        flex-direction: column;
+    }
+    .fixed_navigation ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Navbar for desktop */
+@media (min-width: 1025px) {
+    .fixed_navigation {
+        flex-direction: row;
+    }
+    .fixed_navigation ul {
+        flex-direction: row;
+        gap: 25px;
+    }
+}
