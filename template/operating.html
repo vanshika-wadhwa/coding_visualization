@@ -102,6 +102,8 @@
      </style>
  </head>
  <body>
+    <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
+
      <div class="navbar">
          <h1>Operating Systems</h1>
          <ul>
@@ -171,6 +173,20 @@
             Additionally, it improves problem-solving skills related to system performance, resource management, and security.
         </p>
     </div>
+    <script>
+        // Load navbar content
+        fetch("logoNav.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("include-content").innerHTML = data;
+
+                // Load mode.js after navbar is injected to ensure it has access to the toggle button
+                const modeScript = document.createElement("script");
+                modeScript.src = "/animation/js/mode.js";
+                document.body.appendChild(modeScript);
+            })
+            .catch(error => console.error("Error loading navbar content:", error));    
+    </script>
  </body>
  </html>
  

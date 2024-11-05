@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="/static/responsive.css">
  </head>
  <body>
+    <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
+
     <h1 class="text-3xl mx-10"> Playground</h1>
     <div class=" border-2 border-solid "></div> 
     <nav class="list-none">
@@ -52,5 +54,19 @@
         </div>
         </div>
     </div>
+    <script>
+        // Load navbar content
+        fetch("logoNav.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("include-content").innerHTML = data;
+
+                // Load mode.js after navbar is injected to ensure it has access to the toggle button
+                const modeScript = document.createElement("script");
+                modeScript.src = "/animation/js/mode.js";
+                document.body.appendChild(modeScript);
+            })
+            .catch(error => console.error("Error loading navbar content:", error));    
+    </script>
  </body>
  </html>

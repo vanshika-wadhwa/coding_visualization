@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="/static/responsive.css">
 </head>
 <body>
+    <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
+
     <header>
         <h1>Introduction to Queues in Data Structures</h1>
     </header>
@@ -55,5 +57,19 @@
     <footer>
         <p>Queues are fundamental structures, essential for managing sequential tasks efficiently in programming and real-world scenarios!</p>
     </footer>
+    <script>
+        // Load navbar content
+        fetch("logoNav.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("include-content").innerHTML = data;
+
+                // Load mode.js after navbar is injected to ensure it has access to the toggle button
+                const modeScript = document.createElement("script");
+                modeScript.src = "/animation/js/mode.js";
+                document.body.appendChild(modeScript);
+            })
+            .catch(error => console.error("Error loading navbar content:", error));    
+    </script>
 </body>
 </html>

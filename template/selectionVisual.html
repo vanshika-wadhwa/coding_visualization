@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="/static/responsive.css">
 </head>
 <body>
+    <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
+
     <div class="m-2 p-2">
     <h1 m-2>Selection visualization</h1>
     <form id="sizeform">
@@ -27,6 +29,20 @@
         <div id="complexity" class="complexity-info text-lg"></div>
 
     </div>
-    <script src="../script/selectionVisual.js"></script>
+    <script src="/script/selectionVisual.js"></script>
+    <script>
+        // Load navbar content
+        fetch("logoNav.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("include-content").innerHTML = data;
+
+                // Load mode.js after navbar is injected to ensure it has access to the toggle button
+                const modeScript = document.createElement("script");
+                modeScript.src = "/animation/js/mode.js";
+                document.body.appendChild(modeScript);
+            })
+            .catch(error => console.error("Error loading navbar content:", error));    
+    </script>
 </body>
 </html>

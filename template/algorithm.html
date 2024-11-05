@@ -28,6 +28,8 @@
     </style>
 </head>
 <body>
+    <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
+
     <div class="content">
         <h1>Introduction to Data Structures and Algorithms</h1>
         <p>
@@ -83,5 +85,19 @@
             By mastering DSA, programmers can improve their logical thinking and develop solutions that run faster and consume fewer resources.
         </p>
     </div>
+    <script>
+        // Load navbar content
+        fetch("logoNav.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("include-content").innerHTML = data;
+
+                // Load mode.js after navbar is injected to ensure it has access to the toggle button
+                const modeScript = document.createElement("script");
+                modeScript.src = "/animation/js/mode.js";
+                document.body.appendChild(modeScript);
+            })
+            .catch(error => console.error("Error loading navbar content:", error));    
+    </script>
 </body>
 </html>

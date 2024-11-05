@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="/static/responsive.css">
  </head>
  <body>
-    
+    <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
+
     <nav>
         <ul class=" border-2 rounded-md border-solid justify-evenly list-none display flex space-x-2.5 bg-slate-600">
             <li><a href="toc.html" target="_blank" rel="noopener noreferrer">Toc</a></li>
@@ -23,6 +24,19 @@
         </ul>
 
     </nav>
-    
+    <script>
+        // Load navbar content
+        fetch("logoNav.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("include-content").innerHTML = data;
+
+                // Load mode.js after navbar is injected to ensure it has access to the toggle button
+                const modeScript = document.createElement("script");
+                modeScript.src = "/animation/js/mode.js";
+                document.body.appendChild(modeScript);
+            })
+            .catch(error => console.error("Error loading navbar content:", error));    
+    </script>
  </body>
  </html>

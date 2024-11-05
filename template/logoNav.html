@@ -5,16 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navbar</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="/animation/css/mode.css">
+    <!-- <link rel="stylesheet" href="/animation/css/mode.css"> -->
     <link rel="stylesheet" href="/static/responsive.css">
 </head>
+<style>
+:root {
+    --background-color: #ffffff;
+    --text-color: #333333;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.fixed_navigation {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.5s ease;
+}
+
+.fixed_navigation ul {
+    list-style-type: none;
+    display: flex;
+    gap: 15px;
+}
+
+.fixed_navigation li {
+    color: var(--text-color);
+}
+
+.fixed_navigation input[type="text"] {
+    padding: 5px;
+    border: 1px solid var(--text-color);
+}
+
+.srchbtn {
+    padding: 5px;
+    background-color: var(--text-color);
+    color: var(--background-color);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.srchbtn:hover {
+    background-color: var(--text-color);
+    color: var(--background-color);
+}
+
+</style>
 <body>
     <div class="fixed_navigation">
         <div class="left">
             <ul>
                 <li><a href="visualization.html" target="_blank" rel="noopener noreferrer">visualization</a></li>
-                <li>Operating system</li>
-                <li>Algorithm</li>
+                <li><a href="playground.html" target="_blank" rel="noopener noreferrer">playground</a></li>
+                <li><a href="pracSession.html" target="_blank" rel="noopener noreferrer">practice session</a></li>
+                <li><a href="algorithm.html" target="_blank" rel="noopener noreferrer">Algorithm</a></li>
+                <li><a href="operating.html" target="_blank" rel="noopener noreferrer">Operating system</a></li>
             </ul>
         </div>
         <div class="center">
@@ -37,6 +90,53 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="/animation/js/mode.js"></script>
+    <!-- <script src="/animation/js/mode.js"></script> -->
+    <script>
+        
+
+document.addEventListener("DOMContentLoaded", function() {
+    const toggleButton = document.getElementById("toggleMode");
+
+    // Check if toggle button exists
+    if (toggleButton) {
+        const toggleIcon = toggleButton.querySelector("span");
+
+        // Check localStorage for dark mode preference
+        let isDarkMode = localStorage.getItem("theme") === "dark";
+        applyTheme();
+
+        // Function to apply the theme
+        function applyTheme() {
+            if (isDarkMode) {
+                gsap.to(":root", {
+                    "--background-color": "#1f2937",
+                    "--text-color": "#f9fafb",
+                    duration: 0.5,
+                    ease: "power1.out"
+                });
+                toggleIcon.textContent = "nightlight";
+            } else {
+                gsap.to(":root", {
+                    "--background-color": "#ffffff",
+                    "--text-color": "#333333",
+                    duration: 0.5,
+                    ease: "power1.out"
+                });
+                toggleIcon.textContent = "sunny";
+            }
+        }
+
+        // Toggle and save dark mode preference
+        toggleButton.addEventListener("click", function() {
+            isDarkMode = !isDarkMode;
+            localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+            applyTheme();
+        });
+    } else {
+        console.error("Toggle button not found. Ensure logoNav.html includes #toggleMode");
+    }
+});
+
+    </script>
 </body>
 </html>

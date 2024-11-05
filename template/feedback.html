@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/static/responsive.css">
 </head>
 <body class="bg-slate-50 text-gray-800">
+    <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
 
     <!-- Navigation bar -->
     <nav>
@@ -76,4 +77,24 @@
             <!-- Feedback Comments -->
             <div>
                 <label for="comments" class="block font-semibold text-gray-700">Your Comments</label>
-                <textarea id="comments" name="comments" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-
+                <textarea id="comments" name="comments" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-"></textarea>
+            </div>
+        </form>
+    </div>
+    <script>
+        // Load navbar content
+        fetch("logoNav.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("include-content").innerHTML = data;
+
+                // Load mode.js after navbar is injected to ensure it has access to the toggle button
+                const modeScript = document.createElement("script");
+                modeScript.src = "/animation/js/mode.js";
+                document.body.appendChild(modeScript);
+            })
+            .catch(error => console.error("Error loading navbar content:", error));    
+    </script>
+</body>    
+</html>
+        

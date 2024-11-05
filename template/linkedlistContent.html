@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="/static/responsive.css">
 </head>
 <body>
+    <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
+
     <nav>
         <ul class=" border-2 rounded-md border-solid justify-evenly list-none display flex space-x-2.5 bg-slate-600 m-10 p-6">
             <li><a href="singly.html">singly list</a></li>
@@ -77,6 +79,20 @@
     <footer>
         <p>Linked lists offer flexible and efficient data storage, ideal for many real-world applications requiring dynamic memory handling!</p>
     </footer>
+    <script>
+        // Load navbar content
+        fetch("logoNav.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("include-content").innerHTML = data;
+
+                // Load mode.js after navbar is injected to ensure it has access to the toggle button
+                const modeScript = document.createElement("script");
+                modeScript.src = "/animation/js/mode.js";
+                document.body.appendChild(modeScript);
+            })
+            .catch(error => console.error("Error loading navbar content:", error));    
+    </script>
 </body>
 </html>
 

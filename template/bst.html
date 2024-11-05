@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="/static/responsive.css">
 </head>
 <body>
+    <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
+
     <div id="container">
         <h1>Binary Search Tree Visualization</h1>
         <!-- node input n insert button -->
@@ -21,5 +23,19 @@
     </div>
     
     <script src="/script/bst.js"></script>
+    <script>
+        // Load navbar content
+        fetch("logoNav.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("include-content").innerHTML = data;
+
+                // Load mode.js after navbar is injected to ensure it has access to the toggle button
+                const modeScript = document.createElement("script");
+                modeScript.src = "/animation/js/mode.js";
+                document.body.appendChild(modeScript);
+            })
+            .catch(error => console.error("Error loading navbar content:", error));    
+    </script>
 </body>
 </html>

@@ -50,6 +50,8 @@
     </style>
 </head>
 <body>
+    <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
+
     <div class="w-full min-h-screen bg-white text-black p-10">
         <h3 class="text-3xl mb-5">Counting Sort Visualization</h3>
         <form id="sizeForm">
@@ -74,6 +76,20 @@
         <div id="info" class="info text-lg mt-5"></div>
     </div>
 
-    <script src="../script/countingVisual.js"></script>
+    <script src="/script/countingVisual.js"></script>
+    <script>
+        // Load navbar content
+        fetch("logoNav.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("include-content").innerHTML = data;
+
+                // Load mode.js after navbar is injected to ensure it has access to the toggle button
+                const modeScript = document.createElement("script");
+                modeScript.src = "/animation/js/mode.js";
+                document.body.appendChild(modeScript);
+            })
+            .catch(error => console.error("Error loading navbar content:", error));    
+    </script>
 </body>
 </html>

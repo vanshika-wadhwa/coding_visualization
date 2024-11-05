@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="/static/responsive.css">
 </head>
 <body>
+    <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
+
     <h1>Merge Sort</h1>
     <h1>Copied from chatGPT </h1>
     <p>Merge sort is an efficient, stable, comparison-based sorting algorithm that uses the divide-and-conquer approach to sort an array. It divides the array into smaller subarrays, sorts each subarray, and then merges the sorted subarrays to produce a sorted array.</p>
@@ -71,5 +73,19 @@ function merge(left, right):
     <p><strong>Space complexity:</strong> <code>O(n)</code>, due to the auxiliary space used for merging.</p>
     
     <p>Merge sort is particularly effective for large datasets and is preferred when stable sorting is required.</p>
+    <script>
+        // Load navbar content
+        fetch("logoNav.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("include-content").innerHTML = data;
+
+                // Load mode.js after navbar is injected to ensure it has access to the toggle button
+                const modeScript = document.createElement("script");
+                modeScript.src = "/animation/js/mode.js";
+                document.body.appendChild(modeScript);
+            })
+            .catch(error => console.error("Error loading navbar content:", error));    
+    </script>
 </body>
 </html>
