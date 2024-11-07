@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stacks in Data Structures</title>
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-    <link rel="stylesheet" href="/static/responsive.css">
+    <link rel="stylesheet" href="/static/css/responsive.css">
 </head>
 <body>
     <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
@@ -58,5 +58,12 @@
     <footer>
         <p>Understanding stacks is essential as they are a foundational concept in many algorithms and applications!</p>
     </footer>
+    <script>
+        fetch("logoNav.html")  // Adjust path if navbar.html is in a different folder
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("include-content").innerHTML = data;
+            });
+    </script>
 </body>
 </html>

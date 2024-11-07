@@ -8,19 +8,34 @@
     <link rel="stylesheet" href="/static/responsive.css">
 </head>
 <body>
-    <div class="m-8 w-50 h-82 bg-zinc-900 text-white">
+    <div></div>
+    <div class="m-8 w-50 h-82 bg-zinc-500 text-white">
+         <!-- Display flash messages -->
+    <!-- {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul>
+        {% for category, message in messages %}
+          <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %} -->
+        
         <h1 class="p-2 text-3xl">Login</h1>
-        <form action="login" method="POST">
+        <form action="/login" method="POST">
             <div class="p-2 text-black">
+                <label>username:</label>
                 <input type="text" placeholder="username" name="username">
             </div>
             <div class="p-2 text-black">
+                <label >Email:</label>
                 <input type="email" placeholder="email" name="email">
             </div>
             <div class="p-2 text-black">
+                <label>Password:</label>
                 <input type="password" placeholder="password" name="password" id="p1">
             </div>
-            <a href="wixdash.html"><input class="border-2 border-white rounded-md m-2 bg-blue-400 p-2" type="submit" value="Login" ></a>
+            <button class="border-2 border-white rounded-md m-2 bg-blue-400 p-2" type="submit" value="Login" >Login</button>
         </form>
         
         <div class="p-2">
@@ -31,3 +46,4 @@
     </div>
 </body>
 </html>
+

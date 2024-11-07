@@ -7,7 +7,7 @@
     <title>topic navbar</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> -->
-    <link rel="stylesheet" href="/static/responsive.css">
+    <link rel="stylesheet" href="/static/css/responsive.css">
  </head>
  <body>
     <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
@@ -33,7 +33,7 @@
 
                 // Load mode.js after navbar is injected to ensure it has access to the toggle button
                 const modeScript = document.createElement("script");
-                modeScript.src = "/animation/js/mode.js";
+                modeScript.src = "/static/js/mode.js";
                 document.body.appendChild(modeScript);
             })
             .catch(error => console.error("Error loading navbar content:", error));    

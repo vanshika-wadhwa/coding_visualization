@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wix dashboard</title>
+    <!-- <link rel="stylesheet" href="./static/utility.css"> -->
+    <!-- <link rel="stylesheet" href="/static/wixdash.css"> -->
+    <!-- <link rel="stylesheet" href="./static/PgNavbar.css"> -->
+    <!-- <link rel="stylesheet" href="./static/lefticon.css"> -->
+    <!-- <link rel="stylesheet" href="./static/chatbot.css"> -->
+    <!-- <link rel="stylesheet" href="./static/loginpg.css"> -->
+    <link rel="preload" href="/static/css/wixdash.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="stylesheet" href="/static/css/mode.css">
+    <!-- Google Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/static/css/responsive.css">
+    <link rel="stylesheet" href="/static/css/login.css">
+
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+</head>
+
+<body>
+
+    <div id="include-content"></div> <!-- including main navbar file with js(written below) -->
+
+    <div class="pgnavigation">
+        <ul>
+
+            <li><a href="#">Home</a></li>
+            <li><a href="sortingContent.html" target="_blank" rel="noopener noreferrer">Sorting</a></li>
+            <li><a href="#">Shortest Path</a>
+
+                <ul class="dropdown">
+                    <li><a href="prims.html">Prims</a></li>
+                    <li><a href="dijakstar.html">Dijkstra</a></li>
+                </ul>
+            </li>
+            <li><a href="linkedlistContent.html" target="_blank" rel="noopener noreferrer">Linked list</a></li>
+            <li><a href="stackContent.html" target="_blank" rel="noopener noreferrer">Stack</a></li>
+            </li>
+            <li><a href="queueContent.html" target="_blank" rel="noopener noreferrer">Queue</a></li>
+
+            <li><a href="treeContent.html" target="_blank" rel="noopener noreferrer">Tree</a></li>
+            <li><a href="feedback.html" target="_blank" rel="noopener noreferrer">Feedback</a></li>
+            <li><a href="#"><span class="material-icons">logout</span>Signout</a></li>
+
+        </ul>
+    </div>
+    <!-- ---------------------------------------fixed position icons----------------------------------------------- -->
+    <div class="leftfixedicon">
+        <img class="lefticon" src="/static/images/lefticon.svg" alt="lefticon">
+        <ul>
+            <li><a class="whtsp" href="https://www.whatsapp.com/" target="_blank"><img src="/static/images/whtsp.png"
+                        width="50px" alt="whtsp"></a></li>
+            <li><a class="insta" href="https://www.instagram.com/"></a><img src="/static/images/insta.png" width="50px"
+                    alt="insta">
+            </li>
+        </ul>
+    </div>
+    <div class="chatbot">
+        <img src="/static/images/chatbot.png" width="50px" alt="chatbot">
+    </div>
+
+    <!-- ----------------------------------------login card------------------------------------------------------------ -->
+    <div class="m-8 w-50 h-82 bg-zinc-900 text-white">
+        <!-- Display flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <ul>
+            {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+        <div class="dashboard-content">
+            <!-- Login Modal -->
+
+            <div class="content">
+                <div class="sorting">
+                    <h1>Sorting</h1>
+                    <dl>
+                        <dt>Definition</dt>
+                        <dd>Sorting is a technique which sorts the data. There are many techniques which sort data with
+                            different time
+                            complexity and with different space complexity. Some techniques are written below:</dd>
+
+                        <dt>Types of Sorting</dt>
+                        <dd>Insertion Sort</dd>
+                        <dd>Bubble Sort</dd>
+                        <dd>Selection Sort</dd>
+                        <dd>Merge Sort</dd>
+                        <dd>Quick Sort</dd>
+                        <dd>Count Sort</dd>
+                        <dd>Radix Sort</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+    
+    <!-- Dynamically Load the Login Modal -->
+    <div id="loginModalContainer"></div>
+    <script src="/static/js/mode.js"></script>
+
+    <script>
+        // Load navbar content
+        fetch("logoNav.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("include-content").innerHTML = data;
+
+                // Load mode.js after navbar is injected to ensure it has access to the toggle button
+                const modeScript = document.createElement("script");
+                modeScript.src = "/static/js/mode.js";
+                document.body.appendChild(modeScript);
+            })
+
+           // Load the login modal content dynamically
+        fetch("login.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("loginModalContainer").innerHTML = data;
+
+                // Show the login modal after 3 seconds
+                setTimeout(function() {
+                    document.getElementById("loginModal").style.display = "flex"; // Show modal
+                }, 3000); // 3 seconds delay
+            })
+            .catch(error => console.error("Error loading login modal:", error));
+
+    </script>
+    <script src="/static/js/wixdash.js"></script>
+</body>
+
+</html>

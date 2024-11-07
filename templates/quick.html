@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quick sort</title>
-    <link rel="stylesheet" href="quick.css">
-    <link rel="stylesheet" href="/static/responsive.css">
+    <link rel="stylesheet" href="/static/css/quick.css">
+    <link rel="stylesheet" href="/static/css/responsive.css">
 </head>
 <body>
     <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
@@ -60,7 +60,7 @@
     
 
     </body>
-    <script src="quick.js"></script>
+    <script src="/static/js/quick.js"></script>
     <script>
         // Load navbar content
         fetch("logoNav.html")
@@ -70,7 +70,7 @@
 
                 // Load mode.js after navbar is injected to ensure it has access to the toggle button
                 const modeScript = document.createElement("script");
-                modeScript.src = "/animation/js/mode.js";
+                modeScript.src = "/script/js/mode.js";
                 document.body.appendChild(modeScript);
             })
             .catch(error => console.error("Error loading navbar content:", error));    
