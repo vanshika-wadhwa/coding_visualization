@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,43 +8,44 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/static/responsive.css">
 </head>
+
 <body>
-    <div></div>
-    <div class="m-8 w-50 h-82 bg-zinc-500 text-white">
-         <!-- Display flash messages -->
-    <!-- {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-      <ul>
-        {% for category, message in messages %}
-          <li class="{{ category }}">{{ message }}</li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-  {% endwith %} -->
-        
-        <h1 class="p-2 text-3xl">Login</h1>
-        <form action="/login" method="POST">
-            <div class="p-2 text-black">
-                <label>username:</label>
-                <input type="text" placeholder="username" name="username">
+    <!-- Login Modal (Initially hidden) -->
+    <div id="loginModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="m-8 w-50 h-82 bg-zinc-500 text-white">
+
+                <h1 class="p-2 text-3xl">Login</h1>
+                
+                <form action="/login" method="POST">
+                    <div class="p-2 text-black">
+                        <label>username:</label>
+                        <input type="text" placeholder="username" name="username">
+                    </div>
+                    <div class="p-2 text-black">
+                        <label>Email:</label>
+                        <input type="email" placeholder="email" name="email">
+                    </div>
+                    <div class="p-2 text-black">
+                        <label>Password:</label>
+                        <input type="password" placeholder="password" name="password" id="p1">
+                    </div>
+                    <button class="border-2 border-white rounded-md m-2 bg-blue-400 p-2" type="submit"
+                        value="Login">Login</button>
+                </form>
+
+                <div class="p-2">
+                    <p>Forgot password? <a href="{{ url_for('forgot_password') }}"><input
+                                class="border-2 border-white rounded-md bg-blue-400" type="button"
+                                value="New password"></a></p>
+                    <br>
+                    <p>Don't have account? <a href="{{url_for('register')}}"><input
+                                class="border-2 border-white rounded-md bg-blue-400 " type="button"
+                                value="Register"></a></p>
+                </div>
             </div>
-            <div class="p-2 text-black">
-                <label >Email:</label>
-                <input type="email" placeholder="email" name="email">
-            </div>
-            <div class="p-2 text-black">
-                <label>Password:</label>
-                <input type="password" placeholder="password" name="password" id="p1">
-            </div>
-            <button class="border-2 border-white rounded-md m-2 bg-blue-400 p-2" type="submit" value="Login" >Login</button>
-        </form>
-        
-        <div class="p-2">
-            <p>Forgot password? <a href="forgot.html"><input class="border-2 border-white rounded-md bg-blue-400" type="button" value=" New password"></a></p>
-            <br>
-            <p>Don't have account? <a href="register.html"><input class="border-2 border-white rounded-md bg-blue-400 " type="button" value="Register"></a></p>
         </div>
     </div>
 </body>
-</html>
 
+</html>

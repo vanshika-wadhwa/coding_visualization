@@ -93,36 +93,6 @@
             </div>
         </div>
     </div>
-    
-    <!-- Login Modal (Initially hidden) -->
-    <div id="loginModal" class="modal-overlay" style="display:none;">
-        <div class="modal-content">
-            <div class="m-8 w-50 h-82 bg-zinc-500 text-white">
-                <h1 class="p-2 text-3xl">Login</h1>
-                <form action="/login" method="POST">
-                    <div class="p-2 text-black">
-                        <label>Username:</label>
-                        <input type="text" placeholder="username" name="username">
-                    </div>
-                    <div class="p-2 text-black">
-                        <label>Email:</label>
-                        <input type="email" placeholder="email" name="email">
-                    </div>
-                    <div class="p-2 text-black">
-                        <label>Password:</label>
-                        <input type="password" placeholder="password" name="password" id="p1">
-                    </div>
-                    <button class="border-2 border-white rounded-md m-2 bg-blue-400 p-2" type="submit" value="Login">Login</button>
-                </form>
-                <div class="p-2">
-                    <p>Forgot password? <a href="{{ url_for('forgot_password') }}"><input class="border-2 border-white rounded-md bg-blue-400" type="button" value="New password"></a></p>
-                    <br>
-                    <p>Don't have account? <a href="{{url_for('register')}}"><input class="border-2 border-white rounded-md bg-blue-400 " type="button" value="Register"></a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script src="/static/js/mode.js"></script>
 
     <script>
@@ -136,46 +106,7 @@
                 const modeScript = document.createElement("script");
                 modeScript.src = "/static/js/mode.js";
                 document.body.appendChild(modeScript);
-            })
-
-            let isLoggedIn;
-                if ('user_id' in session) {
-                    isLoggedIn = 'true';
-                } else {
-                    isLoggedIn = 'false';
-                }
-
-                let showModal;
-                if (show_modal) {
-                    showModal = 'true';
-                } else {
-                    showModal = 'false';
-                }
-
-
-        // If the user is already logged in, skip showing the modal
-        if (isLoggedIn) {
-            localStorage.setItem('loginModalShown', 'true');
-        }
-
-        // If the modal hasn't been shown before and the user isn't logged in, show it after 3 seconds
-        if (!localStorage.getItem('loginModalShown') && !isLoggedIn && showModal) {
-            setTimeout(function() {
-                showLoginModal(); // Your function to display the login modal
-            }, 3000); // 3 seconds delay
-        }
-
-        // Function to show the login modal
-        function showLoginModal() {
-            document.getElementById('loginModal').style.display = 'flex'; // Show modal
-        }
-
-        // Close the modal and mark it as shown in localStorage
-        function closeLoginModal() {
-            localStorage.setItem('loginModalShown', 'true');
-            document.getElementById('loginModal').style.display = 'none'; // Hide the modal
-        }
-        
+            })        
     </script>
     <script src="/static/js/wixdash.js"></script>
 </body>

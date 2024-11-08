@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/static/css/responsive.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .logout-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            display: inline-block;
+            margin: 20px;
+            width: 300px;
+        }
+
+        .logout-message {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #4b5563;
+        }
+
+        .action-buttons a {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #3b82f6;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .action-buttons a:hover {
+            background-color: #2563eb;
+        }
+
+        .back-home a {
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .back-home a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="logout-container">
+        <div class="logout-message">
+            <span class="material-icons" style="font-size: 50px;">exit_to_app</span>
+            <h2>You've been logged out</h2>
+            <p>We hope to see you again soon!</p>
+        </div>
+
+        <div class="action-buttons">
+            <a href="{{ url_for('login') }}">Login Again</a>
+        </div>
+
+        <div class="back-home">
+            <p>Or go back to <a href="{{ url_for('wixdash') }}">Dashboard</a></p>
+        </div>
+    </div>
+
+</body>
+</html>

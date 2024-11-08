@@ -75,7 +75,10 @@ body {
         </div>
         <div class="right">
             <ul>
-                <li><span class="material-icons">login</span></li>
+                <!-- Make the logout icon a clickable link that triggers the logout route -->
+                <li><a href="{{ url_for('logout') }}" class="logout-link">
+                    <span class="material-icons">logout</span>
+                </a></li>
                 <li><a href="{{url_for('feedback')}}" target="_blank" rel="noopener noreferrer">Feedback</a></li>
                 <li>
                     <button id="toggleMode"><span class="material-icons">sunny</span></button>
@@ -84,7 +87,7 @@ body {
                     <button class="srchbtn" type="button">search</button>
                 </li>
                 
-                <li><span class="material-icons">menu</span></li>
+                <!-- <li><span class="material-icons">menu</span></li> -->
             </ul>
         </div>
     </div>

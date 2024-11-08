@@ -3,20 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot password</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Forgot Password</title>
     <link rel="stylesheet" href="/static/responsive.css">
 </head>
 <body>
-    <div class="m-8 w-50 h-82 bg-zinc-900 text-white">
-        <h1 class="p-2 text-3xl">forgot password</h1>
-        <form action="newpassword" method="GET">
+    <div class="m-8 w-50 h-82 bg-zinc-500 text-white">
+        <h1 class="p-2 text-3xl">Forgot Password</h1>
+        <form action="/forgot" method="POST">
             <div class="p-2 text-black">
-                <input type="email" placeholder="enter email" name="email">
+                <label>Email:</label>
+                <input type="email" placeholder="Enter your email" name="email" required>
             </div>
+            <button class="border-2 border-white rounded-md m-2 bg-blue-400 p-2" type="submit">Generate New Password</button>
         </form>
-        
-        <a href="newPassword.html"><button>ok</button></a>
     </div>
 </body>
 </html>
