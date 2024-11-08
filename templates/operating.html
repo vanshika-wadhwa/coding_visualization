@@ -107,10 +107,10 @@
      <div class="navbar">
          <h1>Operating Systems</h1>
          <ul>
-             <li><a href="home.html">Home</a></li>
+             <li><a href="{{url_for('wixdash')}}">Home</a></li>
              <li><a href="#">Introduction</a></li>
              <li>
-                 <a href="#">Scheduling Algorithms</a>
+                 <a href="{{url_for('scheduling')}}">Scheduling Algorithms</a>
                  <div class="dropdown">
                      <a href="fcfs.html">First Come First Serve (FCFS)</a>
                      <a href="sjf.html">Shortest Job First (SJF)</a>
@@ -175,7 +175,7 @@
     </div>
     <script>
         // Load navbar content
-        fetch("logoNav.html")
+        fetch("{{url_for('logoNav')}}")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("include-content").innerHTML = data;

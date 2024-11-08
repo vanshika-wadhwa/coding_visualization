@@ -63,11 +63,11 @@ body {
     <div class="fixed_navigation">
         <div class="left">
             <ul>
-                <li><a href="visualization.html" target="_blank" rel="noopener noreferrer">visualization</a></li>
-                <li><a href="playground.html" target="_blank" rel="noopener noreferrer">playground</a></li>
-                <li><a href="pracSession.html" target="_blank" rel="noopener noreferrer">practice session</a></li>
-                <li><a href="algorithm.html" target="_blank" rel="noopener noreferrer">Algorithm</a></li>
-                <li><a href="operating.html" target="_blank" rel="noopener noreferrer">Operating system</a></li>
+                <li><a href="{{url_for('visualization')}}" target="_blank" rel="noopener noreferrer">visualization</a></li>
+                <li><a href="{{url_for('playground')}}" target="_blank" rel="noopener noreferrer">playground</a></li>
+                <li><a href="{{url_for('pracSession')}}" target="_blank" rel="noopener noreferrer">practice session</a></li>
+                <li><a href="{{url_for('algorithm')}}" target="_blank" rel="noopener noreferrer">Algorithm</a></li>
+                <li><a href="{{url_for('operating')}}" target="_blank" rel="noopener noreferrer">Operating system</a></li>
             </ul>
         </div>
         <div class="center">
@@ -76,7 +76,7 @@ body {
         <div class="right">
             <ul>
                 <li><span class="material-icons">login</span></li>
-                <li><a href="feedback.html" target="_blank" rel="noopener noreferrer">Feedback</a></li>
+                <li><a href="{{url_for('feedback')}}" target="_blank" rel="noopener noreferrer">Feedback</a></li>
                 <li>
                     <button id="toggleMode"><span class="material-icons">sunny</span></button>
                 </li>

@@ -59,7 +59,7 @@
         <p>Understanding stacks is essential as they are a foundational concept in many algorithms and applications!</p>
     </footer>
     <script>
-        fetch("logoNav.html")  // Adjust path if navbar.html is in a different folder
+        fetch("{{url_for('logoNav')}}")  // Adjust path if navbar.html is in a different folder
             .then(response => response.text())
             .then(data => {
                 document.getElementById("include-content").innerHTML = data;

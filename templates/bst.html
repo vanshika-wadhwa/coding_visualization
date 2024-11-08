@@ -25,7 +25,7 @@
     <script src="/script/bst.js"></script>
     <script>
         // Load navbar content
-        fetch("logoNav.html")
+        fetch("{{url_for('logoNav')}}")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("include-content").innerHTML = data;

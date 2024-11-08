@@ -17,14 +17,14 @@
                 <li>queue</li>
                 <li>linked list
                     <ul>
-                        <li><a href="singly.html" target="_blank" rel="noopener noreferrer">Singly linked list</a></li>
-                        <li><a href="doubly.html" target="_blank" rel="noopener noreferrer">Doubly linked list</a></li>
+                        <li><a href="{{url_for('singly')}}" target="_blank" rel="noopener noreferrer">Singly linked list</a></li>
+                        <li><a href="{{url_for('doubly')}}" target="_blank" rel="noopener noreferrer">Doubly linked list</a></li>
                         <li>circular</li>
                     </ul>
                 </li>
                 <li>tree
                     <ul>
-                        <li><a href="bst.html" target="_blank" rel="noopener noreferrer">BST</a></li>
+                        <li><a href="{{url_for('bst')}}" target="_blank" rel="noopener noreferrer">BST</a></li>
                         <li>avl</li>
                         <li>btree</li>
                         <li>dfs</li>
@@ -34,10 +34,10 @@
                 </li>
                 <li>sorting
                     <ul>
-                        <li><a href="bubbleVisual.html">bubble sort</a></li>
-                        <li><a href="selectionVisual.html"></a>Selection sort</li>
+                        <li><a href="{{url_for('bubbleVisual')}}">bubble sort</a></li>
+                        <li><a href="{{url_for('selection')}}"></a>Selection sort</li>
                         <li>merge sort</li>
-                        <li><a href="countingVisual.html">Count sort</a></li>
+                        <li><a href="{{url_for('countVisual')}}">Count sort</a></li>
                         <li>quick sort</li>
                         <li>radix sort</li>
                     </ul>
@@ -59,7 +59,7 @@
             <ul>
                 <li>scheduling
                     <ul>
-                        <li><a href="scheduling.html" target="_blank" rel="noopener noreferrer">Scheduling</a></li>
+                        <li><a href="{{url_for('scheduling')}}" target="_blank" rel="noopener noreferrer">Scheduling</a></li>
                         <li>FCFS</li>
                         <li>Shortest job first</li>
                         <li>Robin round</li>
@@ -72,18 +72,10 @@
                 <li>memory</li>
             </ul>
         </li>
-        <li>Toc
-            <ul>
-                <li>fa</li>
-                <li>pda</li>
-            </ul>
-        </li>
-        <li>dbms</li>
-        <li>discrete</li>
     </ul>
     <script>
         // Load navbar content
-        fetch("logoNav.html")
+        fetch("{{url_for('logoNav')}}")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("include-content").innerHTML = data;

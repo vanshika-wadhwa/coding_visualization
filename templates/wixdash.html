@@ -15,8 +15,9 @@
     <link rel="stylesheet" href="/static/css/mode.css">
     <!-- Google Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="/static/css/responsive.css">
-    <link rel="stylesheet" href="/static/css/login.css">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css')}}">
 
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 </head>
@@ -29,7 +30,7 @@
         <ul>
 
             <li><a href="#">Home</a></li>
-            <li><a href="sortingContent.html" target="_blank" rel="noopener noreferrer">Sorting</a></li>
+            <li><a href="{{url_for('sortingContent')}}" target="_blank" rel="noopener noreferrer">Sorting</a></li>
             <li><a href="#">Shortest Path</a>
 
                 <ul class="dropdown">
@@ -37,13 +38,13 @@
                     <li><a href="dijakstar.html">Dijkstra</a></li>
                 </ul>
             </li>
-            <li><a href="linkedlistContent.html" target="_blank" rel="noopener noreferrer">Linked list</a></li>
-            <li><a href="stackContent.html" target="_blank" rel="noopener noreferrer">Stack</a></li>
+            <li><a href="{{url_for('linkedlistContent')}}" target="_blank" rel="noopener noreferrer">Linked list</a></li>
+            <li><a href="{{url_for('stackContent')}}" target="_blank" rel="noopener noreferrer">Stack</a></li>
             </li>
-            <li><a href="queueContent.html" target="_blank" rel="noopener noreferrer">Queue</a></li>
+            <li><a href="{{url_for('queueContent')}}" target="_blank" rel="noopener noreferrer">Queue</a></li>
 
-            <li><a href="treeContent.html" target="_blank" rel="noopener noreferrer">Tree</a></li>
-            <li><a href="feedback.html" target="_blank" rel="noopener noreferrer">Feedback</a></li>
+            <li><a href="{{url_for('treeContent')}}" target="_blank" rel="noopener noreferrer">Tree</a></li>
+            <li><a href="{{url_for('feedback')}}" target="_blank" rel="noopener noreferrer">Feedback</a></li>
             <li><a href="#"><span class="material-icons">logout</span>Signout</a></li>
 
         </ul>
@@ -111,7 +112,7 @@
 
     <script>
         // Load navbar content
-        fetch("logoNav.html")
+        fetch("{{url_for('logoNav')}}")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("include-content").innerHTML = data;
@@ -123,7 +124,7 @@
             })
 
            // Load the login modal content dynamically
-        fetch("login.html")
+        fetch("{{url_for('login')}}")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("loginModalContainer").innerHTML = data;

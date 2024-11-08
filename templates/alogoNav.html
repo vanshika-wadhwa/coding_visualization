@@ -20,13 +20,13 @@
                 <li class="relative group">
                     <a href="#" class="text-white hover:text-gray-200">Sorting</a>
                     <ul class="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out z-10 hidden group-hover:block">
-                        <li><a href="bubble.html" class="block px-4 py-2 hover:bg-blue-100">Bubble Sort</a></li>
-                        <li><a href="merge.html" class="block px-4 py-2 hover:bg-blue-100">Merge Sort</a></li>
-                        <li><a href="quick.html" class="block px-4 py-2 hover:bg-blue-100">Quick Sort</a></li>
-                        <li><a href="count.html" class="block px-4 py-2 hover:bg-blue-100">Count Sort</a></li>
-                        <li><a href="radix.html" class="block px-4 py-2 hover:bg-blue-100">Radix Sort</a></li>
-                        <li><a href="selection.html" class="block px-4 py-2 hover:bg-blue-100">Selection Sort</a></li>
-                        <li><a href="insertion.html" class="block px-4 py-2 hover:bg-blue-100">Insertion Sort</a></li>
+                        <li><a href="{{url_for('bubble')}}" class="block px-4 py-2 hover:bg-blue-100">Bubble Sort</a></li>
+                        <li><a href="{{url_for('merge')}}"class="block px-4 py-2 hover:bg-blue-100">Merge Sort</a></li>
+                        <li><a href="{{url_for('quick')}}"class="block px-4 py-2 hover:bg-blue-100">Quick Sort</a></li>
+                        <li><a href="{{url_for('countingVisual')}}"class="block px-4 py-2 hover:bg-blue-100">Count Sort</a></li>
+                        <li><a href="{{url_for('radix')}}" class="block px-4 py-2 hover:bg-blue-100">Radix Sort</a></li>
+                        <li><a href="{{url_for('selection')}}" class="block px-4 py-2 hover:bg-blue-100">Selection Sort</a></li>
+                        <li><a href="{{url_for('insertion')}}" class="block px-4 py-2 hover:bg-blue-100">Insertion Sort</a></li>
                     </ul>
                 </li>
                 <li class="relative group">
@@ -39,16 +39,16 @@
                 <li class="relative group">
                     <a href="#" class="text-white hover:text-gray-200">Linked List</a>
                     <ul class="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out z-10 hidden group-hover:block">
-                        <li><a href="Singly.html" class="block px-4 py-2 hover:bg-blue-100">Singly Linked List</a></li>
-                        <li><a href="doubly.html" class="block px-4 py-2 hover:bg-blue-100">Doubly Linked List</a></li>
-                        <li><a href="circular.html" class="block px-4 py-2 hover:bg-blue-100">Circular Linked List</a></li>
+                        <li><a href="{{url_for('singly')}}" class="block px-4 py-2 hover:bg-blue-100">Singly Linked List</a></li>
+                        <li><a href="{{url_for('doubly')}}" class="block px-4 py-2 hover:bg-blue-100">Doubly Linked List</a></li>
+                        <li><a href="{{url_for('circular')}}" class="block px-4 py-2 hover:bg-blue-100">Circular Linked List</a></li>
                     </ul>
                 </li>
                 <li class="relative group">
                     <a href="#" class="text-white hover:text-gray-200">Stack</a>
                     <ul class="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out z-10 hidden group-hover:block">
-                        <li><a href="stack_array.html" class="block px-4 py-2 hover:bg-blue-100">Via Array</a></li>
-                        <li><a href="stack_linked_list.html" class="block px-4 py-2 hover:bg-blue-100">Via Linked List</a></li>
+                        <li><a href="{{url_for('stackArray')}}" class="block px-4 py-2 hover:bg-blue-100">Via Array</a></li>
+                        <li><a href="{{url_for('stackLinked')}}"class="block px-4 py-2 hover:bg-blue-100">Via Linked List</a></li>
                     </ul>
                 </li>
                 <li class="relative group">
@@ -58,8 +58,8 @@
                         <li><a href="queue_linked_list.html" class="block px-4 py-2 hover:bg-blue-100">Via Linked List</a></li>
                     </ul>
                 </li>
-                <li><a href="#" class="text-white hover:text-gray-200">Feedback</a></li>
-                <li><a href="#" class="text-white hover:text-gray-200">Signout</a></li>
+                <li><a href="{{url_for('feedback')}}" class="text-white hover:text-gray-200">Feedback</a></li>
+                <li><a href="{{url_for('signout')}}" class="text-white hover:text-gray-200">Signout</a></li>
             </ul>
         </div>
     </nav>

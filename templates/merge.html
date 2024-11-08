@@ -75,7 +75,7 @@ function merge(left, right):
     <p>Merge sort is particularly effective for large datasets and is preferred when stable sorting is required.</p>
     <script>
         // Load navbar content
-        fetch("logoNav.html")
+        fetch("{{url_for('logoNav')}}")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("include-content").innerHTML = data;

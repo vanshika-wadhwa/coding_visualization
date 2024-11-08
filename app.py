@@ -1,7 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_sqlalchemy import SQLAlchemy
-
-
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///visualization.db"
@@ -18,8 +16,106 @@ class register_db(db.Model):
 with app.app_context():
     db.create_all()
 
+@app.route('/stackContent')
+def stackContent():
+    return render_template('stackContent.html')
+
+@app.route('/logoNav')
+def logoNav():
+    return render_template('logoNav.html')
+
+@app.route('/visualization')
+def visualization():
+    return render_template('visualization.html')
+
+@app.route('/scheduling')
+def scheduling():
+    return render_template('scheduling.html')
+
+@app.route('/treeContent')
+def treeContent():
+    return render_template('treeContent.html')
+
+@app.route('/radix')
+def radix():
+    return render_template('radix.html')
+
+@app.route('/quick')
+def quick():
+    return render_template('quick.html')
+
+@app.route('/insertion')
+def insertion():
+    return render_template('insertion.html')
+
+@app.route('/linkedlistContent')
+def linkedlistContent():
+    return render_template('linkedlistContent.html')
+
+@app.route('/feedback')
+def feedback():
+    return render_template('feedback.html')
+
+@app.route('/doubly')
+def doubly():
+    return render_template('doubly.html')
+
+@app.route('/merge')
+def merge():
+    return render_template('merge.html')
+
+@app.route('/playground')
+def playground():
+    return render_template('playground.html')
+
+@app.route('/algorithm')
+def algorithm():
+    return render_template('algorithm.html')
+
+@app.route('/count')
+def count():
+    return render_template('count.html')
+
+@app.route('/bst')
+def bst():
+    return render_template('bst.html')
+
+@app.route('/bubbleVisual')
+def bubbleVisual():
+    return render_template('bubbleVisual.html')
+
+@app.route('/countVisual')
+def countVisual():
+    return render_template('countVisual.html')
+
+@app.route('/sortingContent')
+def sortingContent():
+    return render_template('sortingContent.html')
+
+@app.route('/selectionVisual')
+def selectionVisual():
+    return render_template('selectionVisual.html')
+
+@app.route('/selection')
+def selection():
+    return render_template('selection.html')
+
+@app.route('/queueContent')
+def queueContent():
+    return render_template('queueContent.html')
+
+@app.route('/pracSession')
+def pracSession():
+    return render_template('pracSession.html')
+
+@app.route('/operating')
+def operating():
+    return render_template('operating.html')
+
+
+
 @app.route('/')
-def dashboard():
+def wixdash():
     if 'user_id' not in session:
         flash("Please log in first.", "warning")
         return redirect(url_for('login'))
@@ -46,7 +142,7 @@ def register():
             db.session.rollback()
             print("Error saving data:", e)
         
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('wixdash'))
 
     return render_template("register.html")
 
@@ -64,7 +160,7 @@ def login():
             # If user exists and credentials match
             session['user_id'] = user.sno  # Store user ID in session
             flash(f"Welcome back, {user.username}!", "success")
-            return redirect(url_for('dashboard'))  # Redirect to home or dashboard page
+            return redirect(url_for('wixdash'))  # Redirect to home or wixdash page
         else:
             # If credentials are incorrect
             flash("Invalid email or password. Please try again.", "danger")

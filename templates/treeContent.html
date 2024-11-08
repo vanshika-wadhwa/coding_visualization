@@ -12,12 +12,12 @@
 
     <nav>
         <ul class=" border-2 rounded-md border-solid justify-evenly list-none display flex space-x-2.5 bg-slate-600 m-10 p-6">
-            <li><a href="bst.html">Bst</a></li>
+            <li><a href="{{url_for('bst')}}">Bst</a></li>
             <li><a href="#">avl</a>
             <li><a href="#">b-tree</a></li>
             <li><a href="#">vh tree</a></li>
             <li><a href="#">red black tree</a></li>
-            <li><a href="wixdash.html">Home</a></li>
+            <li><a href="{{url_for('wixdash')}}">Home</a></li>
             
         </ul>
     </nav>
@@ -74,7 +74,7 @@
     </section>
     <script>
         // Load navbar content
-        fetch("logoNav.html")
+        fetch("{{url_for('logoNav')}}")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("include-content").innerHTML = data;

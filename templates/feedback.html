@@ -15,15 +15,15 @@
     <!-- Navigation bar -->
     <nav>
         <ul class="border-2 rounded-md border-solid justify-evenly list-none flex space-x-2.5 bg-slate-600 p-4">
-            <li><a href="dashboard.html" class="text-white">Home</a></li>
-            <li><a href="insertion.html" class="text-white">Insertion Sort</a></li>
-            <li><a href="bubbleVisual.html" class="text-white">Bubble Sort</a></li>
-            <li><a href="selection.html" class="text-white">Selection Sort</a></li>
-            <li><a href="merge.html" class="text-white">Merge Sort</a></li>
-            <li><a href="quick.html" class="text-white">Quick Sort</a></li>
-            <li><a href="count.html" class="text-white">Count Sort</a></li>
-            <li><a href="radix.html" class="text-white">Radix Sort</a></li>
-            <li><a href="feedback.html" class="text-white font-bold">Feedback</a></li>
+            <li><a href="{{url_for('wixdash')}}" class="text-white">Home</a></li>
+            <li><a href="{{url_for('insertion')}}" class="text-white">Insertion Sort</a></li>
+            <li><a href="{{url_for('bubbleVisual')}}" class="text-white">Bubble Sort</a></li>
+            <li><a href="{{url_for('selection')}}" class="text-white">Selection Sort</a></li>
+            <li><a href="{{url_for('merge')}}" class="text-white">Merge Sort</a></li>
+            <li><a href="{{url_for('quick')}}" class="text-white">Quick Sort</a></li>
+            <li><a href="{{url_for('count')}}" class="text-white">Count Sort</a></li>
+            <li><a href="{{url_for('radix')}}" class="text-white">Radix Sort</a></li>
+            <li><a href="{{url_for('feedback')}}" class="text-white font-bold">Feedback</a></li>
         </ul>
     </nav>
 
@@ -83,7 +83,7 @@
     </div>
     <script>
         // Load navbar content
-        fetch("logoNav.html")
+        fetch("{{url_for('logoNav')}}")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("include-content").innerHTML = data;
