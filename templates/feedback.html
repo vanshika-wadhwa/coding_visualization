@@ -1,4 +1,3 @@
-<!-- feedback.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,47 +8,47 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/static/responsive.css">
 </head>
-<body class="bg-slate-50 text-gray-800">
-    <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
+<body class="bg-gray-100 text-gray-900">
+    <div id="include-content"></div> <!-- Including navbar with JS (below) -->
 
     <!-- Navigation bar -->
     <nav>
-        <ul class="border-2 rounded-md border-solid justify-evenly list-none flex space-x-2.5 bg-slate-600 p-4">
-            <li><a href="{{url_for('wixdash')}}" class="text-white">Home</a></li>
-            <li><a href="{{url_for('insertion')}}" class="text-white">Insertion Sort</a></li>
-            <li><a href="{{url_for('bubbleVisual')}}" class="text-white">Bubble Sort</a></li>
-            <li><a href="{{url_for('selection')}}" class="text-white">Selection Sort</a></li>
-            <li><a href="{{url_for('merge')}}" class="text-white">Merge Sort</a></li>
-            <li><a href="{{url_for('quick')}}" class="text-white">Quick Sort</a></li>
-            <li><a href="{{url_for('count')}}" class="text-white">Count Sort</a></li>
-            <li><a href="{{url_for('radix')}}" class="text-white">Radix Sort</a></li>
-            <li><a href="{{url_for('feedback')}}" class="text-white font-bold">Feedback</a></li>
+        <ul class="flex justify-evenly space-x-4 bg-slate-600 text-white py-4 m-6 rounded-md shadow-lg">
+            <li><a href="{{url_for('wixdash')}}" class="hover:text-blue-400">Home</a></li>
+            <li><a href="{{url_for('insertion')}}" class="hover:text-blue-400">Insertion Sort</a></li>
+            <li><a href="{{url_for('bubbleVisual')}}" class="hover:text-blue-400">Bubble Sort</a></li>
+            <li><a href="{{url_for('selection')}}" class="hover:text-blue-400">Selection Sort</a></li>
+            <li><a href="{{url_for('merge')}}" class="hover:text-blue-400">Merge Sort</a></li>
+            <li><a href="{{url_for('quick')}}" class="hover:text-blue-400">Quick Sort</a></li>
+            <li><a href="{{url_for('count')}}" class="hover:text-blue-400">Count Sort</a></li>
+            <li><a href="{{url_for('radix')}}" class="hover:text-blue-400">Radix Sort</a></li>
+            <li><a href="{{url_for('feedback')}}" class="hover:text-blue-400 font-bold">Feedback</a></li>
         </ul>
     </nav>
 
     <!-- Main Content -->
     <div class="container mx-auto p-8">
-        <h1 class="text-3xl font-bold text-center text-slate-700 mb-6">Feedback Form</h1>
-        <p class="text-center text-slate-600 mb-8">We value your feedback! Please let us know your thoughts on our Sorting Algorithms Dashboard.</p>
+        <h1 class="text-4xl font-bold text-center text-blue-500 mb-6">Feedback Form</h1>
+        <p class="text-center text-gray-700 mb-8">We value your feedback! Please let us know your thoughts on our Sorting Algorithms Dashboard.</p>
 
         <!-- Feedback Form -->
-        <form action="submit_feedback.php" method="post" class="bg-white p-8 rounded-lg shadow-lg max-w-lg mx-auto space-y-6">
+        <form action="submit_feedback.php" method="post" class="bg-white p-8 rounded-lg shadow-lg max-w-2xl mx-auto space-y-6">
             <!-- Name -->
             <div>
                 <label for="name" class="block font-semibold text-gray-700">Your Name</label>
-                <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-600" placeholder="Enter your name">
+                <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your name">
             </div>
 
             <!-- Email -->
             <div>
                 <label for="email" class="block font-semibold text-gray-700">Email Address</label>
-                <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-600" placeholder="Enter your email">
+                <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your email">
             </div>
 
             <!-- Rating -->
             <div>
                 <label for="rating" class="block font-semibold text-gray-700">Rating</label>
-                <select id="rating" name="rating" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-600">
+                <select id="rating" name="rating" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option value="">Select a rating</option>
                     <option value="5">Excellent (5)</option>
                     <option value="4">Very Good (4)</option>
@@ -62,7 +61,7 @@
             <!-- Favorite Sorting Algorithm -->
             <div>
                 <label for="favorite-algorithm" class="block font-semibold text-gray-700">Favorite Sorting Algorithm</label>
-                <select id="favorite-algorithm" name="favorite_algorithm" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-600">
+                <select id="favorite-algorithm" name="favorite_algorithm" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option value="">Select your favorite</option>
                     <option value="insertion">Insertion Sort</option>
                     <option value="bubble">Bubble Sort</option>
@@ -77,12 +76,18 @@
             <!-- Feedback Comments -->
             <div>
                 <label for="comments" class="block font-semibold text-gray-700">Your Comments</label>
-                <textarea id="comments" name="comments" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-"></textarea>
+                <textarea id="comments" name="comments" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Share your feedback here..."></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center">
+                <button type="submit" class="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Submit Feedback</button>
             </div>
         </form>
     </div>
+
+    <!-- JavaScript for Navbar -->
     <script>
-        // Load navbar content
         fetch("{{url_for('logoNav')}}")
             .then(response => response.text())
             .then(data => {
@@ -93,8 +98,7 @@
                 modeScript.src = "/animation/js/mode.js";
                 document.body.appendChild(modeScript);
             })
-            .catch(error => console.error("Error loading navbar content:", error));    
+            .catch(error => console.error("Error loading navbar content:", error));
     </script>
-</body>    
+</body>
 </html>
-        

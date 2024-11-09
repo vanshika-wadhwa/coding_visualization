@@ -4,38 +4,210 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Binary Search Tree Visualization</title>
-    <link rel="stylesheet" href="/static/responsive.css">
-</head>
-<body>
-    <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom styling for the tree structure */
+        .tree-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 20px 40px;  /* Add more space between nodes */
+    position: relative;
+}
 
-    <div id="container">
-        <h1>Binary Search Tree Visualization</h1>
-        <!-- node input n insert button -->
-         <div id="controls">
-            <input id="nodeValue" type="text" placeholder="Enter Node Value">
-            <button onclick="insertNode()">Insert Node</button>
-         </div>
-         <!-- binary search tree visualization -->
-          <div id="treeContainer">
-            <p>juice pila do mausomi ka mood off h mera</p>
-          </div>
+.node-value {
+    background-color: #3498db;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 18px;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    display: inline-block;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.children {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;  /* Ensure children spread across the width */
+    margin-top: 40px;
+    position: relative;
+}
+
+.child {
+    position: relative;
+    width: 100px;  /* Control child node width */
+}
+
+.tree-connector {
+    position: absolute;
+    top: -20px;
+    width: 2px;
+    background-color: #3498db;
+    height: 30px;  /* Lengthen connector */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.line-horizontal {
+    position: absolute;
+    top: 10px;
+    height: 2px;
+    background-color: #3498db;
+}
+
+.line-horizontal.left {
+    width: 50px;
+    left: -50px;
+}
+
+.line-horizontal.right {
+    width: 50px;
+    right: -50px;
+}
+
+.arrow {
+    font-size: 18px;
+    color: #3498db;
+    margin-top: -10px;  /* Adjust for spacing */
+}
+
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+    <div id="include-content"></div> <!-- including main navbar file with js(written below) -->
+
+    <div id="container" class="max-w-3xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+        <h1 class="text-3xl font-bold text-gray-800 mb-5 text-center">Binary Search Tree Visualization</h1>
+
+        <!-- Binary Search Tree Introduction -->
+        <section id="intro" class="mb-8 text-center text-gray-700">
+            <h2 class="text-2xl font-semibold text-blue-500 mb-4">What is a Binary Search Tree (BST)?</h2>
+            <p class="text-lg leading-relaxed mb-6">
+                A <strong>Binary Search Tree (BST)</strong> is a binary tree in which each node has at most two children, referred to as the left and right child.
+                In a BST:
+            </p>
+            <ul class="list-disc list-inside text-lg mb-6">
+                <li>The left child of a node has a value smaller than its parent node.</li>
+                <li>The right child of a node has a value greater than its parent node.</li>
+                <li>Both the left and right subtrees of a node are also binary search trees.</li>
+            </ul>
+            <p class="text-lg">
+                This property ensures that searching, insertion, and deletion operations can be done efficiently, with a time complexity of O(log n) in balanced BSTs.
+            </p>
+        </section>
+
+        <!-- Node input and insert button -->
+        <div id="controls" class="flex justify-center items-center mb-8 space-x-4">
+            <input id="nodeValue" type="text" placeholder="Enter Node Value" class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+            <button onclick="insertNode()" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300">Insert Node</button>
+        </div>
+
+        <!-- Binary search tree visualization -->
+        <div id="treeContainer" class="text-center text-gray-700">
+            <!-- Tree visualization will be dynamically generated here -->
+        </div>
     </div>
     
-    <script src="/script/bst.js"></script>
+    <script src="/script/bst.js"></script>  <!-- Your JS for Binary Search Tree logic -->
     <script>
-        // Load navbar content
+        let bstRoot = null;
+
+        class Node {
+            constructor(value) {
+                this.value = value;
+                this.left = null;
+                this.right = null;
+            }
+        }
+
+        function insertNode() {
+            const value = document.getElementById("nodeValue").value;
+            if (!value) {
+                alert("Please enter a node value.");
+                return;
+            }
+
+            const node = new Node(value);
+            if (bstRoot === null) {
+                bstRoot = node;
+            } else {
+                insertIntoBST(bstRoot, node);
+            }
+            
+            document.getElementById("nodeValue").value = ""; // Clear input field
+            displayTree();  // Update the tree visualization
+        }
+
+        function insertIntoBST(root, node) {
+            if (node.value < root.value) {
+                if (root.left === null) {
+                    root.left = node;
+                } else {
+                    insertIntoBST(root.left, node);
+                }
+            } else {
+                if (root.right === null) {
+                    root.right = node;
+                } else {
+                    insertIntoBST(root.right, node);
+                }
+            }
+        }
+
+        function displayTree() {
+            const treeContainer = document.getElementById("treeContainer");
+            treeContainer.innerHTML = "";  // Clear previous visualization
+            treeContainer.innerHTML = generateTreeHTML(bstRoot);
+        }
+
+        function generateTreeHTML(node) {
+            if (node === null) {
+                return "";
+            }
+
+            const leftHTML = generateTreeHTML(node.left);
+            const rightHTML = generateTreeHTML(node.right);
+
+            return `
+                <div class="tree-node">
+                    <div class="node-value">${node.value}</div>
+                    ${leftHTML || rightHTML ? `
+                    <div class="children">
+                        ${leftHTML ? `
+                            <div class="child">
+                                <div class="tree-connector"></div>
+                                <div class="arrow">↓</div>
+                                ${leftHTML}
+                            </div>
+                        ` : ''}
+                        ${rightHTML ? `
+                            <div class="child">
+                                <div class="tree-connector"></div>
+                                <div class="arrow">→</div>
+                                ${rightHTML}
+                            </div>
+                        ` : ''}
+                    </div>` : ''}
+                </div>
+            `;
+        }
+
         fetch("{{url_for('logoNav')}}")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("include-content").innerHTML = data;
 
-                // Load mode.js after navbar is injected to ensure it has access to the toggle button
                 const modeScript = document.createElement("script");
                 modeScript.src = "/animation/js/mode.js";
                 document.body.appendChild(modeScript);
             })
-            .catch(error => console.error("Error loading navbar content:", error));    
+            .catch(error => console.error("Error loading navbar content:", error));
     </script>
 </body>
 </html>

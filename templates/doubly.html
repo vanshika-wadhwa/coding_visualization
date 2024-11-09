@@ -8,11 +8,27 @@
     <link rel="stylesheet" href="/static/responsive.css">
 </head>
 <body class="bg-gray-100">
-    <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
 
-    <div id="container" class="p-6 max-w-md mx-auto bg-white rounded-lg shadow-md">
-        <h1 class="text-2xl font-bold mb-4">Doubly Linked List</h1>
+    <div id="include-content"></div> <!-- Including main navbar file with js(written below) -->
+
+    <!-- Main Container -->
+    <div id="container" class="p-6 w-full sm:w-11/12 md:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto bg-white rounded-lg shadow-md">
+        <h1 class="text-2xl font-bold mb-4 text-center">Doubly Linked List</h1>
         
+        <!-- Introduction Section -->
+        <section class="mb-6">
+            <h2 class="text-xl font-semibold text-blue-500">What is a Doubly Linked List?</h2>
+            <p class="text-gray-700">
+                A <strong>Doubly Linked List</strong> is a type of linked list where each node contains three parts:
+                <ul class="list-disc ml-6 text-gray-700">
+                    <li><strong>Data</strong> - the value stored in the node</li>
+                    <li><strong>Next Pointer</strong> - a reference to the next node in the list</li>
+                    <li><strong>Previous Pointer</strong> - a reference to the previous node</li>
+                </ul>
+                This structure allows traversal in both directions, from the head to the tail and vice versa. It is useful for scenarios where backward traversal is necessary.
+            </p>
+        </section>
+
         <!-- Node Input and Insert Controls -->
         <div id="controls" class="mb-4">
             <input type="text" placeholder="Enter node value" id="nodeValue" class="p-2 border rounded-md w-full mb-2">
@@ -39,10 +55,11 @@
         </div>
 
         <!-- Linked List Visualization -->
-        <div id="list-container" class="flex flex-wrap gap-2 mt-4">
+        <div id="list-container" class="flex flex-wrap gap-4 mt-4 justify-center">
             <p>No nodes yet!</p>
         </div>
     </div>
+
     <script src="/script/doubly.js"></script>
     <script>
         // Show or hide index input based on selected insert or delete position
@@ -52,20 +69,197 @@
         document.getElementById("deletePosition").addEventListener("change", function () {
             document.getElementById("deleteIndex").classList.toggle("hidden", this.value !== "index");
         });
-        
-            // Load navbar content
-            fetch("{{url_for('logoNav')}}")
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById("include-content").innerHTML = data;
-    
-                    // Load mode.js after navbar is injected to ensure it has access to the toggle button
-                    const modeScript = document.createElement("script");
-                    modeScript.src = "/animation/js/mode.js";
-                    document.body.appendChild(modeScript);
-                })
-                .catch(error => console.error("Error loading navbar content:", error));    
-        
+
+        // Doubly Linked List Implementation
+        class DoublyLinkedList {
+            constructor() {
+                this.head = null;
+                this.tail = null;
+            }
+
+            // Insert at head
+            insertAtHead(value) {
+                const newNode = new Node(value);
+                if (!this.head) {
+                    this.head = newNode;
+                    this.tail = newNode;
+                } else {
+                    newNode.next = this.head;
+                    this.head.prev = newNode;
+                    this.head = newNode;
+                }
+            }
+
+            // Insert at tail
+            insertAtTail(value) {
+                const newNode = new Node(value);
+                if (!this.tail) {
+                    this.head = newNode;
+                    this.tail = newNode;
+                } else {
+                    newNode.prev = this.tail;
+                    this.tail.next = newNode;
+                    this.tail = newNode;
+                }
+            }
+
+            // Insert at specific index
+            insertAtIndex(value, index) {
+                if (index < 0 || index > this.size()) return; // Invalid index
+                if (index === 0) {
+                    this.insertAtHead(value);
+                    return;
+                }
+                if (index === this.size()) {
+                    this.insertAtTail(value);
+                    return;
+                }
+                let currentNode = this.head;
+                let newNode = new Node(value);
+                for (let i = 0; i < index; i++) {
+                    currentNode = currentNode.next;
+                }
+                newNode.prev = currentNode.prev;
+                newNode.next = currentNode;
+                currentNode.prev.next = newNode;
+                currentNode.prev = newNode;
+            }
+
+            // Delete at head
+            deleteAtHead() {
+                if (!this.head) return;
+                if (this.head === this.tail) {
+                    this.head = null;
+                    this.tail = null;
+                } else {
+                    this.head = this.head.next;
+                    this.head.prev = null;
+                }
+            }
+
+            // Delete at tail
+            deleteAtTail() {
+                if (!this.tail) return;
+                if (this.head === this.tail) {
+                    this.head = null;
+                    this.tail = null;
+                } else {
+                    this.tail = this.tail.prev;
+                    this.tail.next = null;
+                }
+            }
+
+            // Delete at specific index
+            deleteAtIndex(index) {
+                if (index < 0 || index >= this.size()) return;
+                if (index === 0) {
+                    this.deleteAtHead();
+                    return;
+                }
+                if (index === this.size() - 1) {
+                    this.deleteAtTail();
+                    return;
+                }
+                let currentNode = this.head;
+                for (let i = 0; i < index; i++) {
+                    currentNode = currentNode.next;
+                }
+                currentNode.prev.next = currentNode.next;
+                if (currentNode.next) currentNode.next.prev = currentNode.prev;
+            }
+
+            // Get the size of the list
+            size() {
+                let count = 0;
+                let currentNode = this.head;
+                while (currentNode) {
+                    count++;
+                    currentNode = currentNode.next;
+                }
+                return count;
+            }
+
+            // Display the list in HTML
+            display() {
+                const container = document.getElementById("list-container");
+                container.innerHTML = '';
+                let currentNode = this.head;
+                while (currentNode) {
+                    const nodeDiv = document.createElement("div");
+                    nodeDiv.className = "p-4 rounded-lg border-2 bg-blue-200 text-center w-16";
+                    nodeDiv.innerText = currentNode.value;
+                    container.appendChild(nodeDiv);
+                    currentNode = currentNode.next;
+                }
+                if (this.size() === 0) {
+                    container.innerHTML = '<p>No nodes yet!</p>';
+                }
+            }
+        }
+
+        // Node class for doubly linked list
+        class Node {
+            constructor(value) {
+                this.value = value;
+                this.next = null;
+                this.prev = null;
+            }
+        }
+
+        const dll = new DoublyLinkedList();
+
+        // Insert Node function
+        function insertNode() {
+            const value = document.getElementById("nodeValue").value;
+            const position = document.getElementById("insertPosition").value;
+            let index = parseInt(document.getElementById("indexValue").value) || 0;
+
+            if (!value) {
+                alert("Please enter a value for the node.");
+                return;
+            }
+
+            if (position === "start") {
+                dll.insertAtHead(value);
+            } else if (position === "end") {
+                dll.insertAtTail(value);
+            } else if (position === "index" && !isNaN(index)) {
+                dll.insertAtIndex(value, index);
+            }
+            dll.display();
+            document.getElementById("nodeValue").value = '';
+            document.getElementById("indexValue").value = '';
+        }
+
+        // Delete Node function
+        function deleteNode() {
+            const position = document.getElementById("deletePosition").value;
+            let index = parseInt(document.getElementById("deleteIndex").value) || 0;
+
+            if (position === "start") {
+                dll.deleteAtHead();
+            } else if (position === "end") {
+                dll.deleteAtTail();
+            } else if (position === "index" && !isNaN(index)) {
+                dll.deleteAtIndex(index);
+            }
+            dll.display();
+            document.getElementById("deleteIndex").value = '';
+        }
+
+        // Initial call to display the empty list
+        dll.display();
+
+        // Load navbar content
+        fetch("{{url_for('logoNav')}}")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("include-content").innerHTML = data;
+                const modeScript = document.createElement("script");
+                modeScript.src = "/animation/js/mode.js";
+                document.body.appendChild(modeScript);
+            })
+            .catch(error => console.error("Error loading navbar content:", error));    
     </script>
 </body>
 </html>

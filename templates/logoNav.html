@@ -5,110 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navbar</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <!-- <link rel="stylesheet" href="/animation/css/mode.css"> -->
-    <link rel="stylesheet" href="/static/css/responsive.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<style>
-:root {
-    --background-color: #ffffff;
-    --text-color: #333333;
-}
+<body class="bg-white text-gray-800 transition-colors duration-500">
 
-body {
-    background-color: var(--background-color);
-    color: var(--text-color);
-    transition: background-color 0.5s ease, color 0.5s ease;
-}
-
-.fixed_navigation {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    transition: background-color 0.5s ease;
-}
-
-.fixed_navigation ul {
-    list-style-type: none;
-    display: flex;
-    gap: 15px;
-}
-
-.fixed_navigation li {
-    color: var(--text-color);
-}
-
-.fixed_navigation input[type="text"] {
-    padding: 5px;
-    border: 1px solid var(--text-color);
-}
-
-.srchbtn {
-    padding: 5px;
-    background-color: var(--text-color);
-    color: var(--background-color);
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.srchbtn:hover {
-    background-color: var(--text-color);
-    color: var(--background-color);
-}
-
-</style>
-<body>
-    <div class="fixed_navigation">
+    <div class="fixed_navigation flex justify-between p-3 bg-white text-gray-800 transition-colors duration-500">
+        <!-- Left Navigation Links -->
         <div class="left">
-            <ul>
-                <li><a href="{{url_for('visualization')}}" target="_blank" rel="noopener noreferrer">visualization</a></li>
-                <li><a href="{{url_for('playground')}}" target="_blank" rel="noopener noreferrer">playground</a></li>
-                <li><a href="{{url_for('pracSession')}}" target="_blank" rel="noopener noreferrer">practice session</a></li>
-                <li><a href="{{url_for('algorithm')}}" target="_blank" rel="noopener noreferrer">Algorithm</a></li>
-                <li><a href="{{url_for('operating')}}" target="_blank" rel="noopener noreferrer">Operating system</a></li>
+            <ul class="flex gap-4 list-none">
+                <li><a href="{{url_for('visualization')}}" target="_blank" rel="noopener noreferrer" class="text-gray-800 hover:text-blue-600">Visualization</a></li>
+                <li><a href="{{url_for('playground')}}" target="_blank" rel="noopener noreferrer" class="text-gray-800 hover:text-blue-600">Playground</a></li>
+                <li><a href="{{url_for('pracSession')}}" target="_blank" rel="noopener noreferrer" class="text-gray-800 hover:text-blue-600">Practice Session</a></li>
+                <li><a href="{{url_for('algorithm')}}" target="_blank" rel="noopener noreferrer" class="text-gray-800 hover:text-blue-600">Algorithm</a></li>
+                <li><a href="{{url_for('operating')}}" target="_blank" rel="noopener noreferrer" class="text-gray-800 hover:text-blue-600">Operating System</a></li>
             </ul>
         </div>
-        <div class="center">
-            logo
+
+        <!-- Center Logo -->
+        <div class="center font-bold text-xl">
+            Logo
         </div>
+
+        <!-- Right Navigation Icons and Search -->
         <div class="right">
-            <ul>
-                <!-- Make the logout icon a clickable link that triggers the logout route -->
-                <li><a href="{{ url_for('logout') }}" class="logout-link">
-                    <span class="material-icons">logout</span>
-                </a></li>
-                <li><a href="{{url_for('feedback')}}" target="_blank" rel="noopener noreferrer">Feedback</a></li>
+            <ul class="flex items-center gap-4 list-none">
+                <!-- Logout Icon -->
                 <li>
-                    <button id="toggleMode"><span class="material-icons">sunny</span></button>
+                    <a href="{{ url_for('logout') }}" class="text-gray-800 hover:text-red-500">
+                        <span class="material-icons">logout</span>
+                    </a>
                 </li>
-                <li><input type="text" placeholder="search now">
-                    <button class="srchbtn" type="button">search</button>
+                <li><a href="{{url_for('feedback')}}" target="_blank" rel="noopener noreferrer" class="text-gray-800 hover:text-blue-600">Feedback</a></li>
+
+                <!-- Theme Toggle Button -->
+                <li>
+                    <button id="toggleMode" class="text-gray-800 hover:text-yellow-500">
+                        <span class="material-icons">sunny</span>
+                    </button>
                 </li>
-                
-                <!-- <li><span class="material-icons">menu</span></li> -->
+
+                <!-- Search Input and Button -->
+                <li class="flex items-center">
+                    <input type="text" placeholder="Search now" class="px-2 py-1 border border-gray-800 rounded-md text-gray-800 focus:outline-none focus:ring focus:ring-blue-300">
+                    <button class="srchbtn ml-2 px-3 py-1 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors duration-300" type="button">Search</button>
+                </li>
             </ul>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- <script src="/static/js/mode.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        
-
 document.addEventListener("DOMContentLoaded", function() {
     const toggleButton = document.getElementById("toggleMode");
 
-    // Check if toggle button exists
     if (toggleButton) {
         const toggleIcon = toggleButton.querySelector("span");
-
-        // Check localStorage for dark mode preference
         let isDarkMode = localStorage.getItem("theme") === "dark";
         applyTheme();
 
-        // Function to apply the theme
         function applyTheme() {
             if (isDarkMode) {
                 gsap.to(":root", {
@@ -118,6 +72,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     ease: "power1.out"
                 });
                 toggleIcon.textContent = "nightlight";
+                document.body.classList.replace('bg-white', 'bg-gray-900');
+                document.body.classList.replace('text-gray-800', 'text-gray-100');
             } else {
                 gsap.to(":root", {
                     "--background-color": "#ffffff",
@@ -126,20 +82,20 @@ document.addEventListener("DOMContentLoaded", function() {
                     ease: "power1.out"
                 });
                 toggleIcon.textContent = "sunny";
+                document.body.classList.replace('bg-gray-900', 'bg-white');
+                document.body.classList.replace('text-gray-100', 'text-gray-800');
             }
         }
 
-        // Toggle and save dark mode preference
         toggleButton.addEventListener("click", function() {
             isDarkMode = !isDarkMode;
             localStorage.setItem("theme", isDarkMode ? "dark" : "light");
             applyTheme();
         });
     } else {
-        console.error("Toggle button not found. Ensure logoNav.html includes #toggleMode");
+        console.error("Toggle button not found.");
     }
 });
-
     </script>
 </body>
 </html>

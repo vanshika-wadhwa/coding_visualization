@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circular Linked List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/responsive.css">
+</head>
+
+<body class="bg-gray-100 text-gray-900">
+    <!-- Navbar inclusion -->
+    <div id="include-content"></div> <!-- including navbar with JS (below) -->
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul class="flex justify-evenly space-x-4 bg-slate-600 text-white py-4 m-6 rounded-md shadow-lg">
+            <li><a href="{{url_for('wixdash')}}" class="hover:text-blue-400">Home</a></li>
+            <li><a href="{{url_for('singly')}}" class="hover:text-blue-400">Singly Linked List</a></li>
+            <li><a href="{{url_for('doubly')}}" class="hover:text-blue-400">Doubly Linked List</a></li>
+            <li><a href="{{url_for('circular')}}" class="hover:text-blue-400">Circular Linked List</a></li>
+
+        </ul>
+    </nav>
+
+    <!-- Main Header -->
+    <header class="text-center my-10">
+        <h1 class="text-4xl font-bold text-blue-500">Understanding Circular Linked Lists</h1>
+    </header>
+
+    <!-- What is a Circular Linked List Section -->
+    <section class="mx-auto max-w-4xl px-6 mb-10">
+        <h2 class="text-2xl font-semibold text-blue-400 mb-4">What is a Circular Linked List?</h2>
+        <p class="text-lg leading-relaxed">
+            A <strong>Circular Linked List</strong> is a linked list where the last node points back to the first node, creating a circular structure. Traversal in a circular linked list continues in a loop, starting from any node and eventually returning to it. 
+        </p>
+    </section>
+
+    <!-- How It Works Section with JavaScript Visualization -->
+    <section class="mx-auto max-w-4xl px-6 mb-10">
+        <h2 class="text-2xl font-semibold text-blue-400 mb-4">How a Circular Linked List Works</h2>
+        <p class="text-lg mb-4">
+            In a circular linked list, each node contains data and a pointer to the next node. The last node points to the first node, creating a circular reference. This enables traversal to continue indefinitely without hitting a <code>NULL</code> end.
+        </p>
+        
+        <!-- Visual Representation -->
+        <div class="text-center mb-8">
+            <button onclick="startTraversal()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                Start Circular Traversal
+            </button>
+            <div id="visualization" class="flex justify-center items-center mt-6 space-x-4 text-lg font-semibold">
+                <!-- Nodes will be dynamically added here -->
+            </div>
+        </div>
+        
+        <!-- Add Node Section -->
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold text-blue-400 mb-4">Add Node</h3>
+            <label for="nodeValue" class="block text-lg">Node Value:</label>
+            <input type="text" id="nodeValue" class="border p-2 rounded mb-4" placeholder="Enter node value" />
+            <br />
+            <label for="insertOption" class="block text-lg">Insert Node:</label>
+            <select id="insertOption" class="border p-2 rounded mb-4">
+                <option value="head">At Head</option>
+                <option value="tail">At Tail</option>
+                <option value="index">At Index</option>
+            </select>
+            <br />
+            <label for="positionAdd" class="block text-lg hidden" id="positionLabelAdd">Insert at Index (position):</label>
+            <input type="number" id="positionAdd" class="border p-2 rounded mb-4 hidden" placeholder="Position" />
+            <br />
+            <button onclick="addNode()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                Add Node
+            </button>
+        </div>
+
+        <!-- Delete Node Section -->
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold text-blue-400 mb-4">Delete Node</h3>
+            <label for="deleteOption" class="block text-lg">Delete Node:</label>
+            <select id="deleteOption" class="border p-2 rounded mb-4">
+                <option value="head">At Head</option>
+                <option value="tail">At Tail</option>
+                <option value="index">At Index</option>
+            </select>
+            <br />
+            <label for="positionDelete" class="block text-lg hidden" id="positionLabelDelete">Delete at Index (position):</label>
+            <input type="number" id="positionDelete" class="border p-2 rounded mb-4 hidden" placeholder="Position" />
+            <br />
+            <button onclick="deleteNode()" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+                Delete Node
+            </button>
+        </div>
+    </section>
+
+    <!-- Key Characteristics Section -->
+    <section class="mx-auto max-w-4xl px-6 mb-10">
+        <h2 class="text-2xl font-semibold text-blue-400 mb-4">Key Characteristics of a Circular Linked List</h2>
+        <ul class="list-disc list-inside space-y-2 text-lg">
+            <li><strong>Continuous Loop:</strong> The last node points to the first node, forming a circular chain.</li>
+            <li><strong>Flexible Starting Point:</strong> You can start traversal from any node and still access all nodes.</li>
+            <li><strong>Efficient Traversal:</strong> Useful for continuous looping over elements.</li>
+        </ul>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center p-6 bg-gray-200 mt-10 rounded-lg">
+        <p class="text-gray-700">Circular linked lists enable efficient, continuous data traversal, perfect for applications requiring repetitive operations!</p>
+    </footer>
+
+    <!-- JavaScript for Circular Linked List Operations -->
+    <script>
+        let nodes = []; // Store the nodes as an array for easy manipulation
+
+        // Function to create a circular linked list node
+        class Node {
+            constructor(value) {
+                this.value = value;
+                this.next = null;
+            }
+        }
+
+        // Add a node based on the selected insertion type
+        function addNode() {
+            const value = document.getElementById('nodeValue').value;
+            const insertOption = document.getElementById('insertOption').value;
+            let position = parseInt(document.getElementById('positionAdd').value) || nodes.length;
+
+            if (value === '') {
+                alert('Please enter a node value');
+                return;
+            }
+
+            const newNode = new Node(value);
+
+            if (insertOption === 'head') {
+                // Insert at the head
+                if (nodes.length === 0) {
+                    newNode.next = newNode;
+                    nodes.push(newNode);
+                } else {
+                    newNode.next = nodes[0];
+                    nodes[nodes.length - 1].next = newNode;
+                    nodes.unshift(newNode);
+                }
+            } else if (insertOption === 'tail') {
+                // Insert at the tail
+                if (nodes.length === 0) {
+                    newNode.next = newNode;
+                    nodes.push(newNode);
+                } else {
+                    nodes[nodes.length - 1].next = newNode;
+                    newNode.next = nodes[0];
+                    nodes.push(newNode);
+                }
+            } else if (insertOption === 'index') {
+                // Insert at the specified index
+                if (position < 0 || position > nodes.length) {
+                    alert('Invalid position');
+                    return;
+                }
+
+                if (position === 0) {
+                    newNode.next = nodes[0];
+                    nodes[nodes.length - 1].next = newNode;
+                    nodes.unshift(newNode);
+                } else if (position === nodes.length) {
+                    nodes[nodes.length - 1].next = newNode;
+                    newNode.next = nodes[0];
+                    nodes.push(newNode);
+                } else {
+                    let currentNode = nodes[position - 1];
+                    newNode.next = currentNode.next;
+                    currentNode.next = newNode;
+                    nodes.splice(position, 0, newNode);
+                }
+            }
+
+            updateVisualization();
+            document.getElementById('nodeValue').value = '';
+            document.getElementById('positionAdd').value = '';
+        }
+
+        // Delete a node based on the selected deletion type
+        function deleteNode() {
+            const deleteOption = document.getElementById('deleteOption').value;
+            let position = parseInt(document.getElementById('positionDelete').value) || 0;
+
+            if (nodes.length === 0) {
+                alert('No nodes to delete');
+                return;
+            }
+
+            if (deleteOption === 'head') {
+                // Remove the head node
+                if (nodes.length === 1) {
+                    nodes.pop();
+                } else {
+                    nodes[0] = nodes[0].next;
+                    nodes[nodes.length - 1].next = nodes[0];
+                }
+            } else if (deleteOption === 'tail') {
+                // Remove the tail node
+                if (nodes.length === 1) {
+                    nodes.pop();
+                } else {
+                    let prevNode = nodes[nodes.length - 2];
+                    prevNode.next = nodes[0];
+                    nodes.pop();
+                }
+            } else if (deleteOption === 'index') {
+                // Remove the node at the specified index
+                if (position < 0 || position >= nodes.length) {
+                    alert('Invalid position');
+                    return;
+                }
+                
+                if (position === 0) {
+                    nodes[0] = nodes[0].next;
+                    nodes[nodes.length - 1].next = nodes[0];
+                } else {
+                    let prevNode = nodes[position - 1];
+                    prevNode.next = prevNode.next.next;
+                }
+                nodes.splice(position, 1);
+            }
+
+            updateVisualization();
+            document.getElementById('positionDelete').value = '';
+        }
+
+        // Update the node visualization
+        function updateVisualization() {
+            const visualization = document.getElementById('visualization');
+            visualization.innerHTML = '';
+            nodes.forEach(node => {
+                const nodeDiv = document.createElement('div');
+                nodeDiv.className = 'p-4 rounded-full border-2 border-blue-400 bg-white text-center shadow-lg';
+                nodeDiv.innerText = node.value;
+                visualization.appendChild(nodeDiv);
+            });
+        }
+
+        // Function to start traversing nodes
+        function startTraversal() {
+            if (nodes.length === 0) {
+                alert('Please add some nodes first!');
+                return;
+            }
+
+            let currentIndex = 0;
+
+            function highlightNextNode() {
+                const nodeElements = document.querySelectorAll('#visualization > div');
+                nodeElements.forEach(node => node.classList.remove('bg-blue-200'));
+                nodeElements[currentIndex].classList.add('bg-blue-200');
+                currentIndex = (currentIndex + 1) % nodes.length;
+                setTimeout(highlightNextNode, 1000);
+            }
+
+            highlightNextNode();
+        }
+    </script>
+
+    <!-- JavaScript for Navbar Inclusion -->
+    <script>
+        // Load navbar content
+        fetch("{{url_for('logoNav')}}")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("include-content").innerHTML = data;
+
+                // Load mode.js after navbar is injected to ensure it has access to the toggle button
+                const modeScript = document.createElement("script");
+                modeScript.src = "/animation/js/mode.js";
+                document.body.appendChild(modeScript);
+            })
+            .catch(error => console.error("Error loading navbar content:", error));
+    </script>
+</body>
+
+</html>

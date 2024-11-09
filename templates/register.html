@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,28 +8,40 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- <link rel="stylesheet" href="/static/responsive.css"> -->
 </head>
-<body>
-    <div class="w-full h-screen bg-zinc-900 text-white">
-        <h1 class="text-3xl">create a user</h1>
-        <form method="POST" action="/register">
-            
-            <div class="p-2 text-black">
-                <input type="text" placeholder="username" name="username">
-            </div>
-            <div class="p-2 text-black">
-                <input type="email" placeholder="email" name="email">
-            </div>
-            <div class="p-2 text-black">
-                <input type="password" placeholder="password" name="password" id="p1">
-            </div>
 
-            
-            <input class="border-2 border-white rounded-md m-2 bg-blue-400" type="submit" value="register">
+<body class="bg-gray-100 text-gray-900">
 
-        </form>
-        <div class="userExist">
-            <p>already have account? <button class="border-2 border-white rounded-md m-2 bg-blue-400"><a href="login.html">Login</a></button></p>
+    <div class="flex justify-center items-center h-screen">
+        <div class="bg-gray-300 p-8 w-96 rounded-lg shadow-lg">
+            <h1 class="text-3xl font-bold text-blue-400 mb-6 text-center">Create a User</h1>
+            <form method="POST" action="/register">
+                
+                <div class="mb-6">
+                    <label for="username" class="block text-lg mb-2">Username:</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" class="w-full p-3 bg-gray-100 text-gray-900 rounded-md border-2 border-zinc-500 focus:border-blue-400" required>
+                </div>
+
+                <div class="mb-6">
+                    <label for="email" class="block text-lg mb-2">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" class="w-full p-3 bg-gray-100 text-gray-900 rounded-md border-2 border-zinc-500 focus:border-blue-400" required>
+                </div>
+
+                <div class="mb-6">
+                    <label for="password" class="block text-lg mb-2">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" class="w-full p-3 bg-gray-100 text-gray-900 rounded-md border-2 border-zinc-500 focus:border-blue-400" required>
+                </div>
+
+                <button type="submit" class="w-full bg-blue-400 text-white py-3 rounded-md hover:bg-blue-500 transition duration-300 ease-in-out">
+                    Register
+                </button>
+            </form>
+
+            <div class="mt-4 text-center">
+                <p class="text-gray-700">Already have an account? <a href="login.html" class="text-blue-400 hover:text-blue-500">Login</a></p>
+            </div>
         </div>
     </div>
+
 </body>
+
 </html>

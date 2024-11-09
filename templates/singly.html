@@ -8,16 +8,29 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+<body class="bg-gray-100 flex items-center justify-center min-h-screen w-full">
   <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
 
-  <div class="bg-white shadow-lg rounded-lg p-8 max-w-lg w-full">
+  <div class="bg-white shadow-lg rounded-lg p-8 w-full">
     <h1 class="text-2xl font-bold mb-6 text-center">Singly Linked List Visualization</h1>
 
+    <!-- Introduction Section -->
+    <section class="mb-6">
+      <h2 class="text-xl font-semibold text-blue-500">What is a Singly Linked List?</h2>
+      <p class="text-gray-700">
+        A <strong>Singly Linked List</strong> is a linear data structure where each element (called a node) contains two parts:
+        <ul class="list-disc ml-6 text-gray-700">
+          <li><strong>Data</strong> - the value stored in the node</li>
+          <li><strong>Next Pointer</strong> - a reference to the next node in the list</li>
+        </ul>
+        This structure allows for efficient insertion and deletion of elements. However, traversal is only possible in one direction, from the head to the tail.
+      </p>
+    </section>
+
     <!-- Node Input and Insert Options -->
-    <div class="flex items-center justify-between mb-4">
-      <input id="nodeValue" type="text" placeholder="Enter Node Value" class="p-2 border rounded w-1/2 mr-2 focus:outline-none focus:border-blue-400">
-      <select id="insertPosition" class="p-2 border rounded w-1/2 focus:outline-none focus:border-blue-400">
+    <div class="flex flex-wrap items-center justify-between mb-4">
+      <input id="nodeValue" type="text" placeholder="Enter Node Value" class="p-2 border rounded w-full sm:w-1/2 mr-2 focus:outline-none focus:border-blue-400">
+      <select id="insertPosition" class="p-2 border rounded w-full sm:w-1/2 focus:outline-none focus:border-blue-400 mt-2 sm:mt-0">
         <option value="start">Insert at Head</option>
         <option value="end">Insert at Tail</option>
         <option value="index">Insert at Index</option>
@@ -31,6 +44,23 @@
     <!-- Insert Button -->
     <div class="flex justify-center mb-6">
       <button onclick="insertNode()" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition">Insert Node</button>
+    </div>
+
+    <!-- Delete Options -->
+    <div class="mb-4">
+      <select id="deletePosition" class="p-2 border rounded w-full focus:outline-none focus:border-blue-400">
+        <option value="start">Delete from Head</option>
+        <option value="end">Delete from Tail</option>
+        <option value="index">Delete from Index</option>
+      </select>
+      <div id="deleteIndexInput" class="hidden mt-2">
+        <input id="deleteIndexValue" type="number" min="0" placeholder="Enter Index to Delete" class="p-2 border rounded w-full focus:outline-none focus:border-blue-400">
+      </div>
+    </div>
+
+    <!-- Delete Button -->
+    <div class="flex justify-center mb-6">
+      <button onclick="deleteNode()" class="bg-red-500 text-white p-2 rounded hover:bg-red-600 transition">Delete Node</button>
     </div>
 
     <!-- Linked List Visualization -->
@@ -103,35 +133,71 @@
         this.size++;
         this.visualize();
       }
-       
-      removeAtHead(){}
-      removeAtTail(){}
-      removeAtIndex(index){}
-      linearSearch(value){}
+
+      // Delete from Head
+      deleteAtHead() {
+        if (this.head === null) return;
+        this.head = this.head.next;
+        this.size--;
+        this.visualize();
+      }
+
+      // Delete from Tail
+      deleteAtTail() {
+        if (this.head === null) return;
+        if (this.head.next === null) {
+          this.head = null;
+        } else {
+          let current = this.head;
+          while (current.next !== null && current.next.next !== null) {
+            current = current.next;
+          }
+          current.next = null;
+        }
+        this.size--;
+        this.visualize();
+      }
+
+      // Delete from Specific Index
+      deleteAtIndex(index) {
+        if (index < 0 || index >= this.size) {
+          alert("Invalid index!");
+          return;
+        }
+        if (index === 0) {
+          this.deleteAtHead();
+          return;
+        }
+        let current = this.head;
+        let previous = null;
+        let count = 0;
+        while (count < index) {
+          previous = current;
+          current = current.next;
+          count++;
+        }
+        previous.next = current.next;
+        this.size--;
+        this.visualize();
+      }
 
       visualize() {
         const listContainer = document.getElementById('linkedList');
         listContainer.innerHTML = '';
         let current = this.head;
         while (current !== null) {
-          // Create a visual node
           const nodeDiv = document.createElement('div');
           nodeDiv.classList.add('flex', 'items-center', 'mr-4');
-
           const nodeCircle = document.createElement('div');
           nodeCircle.classList.add('w-16', 'h-16', 'bg-blue-500', 'text-white', 'flex', 'items-center', 'justify-center', 'rounded-full', 'font-bold', 'text-xl');
           nodeCircle.textContent = current.value;
-
           nodeDiv.appendChild(nodeCircle);
-
-          // Create arrow (if there's a next node)
           if (current.next !== null) {
             const arrow = document.createElement('div');
             arrow.classList.add('mx-2', 'text-2xl', 'text-gray-500');
             arrow.innerHTML = '&rarr;';
             nodeDiv.appendChild(arrow);
           }
-
           listContainer.appendChild(nodeDiv);
           current = current.next;
         }
@@ -143,7 +209,6 @@
     function insertNode() {
       const value = document.getElementById('nodeValue').value;
       const position = document.getElementById('insertPosition').value;
-
       if (value === '') {
         alert('Please enter a node value');
         return;
@@ -157,9 +222,19 @@
         const index = parseInt(document.getElementById('indexValue').value);
         linkedList.insertAtIndex(value, index);
       }
-
-      // Clear the input field
       document.getElementById('nodeValue').value = '';
+    }
+
+    function deleteNode() {
+      const position = document.getElementById('deletePosition').value;
+      if (position === 'start') {
+        linkedList.deleteAtHead();
+      } else if (position === 'end') {
+        linkedList.deleteAtTail();
+      } else if (position === 'index') {
+        const index = parseInt(document.getElementById('deleteIndexValue').value);
+        linkedList.deleteAtIndex(index);
+      }
     }
 
     // Show/hide index input based on selection
@@ -169,6 +244,15 @@
         indexInput.classList.remove('hidden');
       } else {
         indexInput.classList.add('hidden');
+      }
+    });
+
+    document.getElementById('deletePosition').addEventListener('change', function () {
+      const deleteIndexInput = document.getElementById('deleteIndexInput');
+      if (this.value === 'index') {
+        deleteIndexInput.classList.remove('hidden');
+      } else {
+        deleteIndexInput.classList.add('hidden');
       }
     });
   </script>

@@ -1,51 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>linked list content</title>
+    <title>Linked List Introduction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/static/responsive.css">
 </head>
-<body>
-    <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
 
+<body class="bg-gray-100 text-gray-900">
+    <!-- Navbar inclusion -->
+    <div id="include-content"></div> <!-- including navbar with JS (below) -->
+
+    <!-- Navigation Bar -->
     <nav>
-        <ul class=" border-2 rounded-md border-solid justify-evenly list-none display flex space-x-2.5 bg-slate-600 m-10 p-6">
-            <li><a href="{{url_for('singly')}}">singly list</a></li>
-            <li><a href="{{url_for('doubly')}}">doubly list</a>
-            <li><a href="{{url_for('circular')}}">circular list</a></li>
-            <li><a href="{{url_for('wixdash')}}">Home</a></li>
-        </ul>
+        <ul class="flex justify-evenly space-x-4 bg-slate-600 text-white py-4 m-6 rounded-md shadow-lg">
+            <li><a href="{{url_for('wixdash')}}" class="hover:text-blue-400">Home</a></li>
+            <li><a href="{{url_for('singly')}}" class="hover:text-blue-400">Singly Linked List</a></li>
+            <li><a href="{{url_for('doubly')}}" class="hover:text-blue-400">Doubly Linked List</a></li>
+            <li><a href="{{url_for('circular')}}" class="hover:text-blue-400">Circular Linked List</a></li>
+         </ul>
     </nav>
-    
-    <header>
-        <h1>Introduction to Linked Lists in Data Structures</h1>
+
+    <!-- Main Header -->
+    <header class="text-center my-10">
+        <h1 class="text-4xl font-bold text-blue-500">Introduction to Linked Lists in Data Structures</h1>
     </header>
 
-    <section>
-        <h2>What is a Linked List?</h2>
-        <p>
-            In computer science, a <strong>Linked List</strong> is a linear data structure in which elements are stored 
-            in nodes. Each node contains two parts: the <em>data</em> and a <em>reference (or pointer)</em> to the next 
-            node in the sequence. Unlike arrays, linked lists do not store elements in contiguous memory locations, making 
-            them more flexible for dynamic memory allocation.
+    <!-- What is a Linked List Section -->
+    <section class="mx-auto max-w-4xl px-6 mb-10">
+        <h2 class="text-2xl font-semibold text-blue-400 mb-4">What is a Linked List?</h2>
+        <p class="text-lg leading-relaxed">
+            In computer science, a <strong>Linked List</strong> is a linear data structure in which elements are stored
+            in nodes. Each node contains two parts: the <em>data</em> and a <em>reference (or pointer)</em> to the next
+            node in the sequence. Unlike arrays, linked lists do not store elements in contiguous memory locations,
+            making them more flexible for dynamic memory allocation.
         </p>
     </section>
 
-    <section>
-        <h2>Types of Linked Lists</h2>
-        <ul>
+    <!-- Types of Linked Lists Section -->
+    <section class="mx-auto max-w-4xl px-6 mb-10">
+        <h2 class="text-2xl font-semibold text-blue-400 mb-4">Types of Linked Lists</h2>
+        <ul class="list-disc list-inside space-y-2 text-lg">
             <li><strong>Singly Linked List:</strong> Each node has a reference to the next node only, forming a one-way chain.</li>
-            <li><strong>Doubly Linked List:</strong> Each node has references to both the next and previous nodes, allowing 
+            <li><strong>Doubly Linked List:</strong> Each node has references to both the next and previous nodes, allowing
                 traversal in both directions.</li>
             <li><strong>Circular Linked List:</strong> The last node points back to the first node, forming a circular structure.</li>
         </ul>
     </section>
 
-    <section>
-        <h2>Basic Operations on a Linked List</h2>
-        <ul>
-            <li><strong>Insertion:</strong> Adds a new node to the linked list, which can be done at the beginning, end, 
+    <!-- Basic Operations Section -->
+    <section class="mx-auto max-w-4xl px-6 mb-10">
+        <h2 class="text-2xl font-semibold text-blue-400 mb-4">Basic Operations on a Linked List</h2>
+        <ul class="list-disc list-inside space-y-2 text-lg">
+            <li><strong>Insertion:</strong> Adds a new node to the linked list, which can be done at the beginning, end,
                 or at a specific position.</li>
             <li><strong>Deletion:</strong> Removes a node from the list based on its value or position.</li>
             <li><strong>Traversal:</strong> Visits each node sequentially to access or display the data.</li>
@@ -53,22 +62,24 @@
         </ul>
     </section>
 
-    <section>
-        <h2>Key Characteristics of a Linked List</h2>
-        <ul>
+    <!-- Key Characteristics Section -->
+    <section class="mx-auto max-w-4xl px-6 mb-10">
+        <h2 class="text-2xl font-semibold text-blue-400 mb-4">Key Characteristics of a Linked List</h2>
+        <ul class="list-disc list-inside space-y-2 text-lg">
             <li><strong>Dynamic Size:</strong> Linked lists can grow or shrink as elements are added or removed, unlike arrays with fixed sizes.</li>
             <li><strong>Non-contiguous Memory:</strong> Nodes in a linked list are stored in different memory locations, with pointers used to link them.</li>
             <li><strong>No Random Access:</strong> Accessing an element requires traversing the list from the head node.</li>
         </ul>
     </section>
 
-    <section>
-        <h2>Applications of Linked Lists</h2>
-        <p>
-            Linked lists are commonly used in situations where dynamic memory management and efficient insertion or deletion 
+    <!-- Applications Section -->
+    <section class="mx-auto max-w-4xl px-6 mb-10">
+        <h2 class="text-2xl font-semibold text-blue-400 mb-4">Applications of Linked Lists</h2>
+        <p class="text-lg leading-relaxed mb-4">
+            Linked lists are commonly used in situations where dynamic memory management and efficient insertion or deletion
             are needed:
         </p>
-        <ul>
+        <ul class="list-disc list-inside space-y-2 text-lg">
             <li><strong>Implementing Stacks and Queues:</strong> Linked lists provide a flexible foundation for stack and queue structures.</li>
             <li><strong>Navigation in Music or Image Galleries:</strong> Doubly linked lists allow moving forward and backward through items.</li>
             <li><strong>Undo/Redo Functionality:</strong> Linked lists can track changes for applications with undo and redo features.</li>
@@ -76,9 +87,12 @@
         </ul>
     </section>
 
-    <footer>
-        <p>Linked lists offer flexible and efficient data storage, ideal for many real-world applications requiring dynamic memory handling!</p>
+    <!-- Footer -->
+    <footer class="text-center p-6 bg-gray-200 mt-10 rounded-lg">
+        <p class="text-gray-700">Linked lists offer flexible and efficient data storage, ideal for many real-world applications requiring dynamic memory handling!</p>
     </footer>
+
+    <!-- JavaScript for Navbar Inclusion -->
     <script>
         // Load navbar content
         fetch("{{url_for('logoNav')}}")
@@ -91,8 +105,8 @@
                 modeScript.src = "/animation/js/mode.js";
                 document.body.appendChild(modeScript);
             })
-            .catch(error => console.error("Error loading navbar content:", error));    
+            .catch(error => console.error("Error loading navbar content:", error));
     </script>
 </body>
-</html>
 
+</html>

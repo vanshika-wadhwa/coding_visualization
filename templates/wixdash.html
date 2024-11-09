@@ -9,9 +9,9 @@
     <!-- <link rel="stylesheet" href="/static/wixdash.css"> -->
     <!-- <link rel="stylesheet" href="./static/PgNavbar.css"> -->
     <!-- <link rel="stylesheet" href="./static/lefticon.css"> -->
-    <!-- <link rel="stylesheet" href="./static/chatbot.css"> -->
+    <!-- <link rel="stylesheet" href="./static/chatbot.css"> -->    
     <!-- <link rel="stylesheet" href="./static/loginpg.css"> -->
-    <link rel="preload" href="/static/css/wixdash.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="{{ url_for('static', filename='css/wixdash.css')}}" as="style" onload="this.rel='stylesheet'">
     <link rel="stylesheet" href="/static/css/mode.css">
     <!-- Google Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -51,7 +51,6 @@
     </div>
     <!-- ---------------------------------------fixed position icons----------------------------------------------- -->
     <div class="leftfixedicon">
-        <img class="lefticon" src="/static/images/lefticon.svg" alt="lefticon">
         <ul>
             <li><a class="whtsp" href="https://www.whatsapp.com/" target="_blank"><img src="/static/images/whtsp.png"
                         width="50px" alt="whtsp"></a></li>
@@ -65,7 +64,7 @@
     </div>
 
     <!-- ----------------------------------------login card------------------------------------------------------------ -->
-    <div class="m-8 w-50 h-82 bg-zinc-900 text-white">
+    <div class="m-8 w-50 h-82 bg-zinc-900 text-black">
        
 
         <div class="dashboard-content">
@@ -94,34 +93,36 @@
         </div>
     </div>
     
-    <!-- Login Modal (Initially hidden) -->
-    <div id="loginModal" class="modal-overlay" style="display:none;">
-        <div class="modal-content">
-            <div class="m-8 w-50 h-82 bg-zinc-500 text-white">
-                <h1 class="p-2 text-3xl">Login</h1>
-                <form action="/login" method="POST">
-                    <div class="p-2 text-black">
-                        <label>Username:</label>
-                        <input type="text" placeholder="username" name="username">
-                    </div>
-                    <div class="p-2 text-black">
-                        <label>Email:</label>
-                        <input type="email" placeholder="email" name="email">
-                    </div>
-                    <div class="p-2 text-black">
-                        <label>Password:</label>
-                        <input type="password" placeholder="password" name="password" id="p1">
-                    </div>
-                    <button class="border-2 border-white rounded-md m-2 bg-blue-400 p-2" type="submit" value="Login">Login</button>
-                </form>
-                <div class="p-2">
-                    <p>Forgot password? <a href="{{ url_for('forgot_password') }}"><input class="border-2 border-white rounded-md bg-blue-400" type="button" value="New password"></a></p>
-                    <br>
-                    <p>Don't have account? <a href="{{url_for('register')}}"><input class="border-2 border-white rounded-md bg-blue-400 " type="button" value="Register"></a></p>
+<!-- Login Modal (Initially hidden) -->
+<div id="loginModal" class="modal-overlay" style="display:none;">
+    <div class="modal-content flex justify-center items-center h-screen">
+        <div class="bg-gray-300 p-8 w-96 rounded-lg shadow-lg">
+            <h1 class="text-3xl font-bold text-blue-400 mb-6 text-center">Login</h1>
+            <form action="/login" method="POST">
+                <div class="mb-6">
+                    <label for="username" class="block text-lg mb-2">Username:</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" class="w-full p-3 bg-gray-100 text-gray-900 rounded-md border-2 border-zinc-500 focus:border-blue-400" required>
                 </div>
+                <div class="mb-6">
+                    <label for="email" class="block text-lg mb-2">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" class="w-full p-3 bg-gray-100 text-gray-900 rounded-md border-2 border-zinc-500 focus:border-blue-400" required>
+                </div>
+                <div class="mb-6">
+                    <label for="password" class="block text-lg mb-2">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" class="w-full p-3 bg-gray-100 text-gray-900 rounded-md border-2 border-zinc-500 focus:border-blue-400" required>
+                </div>
+                <button type="submit" class="w-full bg-blue-400 text-white py-3 rounded-md hover:bg-blue-500 transition duration-300 ease-in-out">
+                    Login
+                </button>
+            </form>
+
+            <div class="mt-6 text-center">
+                <p class="text-gray-700">Forgot password? <a href="{{ url_for('forgot_password') }}" class="text-blue-400 hover:text-blue-500">New password</a></p>
+                <p class="text-gray-700">Don't have an account? <a href="{{url_for('register')}}" class="text-blue-400 hover:text-blue-500">Register</a></p>
             </div>
         </div>
     </div>
+</div>
 
     <script src="/static/js/mode.js"></script>
 
@@ -138,43 +139,43 @@
                 document.body.appendChild(modeScript);
             })
 
-            let isLoggedIn;
-                if ('user_id' in session) {
-                    isLoggedIn = 'true';
-                } else {
-                    isLoggedIn = 'false';
-                }
+        //     let isLoggedIn;
+        //         if ('user_id' in session) {
+        //             isLoggedIn = 'true';
+        //         } else {
+        //             isLoggedIn = 'false';
+        //         }
 
-                let showModal;
-                if (show_modal) {
-                    showModal = 'true';
-                } else {
-                    showModal = 'false';
-                }
+        //         let showModal;
+        //         if (show_modal) {
+        //             showModal = 'true';
+        //         } else {
+        //             showModal = 'false';
+        //         }
 
 
-        // If the user is already logged in, skip showing the modal
-        if (isLoggedIn) {
-            localStorage.setItem('loginModalShown', 'true');
-        }
+        // // If the user is already logged in, skip showing the modal
+        // if (isLoggedIn) {
+        //     localStorage.setItem('loginModalShown', 'true');
+        // }
 
-        // If the modal hasn't been shown before and the user isn't logged in, show it after 3 seconds
-        if (!localStorage.getItem('loginModalShown') && !isLoggedIn && showModal) {
-            setTimeout(function() {
-                showLoginModal(); // Your function to display the login modal
-            }, 3000); // 3 seconds delay
-        }
+        // // If the modal hasn't been shown before and the user isn't logged in, show it after 3 seconds
+        // if (!localStorage.getItem('loginModalShown') && !isLoggedIn && showModal) {
+        //     setTimeout(function() {
+        //         showLoginModal(); // Your function to display the login modal
+        //     }, 3000); // 3 seconds delay
+        // }
 
-        // Function to show the login modal
-        function showLoginModal() {
-            document.getElementById('loginModal').style.display = 'flex'; // Show modal
-        }
+        // // Function to show the login modal
+        // function showLoginModal() {
+        //     document.getElementById('loginModal').style.display = 'flex'; // Show modal
+        // }
 
-        // Close the modal and mark it as shown in localStorage
-        function closeLoginModal() {
-            localStorage.setItem('loginModalShown', 'true');
-            document.getElementById('loginModal').style.display = 'none'; // Hide the modal
-        }
+        // // Close the modal and mark it as shown in localStorage
+        // function closeLoginModal() {
+        //     localStorage.setItem('loginModalShown', 'true');
+        //     document.getElementById('loginModal').style.display = 'none'; // Hide the modal
+        // }
         
     </script>
     <script src="/static/js/wixdash.js"></script>
