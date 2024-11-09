@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bubble Input</title>
+    <title>Bubble Sort Input</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/static/responsive.css">
     <style>
@@ -15,6 +16,7 @@
             margin-bottom: 20px;
             overflow: hidden;
         }
+
         .element {
             position: absolute;
             display: inline-block;
@@ -26,67 +28,198 @@
             border-radius: 5px;
             transition: all 0.5s ease-in-out;
         }
+
         .swapped {
             background-color: #F56565; /* Tailwind red-500 */
         }
+
         .info {
             margin-top: 10px;
         }
+
         .iteration {
             margin-bottom: 20px;
         }
+
         .swap-info {
             margin-left: 10px;
             color: #F56565; /* Tailwind red-500 */
         }
+
         .swap-count {
             margin-top: 5px;
             font-weight: bold;
         }
+
         .movement-log {
             margin-top: 10px;
         }
+
         .complexity-info {
             margin-top: 20px;
             font-weight: bold;
         }
+
+        .explanation {
+            margin-bottom: 30px;
+        }
     </style>
 </head>
-<body>
-    <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
 
-    <div class="w-full min-h-screen bg-zinc-900 text-white p-10">
-        <h3 class="text-3xl mb-5">Bubble Input</h3>
+<body>
+    <div id="include-content"></div> <!-- including main navbar file with js(written below) -->
+
+    <div class="w-full min-h-screen bg-white text-black p-10">
+        <h3 class="text-4xl font-bold mb-5 text-center text-blue-400">Bubble Sort Input</h3>
+
+        <!-- Bubble Sort Explanation -->
+        <div class="explanation text-xl text-black mb-8">
+            <h2 class="text-2xl font-semibold text-blue-500 mb-4">What is Bubble Sort?</h2>
+            <p>
+                Bubble Sort is a simple sorting algorithm that works by repeatedly stepping through the list to be sorted,
+                comparing adjacent elements and swapping them if they are in the wrong order. This process is repeated
+                until the list is sorted. The largest unsorted element "bubbles" up to its correct position in each pass.
+            </p>
+            <p class="mt-4">
+                Here’s an example of how Bubble Sort works:
+            </p>
+            <ul class="list-disc list-inside ml-6 text-black">
+                <li>Start with the first pair of adjacent elements.</li>
+                <li>If the first element is larger than the second, swap them.</li>
+                <li>Move to the next pair of adjacent elements and repeat the process.</li>
+                <li>At the end of the pass, the largest element will be in its correct position.</li>
+                <li>Repeat the process for the remaining unsorted elements until the entire list is sorted.</li>
+            </ul>
+        </div>
+
+        <!-- Form for size input -->
         <form id="sizeForm">
-            <input class="px-3 py-2 rounded-md bg-transparent border-2 outline-none border-zinc-800" type="text" placeholder="Size" id="size" name="size">
-            <input class="px-3 py-2 rounded-md bg-blue-500 border-2 outline-none border-zinc-800" type="submit" value="Create Array">
+            <input class="px-3 py-2 rounded-md bg-transparent border-2 outline-none border-gray-300" type="text" placeholder="Size" id="size" name="size">
+            <input class="px-3 py-2 rounded-md bg-blue-500 border-2 outline-none border-gray-300" type="submit" value="Create Array">
         </form>
 
         <form id="inputForm" style="display:none;" action="/bubbleinput" method="POST">
             <!-- input boxes -->
             <div id="inputContainer" class="input-container"></div>
-            <input class="px-3 py-2 rounded-md bg-blue-500 border-2 outline-none border-zinc-800" type="submit" value="Sort Array">
+            <input class="px-3 py-2 rounded-md bg-blue-500 border-2 outline-none border-gray-300" type="submit" value="Sort Array">
         </form>
 
         <div id="visualization" class="mt-5"></div>
         <div id="info" class="info text-xl"></div>
         <div id="complexity" class="complexity-info text-lg"></div>
     </div>
-<script src="/script/bubbleVisual.js"></script>
-<script>
-    // Load navbar content
-    fetch("{{url_for('logoNav')}}")
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById("include-content").innerHTML = data;
 
-            // Load mode.js after navbar is injected to ensure it has access to the toggle button
-            const modeScript = document.createElement("script");
-            modeScript.src = "/animation/js/mode.js";
-            document.body.appendChild(modeScript);
-        })
-        .catch(error => console.error("Error loading navbar content:", error));    
-</script>
+    <script src="/script/bubbleVisual.js"></script>
+    <script>
+        let arrayToSort = [];
+        let numElements = 0;
+
+        // Load navbar content
+        fetch("{{url_for('logoNav')}}")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("include-content").innerHTML = data;
+
+                // Load mode.js after navbar is injected to ensure it has access to the toggle button
+                const modeScript = document.createElement("script");
+                modeScript.src = "/animation/js/mode.js";
+                document.body.appendChild(modeScript);
+            })
+            .catch(error => console.error("Error loading navbar content:", error));
+
+        // Handle array creation based on input size
+        document.getElementById("sizeForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            numElements = parseInt(document.getElementById("size").value);
+            if (isNaN(numElements) || numElements <= 0) {
+                alert("Please enter a valid number for the size.");
+                return;
+            }
+            createInputFields(numElements);
+        });
+
+        // Create input fields for each element
+        function createInputFields(numElements) {
+            const inputContainer = document.getElementById("inputContainer");
+            inputContainer.innerHTML = ""; // Clear any existing input fields
+            for (let i = 0; i < numElements; i++) {
+                const inputField = document.createElement("input");
+                inputField.type = "number";
+                inputField.id = "element" + i;
+                inputField.placeholder = "Element " + (i + 1);
+                inputField.className = "px-3 py-2 rounded-md bg-transparent border-2 outline-none border-gray-300 mb-2 w-full";
+                inputContainer.appendChild(inputField);
+            }
+            document.getElementById("inputForm").style.display = "block";
+        }
+
+        // Handle array sorting and visualization
+        document.getElementById("inputForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const inputs = [];
+            for (let i = 0; i < numElements; i++) {
+                const inputValue = parseInt(document.getElementById("element" + i).value);
+                if (isNaN(inputValue)) {
+                    alert("Please enter valid numbers for all elements.");
+                    return;
+                }
+                inputs.push(inputValue);
+            }
+            arrayToSort = inputs;
+            document.getElementById("visualization").innerHTML = ""; // Clear previous visualizations
+            visualizeBubbleSort(arrayToSort);
+        });
+
+        // Bubble Sort visualization
+        async function visualizeBubbleSort(arr) {
+            const n = arr.length;
+            let swapCount = 0;
+
+            // Create and display the initial array
+            displayArray(arr, "Initial Array:");
+
+            // Bubble sort algorithm visualization
+            for (let i = 0; i < n - 1; i++) {
+                for (let j = 0; j < n - 1 - i; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        // Swap elements
+                        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                        swapCount++;
+                        displayArray(arr, `Swap ${swapCount}: Swap elements at index ${j} and ${j + 1}`);
+                        await delay(); // Delay for visualization
+                    }
+                }
+            }
+
+            // Display final sorted array
+            displayArray(arr, `Sorted Array: [${arr.join(", ")}]`);
+
+            // Display swap count and time complexity
+            document.getElementById("info").innerHTML = `Total Swaps: ${swapCount}`;
+            document.getElementById("complexity").innerHTML = `Time Complexity: O(n²) in worst and average case, O(n) in best case.`;
+        }
+
+        // Display the array at each step
+        function displayArray(arr, description) {
+            const container = document.getElementById("visualization");
+            const div = document.createElement("div");
+            div.className = "element-container";
+            div.innerHTML = `<p class="iteration">${description}</p>`;
+            arr.forEach((num, index) => {
+                const elementDiv = document.createElement("div");
+                elementDiv.className = "element";
+                elementDiv.style.left = `${index * 60}px`; // Adjust positioning
+                elementDiv.textContent = num;
+                div.appendChild(elementDiv);
+            });
+            container.appendChild(div);
+        }
+
+        // Delay function for visualization
+        function delay() {
+            return new Promise(resolve => setTimeout(resolve, 1000)); // Delay of 1 second
+        }
+    </script>
 </body>
 
 </html>

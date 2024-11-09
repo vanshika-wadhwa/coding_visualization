@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Introduction to Data Structures and Algorithms</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="font-sans p-5 text-gray-800">
-    <div id="include-content"></div> <!-- including main navbar file with js(written below) -->
 
-    <div class="content max-w-3xl mx-auto">
-        <h1 class="text-3xl font-bold text-gray-800 mb-5">Introduction to Data Structures and Algorithms</h1>
+<body class="bg-gray-300 text-black font-sans p-5">
+
+    <div id="include-content"></div> <!-- Including main navbar file with JS -->
+
+    <div class="max-w-3xl mx-auto bg-gray-200 p-6 rounded-lg shadow-md">
+        <h1 class="text-3xl font-bold text-black mb-5 border-b-2 border-gray-700 pb-2">Introduction to Data Structures and Algorithms</h1>
         <p class="mb-6">
             Data Structures and Algorithms (DSA) are fundamental concepts in computer science. 
             They are essential for organizing, managing, and storing data efficiently, which helps in solving problems effectively. 
             A solid understanding of DSA improves the performance and efficiency of software solutions.
         </p>
-        
-        <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">What is a Data Structure?</h2>
+
+        <h2 class="text-2xl font-semibold text-blue-400 mt-8 mb-4">What is a Data Structure?</h2>
         <p class="mb-6">
             A data structure is a way of organizing and storing data so that it can be accessed and modified efficiently. 
             Data structures define the layout of data in memory and provide ways to manage data for optimal use.
         </p>
-        
-        <h3 class="text-xl font-semibold text-gray-700 mt-6 mb-3">Common Types of Data Structures</h3>
-        <ul class="list-disc list-inside space-y-2 pl-4">
+
+        <h3 class="text-xl font-semibold text-yellow-400 mt-6 mb-3">Common Types of Data Structures</h3>
+        <ul class="list-disc pl-6 space-y-2 mb-6">
             <li><strong>Arrays:</strong> A collection of elements identified by index or key.</li>
             <li><strong>Linked Lists:</strong> A linear collection of elements where each element points to the next.</li>
             <li><strong>Stacks:</strong> A LIFO (Last In, First Out) structure used for temporary storage.</li>
@@ -34,22 +37,22 @@
             <li><strong>Hash Tables:</strong> A data structure that stores data in key-value pairs for quick access.</li>
         </ul>
 
-        <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">What is an Algorithm?</h2>
+        <h2 class="text-2xl font-semibold text-blue-400 mt-8 mb-4">What is an Algorithm?</h2>
         <p class="mb-6">
             An algorithm is a step-by-step set of instructions designed to solve a specific problem or perform a computation.
             Algorithms are designed for efficiency and clarity, ensuring tasks are completed in a minimal amount of time.
         </p>
-        
-        <h3 class="text-xl font-semibold text-gray-700 mt-6 mb-3">Key Properties of Algorithms</h3>
-        <ul class="list-disc list-inside space-y-2 pl-4">
+
+        <h3 class="text-xl font-semibold text-yellow-400 mt-6 mb-3">Key Properties of Algorithms</h3>
+        <ul class="list-disc pl-6 space-y-2 mb-6">
             <li><strong>Correctness:</strong> The algorithm should solve the problem accurately.</li>
             <li><strong>Efficiency:</strong> The algorithm should use resources optimally (e.g., time and memory).</li>
             <li><strong>Finiteness:</strong> The algorithm should have a clear stopping point.</li>
             <li><strong>Determinism:</strong> Each step in the algorithm should be unambiguous.</li>
         </ul>
 
-        <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Common Types of Algorithms</h2>
-        <ul class="list-disc list-inside space-y-2 pl-4">
+        <h2 class="text-2xl font-semibold text-blue-400 mt-8 mb-4">Common Types of Algorithms</h2>
+        <ul class="list-disc pl-6 space-y-2 mb-6">
             <li><strong>Sorting Algorithms:</strong> Used to arrange data in a particular order (e.g., Quick Sort, Merge Sort, Bubble Sort).</li>
             <li><strong>Searching Algorithms:</strong> Used to find specific data in a structure (e.g., Binary Search, Linear Search).</li>
             <li><strong>Graph Algorithms:</strong> Used for traversing and analyzing graph structures (e.g., Dijkstra's Algorithm, DFS, BFS).</li>
@@ -57,7 +60,7 @@
             <li><strong>Greedy Algorithms:</strong> Used for finding an optimal solution by choosing the best choice at each step (e.g., Prim's, Kruskal's).</li>
         </ul>
 
-        <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Why Study Data Structures and Algorithms?</h2>
+        <h2 class="text-2xl font-semibold text-blue-400 mt-8 mb-4">Why Study Data Structures and Algorithms?</h2>
         <p class="mb-6">
             Learning Data Structures and Algorithms provides a foundation for solving complex problems effectively. 
             It helps in building efficient and optimized software applications and is essential in competitive programming and technical job interviews.
@@ -66,7 +69,7 @@
             By mastering DSA, programmers can improve their logical thinking and develop solutions that run faster and consume fewer resources.
         </p>
     </div>
-    
+
     <script>
         // Load navbar content
         fetch("{{url_for('logoNav')}}")
@@ -82,4 +85,5 @@
             .catch(error => console.error("Error loading navbar content:", error));    
     </script>
 </body>
+
 </html>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radix Sort</title>
+    <title>Radix Sort Visualization</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -23,49 +23,71 @@
             Radix sort is a non-comparative integer sorting algorithm. It processes the digits of numbers and sorts them from the least significant digit (LSD) to the most significant digit (MSD), or vice versa. This sorting technique is efficient when the range of input numbers is small.
         </p>
 
-        <!-- Description Section -->
-        <h2 class="text-2xl font-semibold mb-3 text-blue-300">Description</h2>
-        <ul class="list-disc list-inside space-y-2 mb-6 pl-4">
-            <li><b>Stable Sort:</b> Radix sort is stable, meaning that it preserves the relative order of equal elements.</li>
-            <li><b>Digit-by-Digit Sorting:</b> It sorts elements by processing each digit of the numbers in a specified order (LSD or MSD).</li>
-            <li><b>Efficient for Small Range:</b> Radix sort is particularly effective when dealing with numbers that have a small range of digits.</li>
-        </ul>
-
-        <!-- Example Section -->
-        <h2 class="text-2xl font-semibold mb-3 text-blue-300">Example</h2>
-        <p class="mb-2">Consider sorting the array <code class="px-1 py-0.5 rounded">[170, 45, 75, 90, 802, 24, 2, 66]</code> using radix sort:</p>
-        <ol class="list-decimal list-inside space-y-2 mb-6 pl-4">
-            <li><b>Step 1: </b>Sort by the least significant digit (LSD). After the first pass:</li>
-            <li><code class="px-1 py-0.5 rounded">[170, 802, 2, 24, 45, 75, 90, 66]</code></li>
-            <li><b>Step 2: </b>Sort by the second least significant digit. After the second pass:</li>
-            <li><code class="px-1 py-0.5 rounded">[170, 802, 2, 24, 45, 75, 66, 90]</code></li>
-            <li><b>Step 3: </b>Sort by the most significant digit. After the third pass, the array becomes sorted:</li>
-            <li><code class="px-1 py-0.5 rounded">[2, 24, 45, 66, 75, 90, 170, 802]</code></li>
-        </ol>
-
-        <!-- Characteristics Section -->
-        <h2 class="text-2xl font-semibold mb-3 text-blue-300">Characteristics</h2>
-        <ul class="list-disc list-inside space-y-2 mb-6 pl-4">
-            <li><b>Time Complexity:</b> Radix sort has a time complexity of O(nk), where n is the number of elements and k is the number of digits in the largest number.</li>
-            <li><b>Space Complexity:</b> O(n + k), where n is the number of elements and k is the range of digits.</li>
-            <li><b>Stable:</b> Radix sort is stable and ensures that elements with the same digit value maintain their relative order.</li>
-            <li><b>Non-Comparative:</b> Unlike algorithms such as quicksort or mergesort, radix sort does not compare elements directly.</li>
-        </ul>
-
-        <p class="text-lg leading-relaxed">Radix sort is particularly useful when sorting large datasets of integers, especially when the numbers have a limited number of digits. It is not typically used for floating-point numbers or strings.</p>
-
         <!-- Input Section -->
-        <div class="container mt-6 p-4 bg-gray-50 rounded-lg">
+        <div class="mt-6 p-4 bg-gray-50 rounded-lg">
             <div>
                 <label for="size" class="block text-sm font-medium text-gray-700">Enter number of inputs:</label>
-                <input type="text" name="size" id="size" class="mt-2 p-2 border border-gray-300 rounded-md w-full" />
+                <input type="number" id="size" class="mt-2 p-2 border border-gray-300 rounded-md w-full" />
             </div>
             <div class="mt-4">
                 <label for="elements" class="block text-sm font-medium text-gray-700">Enter input (comma-separated):</label>
-                <input type="text" name="elements" id="elements" class="mt-2 p-2 border border-gray-300 rounded-md w-full" />
+                <input type="text" id="elements" class="mt-2 p-2 border border-gray-300 rounded-md w-full" />
             </div>
+            <button onclick="startRadixSort()" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg">Start Radix Sort Visualization</button>
         </div>
+
+        <!-- Visualization Section -->
+        <h2 class="text-2xl font-semibold mt-10 mb-3 text-blue-300">Visualization</h2>
+        <div id="visualizationContainer" class="mt-6 space-y-4"></div>
     </div>
+
+    <!-- JavaScript for Radix Sort Visualization -->
+    <script>
+        // Utility function to display array state
+        function displayArray(arr, description) {
+            const container = document.getElementById('visualizationContainer');
+            const stepDiv = document.createElement('div');
+            stepDiv.className = 'p-4 bg-white shadow-md rounded-md';
+            stepDiv.innerHTML = `<p class="text-lg font-medium mb-2">${description}</p><div class="flex gap-2">${arr.map(num => `<div class="p-2 bg-blue-100 border rounded">${num}</div>`).join('')}</div>`;
+            container.appendChild(stepDiv);
+        }
+
+        // Function to get digit at a specific position
+        function getDigit(num, place) {
+            return Math.floor(Math.abs(num) / Math.pow(10, place)) % 10;
+        }
+
+        // Function to get maximum number of digits in the array
+        function getMaxDigits(arr) {
+            return Math.max(...arr.map(num => num.toString().length));
+        }
+
+        // Radix Sort implementation with visualization
+        async function radixSort(arr) {
+            const maxDigits = getMaxDigits(arr);
+            for (let k = 0; k < maxDigits; k++) {
+                let digitBuckets = Array.from({ length: 10 }, () => []);
+                for (let i = 0; i < arr.length; i++) {
+                    const digit = getDigit(arr[i], k);
+                    digitBuckets[digit].push(arr[i]);
+                }
+
+                arr = [].concat(...digitBuckets);
+                displayArray(arr, `Pass ${k + 1}: Sorted by digit place ${k + 1}`);
+
+                // Slow down each step for visual effect (2 seconds delay between each step)
+                await new Promise(resolve => setTimeout(resolve, 2000)); // Wait for 2 seconds
+            }
+            displayArray(arr, "Final Sorted Array");
+        }
+
+        // Trigger Radix Sort with user input
+        function startRadixSort() {
+            const elements = document.getElementById('elements').value.split(',').map(Number);
+            document.getElementById('visualizationContainer').innerHTML = ''; // Clear previous visualization
+            radixSort(elements);
+        }
+    </script>
 
     <!-- JavaScript for Loading Navbar -->
     <script>
@@ -83,7 +105,5 @@
     </script>
 
 </body>
-
-<script src="script/radix.js"></script>
 
 </html>

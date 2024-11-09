@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Merge Sort Explanation</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-gray-100 text-gray-800">
     <!-- Navbar -->
     <div id="include-content"></div> <!-- Including navbar with JS (below) -->
@@ -30,17 +32,17 @@
 
         <!-- Example Section -->
         <h2 class="text-2xl font-semibold mb-3 text-blue-300">Example</h2>
-        <p class="mb-2">Consider sorting the array <code class=" px-1 py-0.5 rounded">[38, 27, 43, 3, 9, 82, 10]</code>:</p>
+        <p class="mb-2">Consider sorting the array <code class="px-1 py-0.5 rounded">[38, 27, 43, 3, 9, 82, 10]</code>:</p>
         <ol class="list-decimal list-inside space-y-2 mb-6 pl-4">
-            <li><span class="font-semibold">Initial Array:</span> <code class=" px-1 py-0.5 rounded">[38, 27, 43, 3, 9, 82, 10]</code></li>
-            <li><span class="font-semibold">Divide:</span> <code class=" px-1 py-0.5 rounded">[38, 27, 43]</code> and <code class="px-1 py-0.5 rounded">[3, 9, 82, 10]</code></li>
+            <li><span class="font-semibold">Initial Array:</span> <code class="px-1 py-0.5 rounded">[38, 27, 43, 3, 9, 82, 10]</code></li>
+            <li><span class="font-semibold">Divide:</span> <code class="px-1 py-0.5 rounded">[38, 27, 43]</code> and <code class="px-1 py-0.5 rounded">[3, 9, 82, 10]</code></li>
             <li><span class="font-semibold">Conquer:</span>
                 <ul class="list-disc list-inside pl-6">
-                    <li>Sort <code class=" px-1 py-0.5 rounded">[38, 27, 43]</code> to <code class="px-1 py-0.5 rounded">[27, 38, 43]</code></li>
-                    <li>Sort <code class=" px-1 py-0.5 rounded">[3, 9, 82, 10]</code> to <code class="px-1 py-0.5 rounded">[3, 9, 10, 82]</code></li>
+                    <li>Sort <code class="px-1 py-0.5 rounded">[38, 27, 43]</code> to <code class="px-1 py-0.5 rounded">[27, 38, 43]</code></li>
+                    <li>Sort <code class="px-1 py-0.5 rounded">[3, 9, 82, 10]</code> to <code class="px-1 py-0.5 rounded">[3, 9, 10, 82]</code></li>
                 </ul>
             </li>
-            <li><span class="font-semibold">Combine:</span> Merge <code class=" px-1 py-0.5 rounded">[27, 38, 43]</code> and <code class=" px-1 py-0.5 rounded">[3, 9, 10, 82]</code> to get <code class=" px-1 py-0.5 rounded">[3, 9, 10, 27, 38, 43, 82]</code></li>
+            <li><span class="font-semibold">Combine:</span> Merge <code class="px-1 py-0.5 rounded">[27, 38, 43]</code> and <code class="px-1 py-0.5 rounded">[3, 9, 10, 82]</code> to get <code class="px-1 py-0.5 rounded">[3, 9, 10, 27, 38, 43, 82]</code></li>
         </ol>
 
         <!-- Pseudocode Section -->
@@ -88,6 +90,95 @@ function merge(left, right):
         <p class="text-lg leading-relaxed">Merge sort is particularly effective for large datasets and is often preferred when stable sorting is required.</p>
     </div>
 
+    <!-- Input Section -->
+    <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+        <div>
+            <label for="elements" class="block text-sm font-medium text-gray-700">Enter input (comma-separated):</label>
+            <input type="text" id="elements" class="mt-2 p-2 border border-gray-300 rounded-md w-full" />
+        </div>
+        <button onclick="startMergeSort()" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg">Start Merge Sort Visualization</button>
+    </div>
+
+    <!-- Visualization Section -->
+    <h2 class="text-2xl font-semibold mt-10 mb-3 text-blue-300">Visualization</h2>
+    <div id="visualizationContainer" class="mt-6 space-y-4"></div>
+
+    <!-- JavaScript for Merge Sort Visualization -->
+    <script>
+        let arrayToSort = [];
+
+        // Utility function to display array state with a description
+        function displayArray(arr, description) {
+            const container = document.getElementById('visualizationContainer');
+            const stepDiv = document.createElement('div');
+            stepDiv.className = 'p-4 bg-white shadow-md rounded-md';
+            stepDiv.innerHTML = `<p class="text-lg font-medium mb-2">${description}</p>
+                                 <div class="flex gap-2">
+                                    ${arr.map(num => {
+                                        return `<div class="p-2 border rounded bg-blue-100">${num}</div>`;
+                                    }).join('')}
+                                 </div>`;
+            container.appendChild(stepDiv);
+        }
+
+        // Merge sort visualization function
+        async function mergeSort(arr) {
+            if (arr.length <= 1) return arr;
+            const middle = Math.floor(arr.length / 2);
+            const left = arr.slice(0, middle);
+            const right = arr.slice(middle);
+
+            displayArray(arr, `Dividing: Left = [${left.join(', ')}], Right = [${right.join(', ')}]`);
+            await delay();
+
+            const sortedLeft = await mergeSort(left);
+            const sortedRight = await mergeSort(right);
+
+            return await merge(sortedLeft, sortedRight);
+        }
+
+        // Merge function with visualization
+        async function merge(left, right) {
+            let result = [];
+            let leftIndex = 0;
+            let rightIndex = 0;
+
+            while (leftIndex < left.length && rightIndex < right.length) {
+                if (left[leftIndex] <= right[rightIndex]) {
+                    result.push(left[leftIndex]);
+                    leftIndex++;
+                } else {
+                    result.push(right[rightIndex]);
+                    rightIndex++;
+                }
+                displayArray(result.concat(left.slice(leftIndex), right.slice(rightIndex)), `Merging: ${result.concat(left.slice(leftIndex), right.slice(rightIndex)).join(', ')}`);
+                await delay();
+            }
+
+            // Concatenate remaining elements
+            result = result.concat(left.slice(leftIndex), right.slice(rightIndex));
+
+            displayArray(result, `Final Merged: [${result.join(', ')}]`);
+            await delay();
+
+            return result;
+        }
+
+        // Delay function for visualization
+        function delay() {
+            return new Promise(resolve => setTimeout(resolve, 1000)); // 1 second delay for visibility
+        }
+
+        // Start Merge Sort with user input
+        function startMergeSort() {
+            const input = document.getElementById('elements').value;
+            arrayToSort = input.split(',').map(Number);
+            document.getElementById('visualizationContainer').innerHTML = ''; // Clear previous visualization
+            displayArray(arrayToSort, `Initial Array: [${arrayToSort.join(', ')}]`);
+            mergeSort(arrayToSort); // Start the merge sort
+        }
+    </script>
+
     <!-- JavaScript for Loading Navbar -->
     <script>
         fetch("{{url_for('logoNav')}}")
@@ -103,5 +194,5 @@ function merge(left, right):
             .catch(error => console.error("Error loading navbar content:", error));
     </script>
 </body>
-<script src="/script/merge.js"></script>
+
 </html>

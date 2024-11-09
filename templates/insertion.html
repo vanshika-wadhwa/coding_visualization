@@ -1,12 +1,13 @@
-<!-- insertion.html -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insertion Sort</title>
     <script src="https://cdn.tailwindcss.com"></script> <!-- Link Tailwind CSS CDN -->
 </head>
+
 <body class="bg-gray-100 text-gray-800">
 
     <!-- Navbar -->
@@ -16,9 +17,9 @@
     <div class="container mx-auto my-10 p-6 bg-white shadow-md rounded-lg">
         <h1 class="text-3xl font-bold text-center text-blue-700 mb-6">Insertion Sort</h1>
         <p class="text-lg text-gray-600 mb-4">
-            Insertion sort is a simple sorting algorithm that builds the final sorted array one item at a time. 
-            It works by repeatedly picking the next item and inserting it into the correct position among the 
-            already sorted items. This process is akin to sorting playing cards in your hand, where you take one 
+            Insertion sort is a simple sorting algorithm that builds the final sorted array one item at a time.
+            It works by repeatedly picking the next item and inserting it into the correct position among the
+            already sorted items. This process is akin to sorting playing cards in your hand, where you take one
             card at a time and place it in the correct order relative to the cards you've already arranged.
         </p>
 
@@ -58,10 +59,15 @@
                 <label for="element-input" class="block text-gray-700 font-semibold mb-2">Enter input:</label>
                 <input type="text" name="element-input" id="element-input" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
+            <button class="mt-4 px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md" onclick="startInsertionSort()">Sort Array</button>
         </div>
+
+        <!-- Visualization Section -->
+        <h2 class="text-2xl font-semibold mt-10 mb-3 text-blue-300">Visualization</h2>
+        <div id="visualizationContainer" class="mt-6 space-y-4"></div>
     </div>
 
-    <!-- JavaScript to load navbar -->
+    <!-- JavaScript to Load Navbar -->
     <script>
         // Load navbar content
         fetch("{{url_for('logoNav')}}")
@@ -74,7 +80,65 @@
                 modeScript.src = "/animation/js/mode.js";
                 document.body.appendChild(modeScript);
             })
-            .catch(error => console.error("Error loading navbar content:", error));    
+            .catch(error => console.error("Error loading navbar content:", error));
     </script>
+
+    <!-- JavaScript for Insertion Sort Visualization -->
+    <script>
+        // Store the array to be sorted
+        let arrayToSort = [];
+
+        // Function to display the array in each step
+        function displayArray(arr, description) {
+            const container = document.getElementById('visualizationContainer');
+            const stepDiv = document.createElement('div');
+            stepDiv.className = 'p-4 bg-white shadow-md rounded-md';
+            stepDiv.innerHTML = `<p class="text-lg font-medium mb-2">${description}</p>
+                                 <div class="flex gap-2">
+                                    ${arr.map(num => {
+                                        return `<div class="p-2 border rounded bg-blue-100">${num}</div>`;
+                                    }).join('')}
+                                 </div>`;
+            container.appendChild(stepDiv);
+        }
+
+        // Insertion Sort Visualization
+        async function insertionSort(arr) {
+            const n = arr.length;
+            for (let i = 1; i < n; i++) {
+                let current = arr[i];
+                let j = i - 1;
+
+                // Move elements that are greater than current to one position ahead
+                while (j >= 0 && arr[j] > current) {
+                    arr[j + 1] = arr[j];
+                    displayArray(arr, `Pass ${i}: Moved ${arr[j]} to the right`);
+                    j--;
+                    await delay();
+                }
+                arr[j + 1] = current;
+                displayArray(arr, `Pass ${i}: Inserted ${current} into position ${j + 1}`);
+                await delay();
+            }
+
+            // Display the final sorted array
+            displayArray(arr, `Final Sorted Array: [${arr.join(', ')}]`);
+        }
+
+        // Delay function for visualization
+        function delay() {
+            return new Promise(resolve => setTimeout(resolve, 1000)); // 1 second delay for visibility
+        }
+
+        // Start Insertion Sort with user input
+        function startInsertionSort() {
+            const input = document.getElementById('element-input').value;
+            arrayToSort = input.split(',').map(Number);
+            document.getElementById('visualizationContainer').innerHTML = ''; // Clear previous visualization
+            displayArray(arrayToSort, `Initial Array: [${arrayToSort.join(', ')}]`);
+            insertionSort(arrayToSort); // Start the insertion sort
+        }
+    </script>
+
 </body>
 </html>

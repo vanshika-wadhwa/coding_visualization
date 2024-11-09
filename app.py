@@ -70,14 +70,6 @@ def send_email(email, new_password):
 
 
 
-@app.route('/')
-def Home():
-    # Check if the user is logged in (if session doesn't have 'user_id', redirect to login)
-    if 'user_id' not in session:
-        flash("You must be logged in to access the dashboard.", "warning")
-        return redirect(url_for('wixdash'))  # Redirect to login page if not logged in
-
-    return render_template('wixdash1.html')  # Show the dashboard if logged in
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -100,7 +92,7 @@ def register():
             db.session.rollback()
             print("Error saving data:", e)
         
-        return redirect(url_for('wixdash1'))
+        return redirect(url_for('wixdash'))
 
     return render_template("register.html")
 
@@ -140,11 +132,8 @@ def logout():
     flash("You've been logged out.", "info")
 
     # After logout, render the logout page with an option to either log in again or go to the dashboard
-    return render_template('wixdash.html')
+    return render_template('logout.html')
 
-@app.route('/wixdash')
-def wixdash():
-    return render_template('wixdash.html')
 
 @app.route('/stackContent')
 def stackContent():
@@ -153,6 +142,9 @@ def stackContent():
 @app.route('/logoNav')
 def logoNav():
     return render_template('logoNav.html')
+@app.route('/circular')
+def circular():
+    return render_template('circular.html')
 
 @app.route('/visualization')
 def visualization():
@@ -199,14 +191,6 @@ def feedback():
 def doubly():
     return render_template('doubly.html')
 
-# @app.route('/doubly')
-# def doubly():
-#     return render_template('doubly.html')
-
-@app.route('/circular')
-def circular():
-    return render_template('circular.html')
-
 @app.route('/merge')
 def merge():
     return render_template('merge.html')
@@ -234,10 +218,6 @@ def bubbleVisual():
 @app.route('/countVisual')
 def countVisual():
     return render_template('countVisual.html')
-
-@app.route('/singly')
-def singly():
-    return render_template('singly.html')
 
 @app.route('/sortingContent')
 def sortingContent():
@@ -268,31 +248,6 @@ def newPassword():
 @app.route('/wixdash1')
 def wixdash1():
     return render_template('wixdash1.html')
-
-
-
-# @app.route('/login', methods=['GET', 'POST'])
-# def login():
-#     if request.method == 'POST':
-#         # Retrieve form data
-#         email = request.form.get('email')
-#         password = request.form.get('password')
-        
-#         # Query the database for the user
-#         user = register_db.query.filter_by(email=email, password=password).first()
-        
-#         if user:
-#             # If user exists and credentials match
-#             session['user_id'] = user.sno  # Store user ID in session
-#             flash(f"Welcome back, {user.username}!", "success")
-#             return redirect(url_for('wixdash'))  # Redirect to home or wixdash page
-#         else:
-#             # If credentials are incorrect
-#             flash("Invalid email or password. Please try again.", "danger")
-    
-#     # Render login page if GET request or if credentials are invalid
-#     return render_template("login.html")
-
 
 
 if __name__ == "__main__":

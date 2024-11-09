@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Playground</title>
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/static/responsive.css">
  </head>
@@ -21,11 +23,9 @@
             <li>C</li>
             <li>Python</li>
             <li>Javascript</li>
+            <li><span class="material-icons">play_arrow</span></li>
         </ul>
-        <ul class="flex inline-flex gap-5">
-            <li><img src="../images/sun.svg" alt="sun"></li>
-            <li><img src="../images/run.svg" alt="run"></li>
-        </ul>
+
     </nav>
     <div>
         
@@ -43,12 +43,12 @@
 
         <!-- Right Side -->
         <div class="relative bg-gray-200 p-4">
-            <h1 class="text-black text-xl">Right Side</h1>
-            <p>This is the right side of the page.</p>
+            <h1 class="text-black text-xl">Output</h1>
+            <p>program executed.</p>
             
             <!-- Image Positioned at the Right Corner -->
             <div class="fixed bottom-4 right-4">
-                <img src="../images/chatbot.png" alt="chatbot" width="50px" height="50px">
+                <img src="{{ url_for('static', filename='images/chatbot.png') }}" alt="chatbot" width="50px" height="50px">
             </div>
         </div>
         </div>

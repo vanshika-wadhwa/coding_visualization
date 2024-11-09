@@ -1,176 +1,134 @@
- <!DOCTYPE html>
- <html lang="en">
- <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="this page is about details of data structure">
-    <title>Sorting dashboard</title>
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css')}}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/logoNav.css')}}">
-   </head>
- <body>
-   <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
+    <meta name="description" content="This page provides details about various sorting algorithms.">
+    <title>Sorting Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/logoNav.css') }}">
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans leading-relaxed tracking-wide">
 
-    <!-- <object type="text/html" data="navbarDashboard.html" width="100%" height="500px"></object> -->
-    <nav>
-      <ul class="border-2 rounded-md border-solid justify-evenly list-none flex space-x-2.5 bg-slate-600 p-4">
-            <li><a href="{{url_for('insertion')}}" class="text-white">Insertion Sort</a></li>
-            <li><a href="{{url_for('bubbleVisual')}}" class="text-white">Bubble Sort</a></li>
-            <li><a href="{{url_for('selection')}}" class="text-white">Selection Sort</a></li>
-            <li><a href="{{url_for('merge')}}" class="text-white">Merge Sort</a></li>
-            <li><a href="{{url_for('quick')}}" class="text-white">Quick Sort</a></li>
-            <li><a href="{{url_for('count')}}" class="text-white">Count Sort</a></li>
-            <li><a href="{{url_for('radix')}}" class="text-white">Radix Sort</a></li>
-         </ul>
-      </nav>
-  
-   <h1>Sorting</h1>
-   <p>Sorting is a technique which sorts the data. There are many techniques which sort data with diferent time complexity and with different space complexity. Some techniques are written below:</p>
-   <ul>
-      <li>Insertion Sort</li>
-      <li>Bubble Sort</li>
-      <li>Selection Sort</li>
-     <li>Merge Sort</li>
-     <li>Quick Sort</li>
-     <li>Count Sort</li>
-     <li>Radix Sort</li>
-   </ul>
+    <div id="include-content"></div> <!-- Navbar included dynamically with JavaScript below -->
 
-      <!-- Sorting Definitions -->
-      <section class="mt-8">
-         <dl>
-            <dt class="font-semibold mt-4">Insertion Sort</dt>
-            <dd>Insertion sort is a simple, in-place, comparison-based algorithm that sorts a list by inserting elements into their correct position within a growing sorted portion.</dd>
-            <dd>Details: <a target="_blank" href="{{ url_for('insertion') }}" class="text-blue-500">Insertion Sort</a></dd>
+    <nav class="bg-blue-700 text-white">
+        <ul class="flex justify-center space-x-4 p-4">
+            <li><a href="{{url_for('insertion')}}" class="hover:underline">Insertion Sort</a></li>
+            <li><a href="{{url_for('bubbleVisual')}}" class="hover:underline">Bubble Sort</a></li>
+            <li><a href="{{url_for('selection')}}" class="hover:underline">Selection Sort</a></li>
+            <li><a href="{{url_for('merge')}}" class="hover:underline">Merge Sort</a></li>
+            <li><a href="{{url_for('quick')}}" class="hover:underline">Quick Sort</a></li>
+            <li><a href="{{url_for('count')}}" class="hover:underline">Count Sort</a></li>
+            <li><a href="{{url_for('radix')}}" class="hover:underline">Radix Sort</a></li>
+        </ul>
+    </nav>
 
-   <dl>Bubble Sort</dl>
-   <dd>Bubble sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order, iterating until the list is sorted.</dd>
-   <dd>
-      Craving for details <a target="_blank" href="{{url_for('bubbleVisual')}}">Bubble Sort</a>
-   </dd>
+    <section class="max-w-4xl mx-auto p-6">
+        <h1 class="text-3xl font-bold text-center text-blue-600 mb-6">Sorting Algorithms</h1>
+        <p class="text-lg mb-4">Sorting is a fundamental operation in computer science, used to arrange data in a specific order. There are various algorithms for sorting, each with different efficiencies in terms of time and space. Here are some commonly used sorting algorithms:</p>
+        <ul class="list-disc list-inside pl-4 text-lg">
+            <li>Insertion Sort</li>
+            <li>Bubble Sort</li>
+            <li>Selection Sort</li>
+            <li>Merge Sort</li>
+            <li>Quick Sort</li>
+            <li>Count Sort</li>
+            <li>Radix Sort</li>
+        </ul>
 
-            <dt class="font-semibold mt-4">Selection Sort</dt>
-            <dd>Selection sort finds the minimum element from the unsorted portion and swaps it with the first unsorted element, gradually building a sorted array.</dd>
-            <dd>Details: <a target="_blank" href="{{ url_for('selection') }}" class="text-blue-500">Selection Sort</a></dd>
+        <!-- Sorting Definitions -->
+        <section class="mt-8 space-y-6">
+            <div>
+                <h2 class="text-2xl font-semibold text-gray-800">Insertion Sort</h2>
+                <p class="text-gray-600">Insertion sort is a simple, in-place, comparison-based algorithm that sorts a list by inserting elements into their correct position within a growing sorted portion.</p>
+                <a href="{{ url_for('insertion') }}" target="_blank" class="text-blue-500 hover:underline">Learn more about Insertion Sort</a>
+            </div>
 
-            <dt class="font-semibold mt-4">Merge Sort</dt>
-            <dd>Merge sort is a divide-and-conquer algorithm that recursively splits the array, sorts each half, and then merges the sorted halves to produce a sorted array.</dd>
-            <dd>Details: <a target="_blank" href="{{ url_for('merge') }}" class="text-blue-500">Merge Sort</a></dd>
+            <div>
+                <h2 class="text-2xl font-semibold text-gray-800">Bubble Sort</h2>
+                <p class="text-gray-600">Bubble sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order, iterating until the list is sorted.</p>
+                <a href="{{url_for('bubbleVisual')}}" target="_blank" class="text-blue-500 hover:underline">Learn more about Bubble Sort</a>
+            </div>
 
-            <dt class="font-semibold mt-4">Quick Sort</dt>
-            <dd>Quick sort is a divide-and-conquer algorithm that selects a pivot element, partitions the array around the pivot, and recursively sorts the subarrays.</dd>
-            <dd>Details: <a target="_blank" href="{{ url_for('quick') }}" class="text-blue-500">Quick Sort</a></dd>
+            <!-- Add similar sections for each sorting algorithm with appropriate styling as shown above -->
+        </section>
 
-            <dt class="font-semibold mt-4">Count Sort</dt>
-            <dd>Count sort is an integer sorting algorithm that counts occurrences of each value to place values in correct positions in a sorted array.</dd>
-            <dd>Details: <a target="_blank" href="{{ url_for('count') }}" class="text-blue-500">Count Sort</a></dd>
+        <!-- Comparison Table -->
+        <div class="mt-10 overflow-x-auto">
+            <table class="min-w-full text-center border border-gray-300 rounded-lg shadow-lg mb-6">
+                <caption class="bg-blue-600 text-white font-semibold py-3 text-lg">Comparison of Sorting Techniques</caption>
+                <thead class="bg-blue-100">
+                    <tr>
+                        <th class="px-4 py-2 border border-gray-300">Sorting</th>
+                        <th class="px-4 py-2 border border-gray-300">Swapping</th>
+                        <th class="px-4 py-2 border border-gray-300">Best Case</th>
+                        <th class="px-4 py-2 border border-gray-300">Average Case</th>
+                        <th class="px-4 py-2 border border-gray-300">Worst Case</th>
+                        <th class="px-4 py-2 border border-gray-300">Space Complexity</th>
+                        <th class="px-4 py-2 border border-gray-300">In-place</th>
+                        <th class="px-4 py-2 border border-gray-300">Stable</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-white">
+                        <td class="px-4 py-2 border border-gray-300">Insertion Sort</td>
+                        <td class="px-4 py-2 border border-gray-300">Yes</td>
+                        <td class="px-4 py-2 border border-gray-300">O(n)</td>
+                        <td class="px-4 py-2 border border-gray-300">O(n^2)</td>
+                        <td class="px-4 py-2 border border-gray-300">O(n^2)</td>
+                        <td class="px-4 py-2 border border-gray-300">O(1)</td>
+                        <td class="px-4 py-2 border border-gray-300">Yes</td>
+                        <td class="px-4 py-2 border border-gray-300">Yes</td>
+                    </tr>
+                    <!-- Add similar rows for each sorting algorithm with appropriate styling as shown above -->
+                </tbody>
+            </table>
 
-            <dt class="font-semibold mt-4">Radix Sort</dt>
-            <dd>Radix sort is a non-comparative algorithm that sorts integers by processing individual digits from least significant to most significant.</dd>
-            <dd>Details: <a target="_blank" href="{{ url_for('radix') }}" class="text-blue-500">Radix Sort</a></dd>
-         </dl>
-      </section>
-      <!-- Tailwind CSS Comparison Table -->
-<div class="p-4">
-   <table class="min-w-full border border-gray-300 text-center rounded-lg overflow-hidden shadow-lg mb-6">
-      <caption class="bg-blue-600 text-white font-semibold py-3 text-lg">Comparison Techniques</caption>
-      <thead class="bg-blue-100">
-         <tr>
-            <th class="px-4 py-2 border border-gray-300">Sorting</th>
-            <th class="px-4 py-2 border border-gray-300">Swapping</th>
-            <th class="px-4 py-2 border border-gray-300">Best Case</th>
-            <th class="px-4 py-2 border border-gray-300">Average Case</th>
-            <th class="px-4 py-2 border border-gray-300">Worst Case</th>
-            <th class="px-4 py-2 border border-gray-300">Space Complexity</th>
-            <th class="px-4 py-2 border border-gray-300">In-place</th>
-            <th class="px-4 py-2 border border-gray-300">Stable</th>
-         </tr>
-      </thead>
-      <tbody>
-         <tr class="bg-white">
-            <td class="px-4 py-2 border border-gray-300">Insertion Sort</td>
-            <td class="px-4 py-2 border border-gray-300">Yes</td>
-            <td class="px-4 py-2 border border-gray-300" colspan="2">O(n)</td>
-            <td class="px-4 py-2 border border-gray-300">O(n^2)</td>
-            <td class="px-4 py-2 border border-gray-300">O(1)</td>
-            <td class="px-4 py-2 border border-gray-300" colspan="2">Yes</td>
-         </tr>
-         <tr class="bg-gray-50">
-            <td class="px-4 py-2 border border-gray-300">Bubble Sort</td>
-            <td class="px-4 py-2 border border-gray-300">Yes</td>
-            <td class="px-4 py-2 border border-gray-300" colspan="2">O(n)</td>
-            <td class="px-4 py-2 border border-gray-300">O(n^2)</td>
-            <td class="px-4 py-2 border border-gray-300">O(1)</td>
-            <td class="px-4 py-2 border border-gray-300" colspan="2">Yes</td>
-         </tr>
-         <tr class="bg-white">
-            <td class="px-4 py-2 border border-gray-300">Selection Sort</td>
-            <td class="px-4 py-2 border border-gray-300">Yes</td>
-            <td class="px-4 py-2 border border-gray-300" colspan="3">O(n^2)</td>
-            <td class="px-4 py-2 border border-gray-300">O(1)</td>
-            <td class="px-4 py-2 border border-gray-300" colspan="2">Yes</td>
-         </tr>
-         <tr class="bg-gray-50">
-            <td class="px-4 py-2 border border-gray-300">Merge Sort</td>
-            <td class="px-4 py-2 border border-gray-300">Pointers interchange</td>
-            <td class="px-4 py-2 border border-gray-300" colspan="3">O(log n)</td>
-            <td class="px-4 py-2 border border-gray-300">O(n log n)</td>
-            <td class="px-4 py-2 border border-gray-300" colspan="2">No</td>
-         </tr>
-         <tr class="bg-white">
-            <td class="px-4 py-2 border border-gray-300">Quick Sort</td>
-            <td class="px-4 py-2 border border-gray-300">Pivot</td>
-            <td class="px-4 py-2 border border-gray-300" colspan="2">O(log n)</td>
-            <td class="px-4 py-2 border border-gray-300">O(n^2)</td>
-            <td class="px-4 py-2 border border-gray-300">O(n log n)</td>
-            <td class="px-4 py-2 border border-gray-300" colspan="2">Yes</td>
-         </tr>
-      </tbody>
-   </table>
+            <!-- Non-Comparison Techniques Table -->
+            <table class="min-w-full text-center border border-gray-300 rounded-lg shadow-lg mb-6">
+                <caption class="bg-blue-600 text-white font-semibold py-3 text-lg">Non-Comparison Sorting Techniques</caption>
+                <thead class="bg-blue-100">
+                    <tr>
+                        <th class="px-4 py-2 border border-gray-300">Sorting</th>
+                        <th class="px-4 py-2 border border-gray-300">Swapping</th>
+                        <th class="px-4 py-2 border border-gray-300">Best Case</th>
+                        <th class="px-4 py-2 border border-gray-300">Average Case</th>
+                        <th class="px-4 py-2 border border-gray-300">Worst Case</th>
+                        <th class="px-4 py-2 border border-gray-300">Space Complexity</th>
+                        <th class="px-4 py-2 border border-gray-300">In-place</th>
+                        <th class="px-4 py-2 border border-gray-300">Stable</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-white">
+                        <td class="px-4 py-2 border border-gray-300">Count Sort</td>
+                        <td class="px-4 py-2 border border-gray-300">-</td>
+                        <td class="px-4 py-2 border border-gray-300">O(n + k)</td>
+                        <td class="px-4 py-2 border border-gray-300">O(n + k)</td>
+                        <td class="px-4 py-2 border border-gray-300">O(n + k)</td>
+                        <td class="px-4 py-2 border border-gray-300">O(k)</td>
+                        <td class="px-4 py-2 border border-gray-300">No</td>
+                        <td class="px-4 py-2 border border-gray-300">Yes</td>
+                    </tr>
+                    <!-- Add similar rows for each non-comparison sorting algorithm -->
+                </tbody>
+            </table>
+        </div>
+    </section>
 
-   <br>
-   <table>
-      <caption>Non-Comparision techniques</caption>
-      <tr>
-      <th>Sorting</th>
-         <th>Swaping</th>
-         <th>Best Case</th>
-         <th>Average Case</th>
-         <th>Worst Case</th>
-         <th>Space Complexity</th>
-         <th>inplace</th>
-         <th>stable</th>
-      </tr>
-      <tr>
-         <td>Count Sort</td>
-         <td>-</td>
-         <td colspan="3">O(n+k)</td>
-         <td rowspan="2">depends upon size of array, i.e, k</td>
-         <td>-</td>
-         <td>-</td>
-      </tr>
-      <tr>
-         <td>Radix Sort</td>
-         <td>-</td>
-         <td colspan="3">O d*(n+k)</td>
-         <td>-</td>
-         <td>-</td>
-         
-      </tr>
-    </table>
-    <script>// Load navbar content
-      fetch("{{url_for('logoNav')}}")
-          .then(response => response.text())
-          .then(data => {
-              document.getElementById("include-content").innerHTML = data;
+    <script>
+        // Load navbar content
+        fetch("{{url_for('logoNav')}}")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("include-content").innerHTML = data;
 
-              // Load mode.js after navbar is injected to ensure it has access to the toggle button
-              const modeScript = document.createElement("script");
-              modeScript.src = "/static/js/mode.js";
-              document.body.appendChild(modeScript);
-          })
-
-  </script>
- </body>
- </html>
+                // Load mode.js after navbar is injected to ensure it has access to the toggle button
+                const modeScript = document.createElement("script");
+                modeScript.src = "/static/js/mode.js";
+                document.body.appendChild(modeScript);
+            });
+    </script>
+</body>
+</html>

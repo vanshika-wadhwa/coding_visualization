@@ -4,13 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>wix dashboard</title>
-    <!-- <link rel="stylesheet" href="./static/utility.css"> -->
-    <!-- <link rel="stylesheet" href="/static/wixdash.css"> -->
-    <!-- <link rel="stylesheet" href="./static/PgNavbar.css"> -->
-    <!-- <link rel="stylesheet" href="./static/lefticon.css"> -->
-    <!-- <link rel="stylesheet" href="./static/chatbot.css"> -->    
-    <!-- <link rel="stylesheet" href="./static/loginpg.css"> -->
+    <title>wix dashboard</title>]
     <link rel="preload" href="{{ url_for('static', filename='css/wixdash.css')}}" as="style" onload="this.rel='stylesheet'">
     <link rel="stylesheet" href="/static/css/mode.css">
     <!-- Google Icons -->
@@ -29,7 +23,7 @@
     <div class="pgnavigation">
         <ul>
 
-            <li><a href="#">Home</a></li>
+
             <li><a href="{{url_for('sortingContent')}}" target="_blank" rel="noopener noreferrer">Sorting</a></li>
             <li><a href="#">Shortest Path</a>
 
@@ -44,9 +38,6 @@
             <li><a href="{{url_for('queueContent')}}" target="_blank" rel="noopener noreferrer">Queue</a></li>
 
             <li><a href="{{url_for('treeContent')}}" target="_blank" rel="noopener noreferrer">Tree</a></li>
-            <li><a href="{{url_for('feedback')}}" target="_blank" rel="noopener noreferrer">Feedback</a></li>
-            <li><a href="#"><span class="material-icons">logout</span>Signout</a></li>
-
         </ul>
     </div>
     <!-- ---------------------------------------fixed position icons----------------------------------------------- -->
@@ -138,44 +129,6 @@
                 modeScript.src = "/static/js/mode.js";
                 document.body.appendChild(modeScript);
             })
-
-        //     let isLoggedIn;
-        //         if ('user_id' in session) {
-        //             isLoggedIn = 'true';
-        //         } else {
-        //             isLoggedIn = 'false';
-        //         }
-
-        //         let showModal;
-        //         if (show_modal) {
-        //             showModal = 'true';
-        //         } else {
-        //             showModal = 'false';
-        //         }
-
-
-        // // If the user is already logged in, skip showing the modal
-        // if (isLoggedIn) {
-        //     localStorage.setItem('loginModalShown', 'true');
-        // }
-
-        // // If the modal hasn't been shown before and the user isn't logged in, show it after 3 seconds
-        // if (!localStorage.getItem('loginModalShown') && !isLoggedIn && showModal) {
-        //     setTimeout(function() {
-        //         showLoginModal(); // Your function to display the login modal
-        //     }, 3000); // 3 seconds delay
-        // }
-
-        // // Function to show the login modal
-        // function showLoginModal() {
-        //     document.getElementById('loginModal').style.display = 'flex'; // Show modal
-        // }
-
-        // // Close the modal and mark it as shown in localStorage
-        // function closeLoginModal() {
-        //     localStorage.setItem('loginModalShown', 'true');
-        //     document.getElementById('loginModal').style.display = 'none'; // Hide the modal
-        // }
         
     </script>
     <script src="/static/js/wixdash.js"></script>

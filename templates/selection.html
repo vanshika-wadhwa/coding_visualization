@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Selection Sort</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-gray-100 text-gray-800">
     <!-- Navbar -->
     <div id="include-content"></div> <!-- including main navbar file with JS (below) -->
@@ -50,19 +52,85 @@
             <div class="space-y-4">
                 <div>
                     <label for="size" class="block text-lg mb-1">Enter number of inputs:</label>
-                    <input type="text" name="size" class="w-full px-4 py-2 rounded-md bg-zinc-700 border border-zinc-600 text-white focus:border-blue-500 focus:outline-none">
+                    <input type="text" id="size" class="w-full px-4 py-2 rounded-md bg-gray-200 border border-gray-200 text-white focus:border-blue-500 focus:outline-none">
                 </div>
                 <div>
                     <label for="element-input" class="block text-lg mb-1">Enter elements (comma-separated):</label>
-                    <input type="text" name="element-input" class="w-full px-4 py-2 rounded-md bg-zinc-700 border border-zinc-600 text-white focus:border-blue-500 focus:outline-none">
+                    <input type="text" id="element-input" class="w-full px-4 py-2 rounded-md bg-gray-200 border border-gray-200 text-white focus:border-blue-500 focus:outline-none">
                 </div>
             </div>
-            <button class="mt-6 px-5 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md font-semibold">Sort Array</button>
+            <button class="mt-6 px-5 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md font-semibold" onclick="startSelectionSort()">Sort Array</button>
         </div>
+
+        <!-- Visualization Section -->
+        <h2 class="text-2xl font-semibold mt-10 mb-3 text-blue-300">Visualization</h2>
+        <div id="visualizationContainer" class="mt-6 space-y-4"></div>
     </div>
 
+    <!-- JavaScript for Selection Sort Visualization -->
     <script>
-        // Load navbar content
+        // Store the array to be sorted
+        let arrayToSort = [];
+
+        // Utility function to display array state with a description
+        function displayArray(arr, description) {
+            const container = document.getElementById('visualizationContainer');
+            const stepDiv = document.createElement('div');
+            stepDiv.className = 'p-4 bg-white shadow-md rounded-md';
+            stepDiv.innerHTML = `<p class="text-lg font-medium mb-2">${description}</p>
+                                 <div class="flex gap-2">
+                                    ${arr.map(num => {
+                                        return `<div class="p-2 border rounded bg-blue-100">${num}</div>`;
+                                    }).join('')}
+                                 </div>`;
+            container.appendChild(stepDiv);
+        }
+
+        // Selection sort visualization function
+        async function selectionSort(arr) {
+            const n = arr.length;
+            for (let i = 0; i < n - 1; i++) {
+                let minIndex = i;
+
+                // Find the minimum element in the unsorted section
+                for (let j = i + 1; j < n; j++) {
+                    if (arr[j] < arr[minIndex]) {
+                        minIndex = j;
+                    }
+                }
+
+                // Swap the found minimum element with the first unsorted element
+                if (minIndex !== i) {
+                    [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
+                    displayArray(arr, `Pass ${i + 1}: Swapped ${arr[i]} with ${arr[minIndex]}`);
+                    await delay();
+                } else {
+                    displayArray(arr, `Pass ${i + 1}: No swap needed`);
+                    await delay();
+                }
+            }
+
+            // Display the final sorted array
+            displayArray(arr, `Final Sorted Array: [${arr.join(', ')}]`);
+        }
+
+        // Delay function for visualization
+        function delay() {
+            return new Promise(resolve => setTimeout(resolve, 1000)); // 1 second delay for visibility
+        }
+
+        // Start Selection Sort with user input
+        function startSelectionSort() {
+            const input = document.getElementById('element-input').value;
+            arrayToSort = input.split(',').map(Number);
+            document.getElementById('visualizationContainer').innerHTML = ''; // Clear previous visualization
+            displayArray(arrayToSort, `Initial Array: [${arrayToSort.join(', ')}]`);
+            selectionSort(arrayToSort); // Start the selection sort
+        }
+    </script>
+
+    <!-- JavaScript for Loading Navbar -->
+    <script>
         fetch("{{url_for('logoNav')}}")
             .then(response => response.text())
             .then(data => {
@@ -75,6 +143,7 @@
             })
             .catch(error => console.error("Error loading navbar content:", error));
     </script>
+
 </body>
 <script src="/script/selection.js"></script>
 </html>

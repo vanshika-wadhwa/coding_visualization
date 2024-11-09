@@ -92,6 +92,90 @@ function quickSort(arr):
             array is already sorted).</p>
     </div>
 
+    <!-- Input Section -->
+    <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+        <div>
+            <label for="elements" class="block text-sm font-medium text-gray-700">Enter input (comma-separated):</label>
+            <input type="text" id="elements" class="mt-2 p-2 border border-gray-300 rounded-md w-full" />
+        </div>
+        <button onclick="startQuickSort()" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg">Start Quick Sort Visualization</button>
+    </div>
+
+    <!-- Visualization Section -->
+    <h2 class="text-2xl font-semibold mt-10 mb-3 text-blue-300">Visualization</h2>
+    <div id="visualizationContainer" class="mt-6 space-y-4"></div>
+
+    <!-- JavaScript for Quick Sort Visualization -->
+    <script>
+        let arrayToSort = [];
+
+        // Utility function to display array state with a description
+        function displayArray(arr, description, pivot = null, left = [], right = []) {
+            const container = document.getElementById('visualizationContainer');
+            const stepDiv = document.createElement('div');
+            stepDiv.className = 'p-4 bg-white shadow-md rounded-md';
+            stepDiv.innerHTML = `<p class="text-lg font-medium mb-2">${description}</p>
+                                 <div class="flex gap-2">
+                                    ${arr.map((num, index) => {
+                                        let colorClass = 'bg-blue-100'; // default color
+                                        if (index === pivot) colorClass = 'bg-yellow-200'; // pivot color
+                                        if (left.includes(index)) colorClass = 'bg-green-200'; // left partition
+                                        if (right.includes(index)) colorClass = 'bg-red-200'; // right partition
+                                        return `<div class="p-2 border rounded ${colorClass}">${num}</div>`;
+                                    }).join('')}
+                                 </div>`;
+            container.appendChild(stepDiv);
+        }
+
+        // Quick Sort visualization function with recursive partitioning
+        async function quickSort(arr, left = 0, right = arr.length - 1) {
+            if (left >= right) return; // Base case
+
+            const pivotIndex = await partition(arr, left, right);
+            await quickSort(arr, left, pivotIndex - 1);
+            await quickSort(arr, pivotIndex + 1, right);
+        }
+
+        // Partition function that shows sorting steps with visualization
+        async function partition(arr, left, right) {
+            const pivot = arr[right];
+            let i = left - 1;
+
+            displayArray(arr, `Partitioning: Pivot is ${pivot}`, right, [], []);
+            await delay();
+
+            for (let j = left; j < right; j++) {
+                if (arr[j] < pivot) {
+                    i++;
+                    [arr[i], arr[j]] = [arr[j], arr[i]];
+                    displayArray(arr, `Swapping ${arr[i]} and ${arr[j]} because ${arr[j]} < pivot`, right, Array.from({ length: i + 1 }, (_, k) => k), [j]);
+                    await delay();
+                }
+            }
+
+            // Move pivot to its correct position
+            [arr[i + 1], arr[right]] = [arr[right], arr[i + 1]];
+            displayArray(arr, `Moving pivot ${pivot} to position ${i + 1}`, i + 1, Array.from({ length: i + 2 }, (_, k) => k), []);
+            await delay();
+
+            return i + 1;
+        }
+
+        // Delay function for slowing down the visualization
+        function delay() {
+            return new Promise(resolve => setTimeout(resolve, 1500)); // 1.5-second delay for better visibility
+        }
+
+        // Trigger Quick Sort with user input
+        function startQuickSort() {
+            const input = document.getElementById('elements').value;
+            arrayToSort = input.split(',').map(Number);
+            document.getElementById('visualizationContainer').innerHTML = ''; // Clear previous visualization
+            displayArray(arrayToSort, `Initial Array: [${arrayToSort.join(', ')}]`); // Show the initial state
+            quickSort(arrayToSort); // Start the quick sort
+        }
+    </script>
+
     <!-- JavaScript for Loading Navbar -->
     <script>
         fetch("{{url_for('logoNav')}}")
@@ -108,7 +192,5 @@ function quickSort(arr):
     </script>
 
 </body>
-
-<script src="/script/quick.js"></script>
 
 </html>
