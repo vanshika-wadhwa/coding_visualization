@@ -1,90 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tree Introduction</title>
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-    <link rel="stylesheet" href="/static/css/responsive.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
 
-    <nav>
-        <ul class=" border-2 rounded-md border-solid justify-evenly list-none display flex space-x-2.5 bg-slate-600 m-10 p-6">
-            <li><a href="{{url_for('bst')}}">Bst</a></li>
-            <li><a href="#">avl</a>
-            <li><a href="#">b-tree</a></li>
-            <li><a href="#">vh tree</a></li>
-            <li><a href="#">red black tree</a></li>
-            <li><a href="{{url_for('wixdash')}}">Home</a></li>
-            
+<body class="bg-gray-100 text-gray-900">
+
+    <!-- Dynamic Navbar Inclusion -->
+    <div id="include-content"></div>
+
+    <!-- Navigation Menu -->
+    <nav class="bg-slate-600 p-6 rounded-md mx-4 my-10">
+        <ul class="flex justify-evenly text-white font-semibold space-x-4">
+            <li><a href="{{url_for('bst')}}" class="hover:underline">BST</a></li>
+            <li><a href="#" class="hover:underline">AVL</a></li>
+            <li><a href="#" class="hover:underline">B-Tree</a></li>
+            <li><a href="#" class="hover:underline">VH Tree</a></li>
+            <li><a href="#" class="hover:underline">Red Black Tree</a></li>
+            <li><a href="{{url_for('wixdash')}}" class="hover:underline">Home</a></li>
         </ul>
     </nav>
 
-    <header>
-        <h1>Introduction to Trees in Algorithms</h1>
+    <!-- Header Section -->
+    <header class="text-center py-8">
+        <h1 class="text-3xl font-bold text-blue-600">Introduction to Trees in Algorithms</h1>
     </header>
 
-    <section>
-        <h2>What is a Tree?</h2>
-        <p>
-            In computer science, a <strong>Tree</strong> is a widely-used data structure that simulates a hierarchical structure. 
-            It consists of nodes, where each node stores a value and references to child nodes. A tree starts with a root node and branches 
-            out to additional nodes, forming parent-child relationships.
-        </p>
-    </section>
+    <!-- Content Sections -->
+    <main class="max-w-3xl mx-auto px-6 space-y-10">
 
-    <section>
-        <h2>Basic Terminology</h2>
-        <ul>
-            <li><strong>Root:</strong> The topmost node in the tree, where the structure starts.</li>
-            <li><strong>Parent:</strong> A node that has branches or links to other nodes.</li>
-            <li><strong>Child:</strong> A node that descends from another node (the parent).</li>
-            <li><strong>Leaf:</strong> A node without any children, typically at the tree's lowest levels.</li>
-            <li><strong>Depth:</strong> The number of edges from the root to a node.</li>
-            <li><strong>Height:</strong> The length of the longest path from a node to a leaf node.</li>
-        </ul>
-    </section>
+        <!-- What is a Tree? -->
+        <section>
+            <h2 class="text-2xl font-semibold text-blue-600 mb-4">What is a Tree?</h2>
+            <p class="text-lg leading-relaxed">
+                In computer science, a <strong>Tree</strong> is a widely-used data structure that simulates a hierarchical structure. 
+                It consists of nodes, where each node stores a value and references to child nodes. A tree starts with a root node and branches 
+                out to additional nodes, forming parent-child relationships.
+            </p>
+        </section>
 
-    <section>
-        <h2>Types of Trees</h2>
-        <p>
-            Trees come in many types, with each type used for specific scenarios in algorithms. Some common types include:
-        </p>
-        <ul>
-            <li><strong>Binary Tree:</strong> A tree where each node has at most two children, called the left and right child.</li>
-            <li><strong>Binary Search Tree (BST):</strong> A type of binary tree where each node’s left subtree has values less than the node’s value, and the right subtree has values greater.</li>
-            <li><strong>AVL Tree:</strong> A self-balancing binary search tree where the heights of two child subtrees of every node differ by at most one.</li>
-            <li><strong>Heap:</strong> A complete binary tree where each node follows specific ordering rules, such as the max-heap or min-heap property.</li>
-        </ul>
-    </section>
+        <!-- Basic Terminology -->
+        <section>
+            <h2 class="text-2xl font-semibold text-blue-600 mb-4">Basic Terminology</h2>
+            <ul class="list-disc list-inside space-y-2 text-lg">
+                <li><strong>Root:</strong> The topmost node in the tree, where the structure starts.</li>
+                <li><strong>Parent:</strong> A node that has branches or links to other nodes.</li>
+                <li><strong>Child:</strong> A node that descends from another node (the parent).</li>
+                <li><strong>Leaf:</strong> A node without any children, typically at the tree's lowest levels.</li>
+                <li><strong>Depth:</strong> The number of edges from the root to a node.</li>
+                <li><strong>Height:</strong> The length of the longest path from a node to a leaf node.</li>
+            </ul>
+        </section>
 
-    <section>
-        <h2>Applications of Trees</h2>
-        <p>
-            Trees are fundamental to many algorithms and are used in a variety of applications, including:
-        </p>
-        <ul>
-            <li>Hierarchical data structures (file systems, organizational structures)</li>
-            <li>Database indexing and search (B-trees, AVL trees)</li>
-            <li>Network routing algorithms</li>
-            <li>Artificial intelligence and machine learning (decision trees)</li>
-        </ul>
-    </section>
+        <!-- Types of Trees -->
+        <section>
+            <h2 class="text-2xl font-semibold text-blue-600 mb-4">Types of Trees</h2>
+            <p class="text-lg leading-relaxed mb-4">
+                Trees come in many types, with each type used for specific scenarios in algorithms. Some common types include:
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-lg">
+                <li><strong>Binary Tree:</strong> A tree where each node has at most two children, called the left and right child.</li>
+                <li><strong>Binary Search Tree (BST):</strong> A type of binary tree where each node’s left subtree has values less than the node’s value, and the right subtree has values greater.</li>
+                <li><strong>AVL Tree:</strong> A self-balancing binary search tree where the heights of two child subtrees of every node differ by at most one.</li>
+                <li><strong>Heap:</strong> A complete binary tree where each node follows specific ordering rules, such as the max-heap or min-heap property.</li>
+            </ul>
+        </section>
+
+        <!-- Applications of Trees -->
+        <section>
+            <h2 class="text-2xl font-semibold text-blue-600 mb-4">Applications of Trees</h2>
+            <p class="text-lg leading-relaxed mb-4">
+                Trees are fundamental to many algorithms and are used in a variety of applications, including:
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-lg">
+                <li>Hierarchical data structures (file systems, organizational structures)</li>
+                <li>Database indexing and search (B-trees, AVL trees)</li>
+                <li>Network routing algorithms</li>
+                <li>Artificial intelligence and machine learning (decision trees)</li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- JavaScript for Navbar Inclusion -->
     <script>
-        // Load navbar content
         fetch("{{url_for('logoNav')}}")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("include-content").innerHTML = data;
 
-                // Load mode.js after navbar is injected to ensure it has access to the toggle button
                 const modeScript = document.createElement("script");
                 modeScript.src = "/static/js/mode.js";
                 document.body.appendChild(modeScript);
             })
-            .catch(error => console.error("Error loading navbar content:", error));    
+            .catch(error => console.error("Error loading navbar content:", error));
     </script>
 </body>
+
 </html>

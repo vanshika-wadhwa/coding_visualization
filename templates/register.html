@@ -5,30 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- <link rel="stylesheet" href="/static/responsive.css"> -->
 </head>
-<body>
-    <div class="w-full h-screen bg-zinc-900 text-white">
-        <h1 class="text-3xl">create a user</h1>
-        <form method="POST" action="/register">
-            
-            <div class="p-2 text-black">
-                <input type="text" placeholder="username" name="username">
-            </div>
-            <div class="p-2 text-black">
-                <input type="email" placeholder="email" name="email">
-            </div>
-            <div class="p-2 text-black">
-                <input type="password" placeholder="password" name="password" id="p1">
+<body class="bg-white text-white flex items-center justify-center h-screen">
+
+    <div class="bg-zinc-800 w-full max-w-md p-8 rounded-lg shadow-lg space-y-6">
+        <h1 class="text-4xl font-semibold text-center">Register</h1>
+        
+        <form method="POST" action="/register" class="space-y-4">
+            <div>
+                <label for="username" class="block text-sm font-medium mb-1">Username</label>
+                <input type="text" id="username" name="username" placeholder="Username" 
+                    class="w-full p-3 bg-zinc-700 rounded-lg text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
 
-            
-            <input class="border-2 border-white rounded-md m-2 bg-blue-400" type="submit" value="register">
+            <div>
+                <label for="email" class="block text-sm font-medium mb-1">Email</label>
+                <input type="email" id="email" name="email" placeholder="Email" 
+                    class="w-full p-3 bg-zinc-700 rounded-lg text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
 
+            <div>
+                <label for="password" class="block text-sm font-medium mb-1">Password</label>
+                <input type="password" id="p1" name="password" placeholder="Password" 
+                    class="w-full p-3 bg-zinc-700 rounded-lg text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <button type="submit" 
+                class="w-full py-3 mt-4 bg-blue-500 rounded-lg text-white font-semibold hover:bg-blue-600 transition duration-300">
+                Register
+            </button>
         </form>
-        <div class="userExist">
-            <p>already have account? <button class="border-2 border-white rounded-md m-2 bg-blue-400"><a href="login.html">Login</a></button></p>
+
+        <div class="text-center text-sm text-zinc-400">
+            <p>Already have an account? 
+                <a href="login.html" class="text-blue-400 font-medium hover:underline">
+                    Login
+                </a>
+            </p>
         </div>
     </div>
+
 </body>
 </html>

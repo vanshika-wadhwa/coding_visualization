@@ -1,91 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>visualization page</title>
-    <link rel="stylesheet" href="/static/css/responsive.css">
+    <title>Visualization Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
 
-    <h1>On which topic u want to visualize?</h1>
-    <ul>
-        <li>algo
-            <ul>
-                <li>stack</li>
-                <li>queue</li>
-                <li>linked list
-                    <ul>
-                        <li><a href="{{url_for('singly')}}" target="_blank" rel="noopener noreferrer">Singly linked list</a></li>
-                        <li><a href="{{url_for('doubly')}}" target="_blank" rel="noopener noreferrer">Doubly linked list</a></li>
-                        <li>circular</li>
-                    </ul>
-                </li>
-                <li>tree
-                    <ul>
-                        <li><a href="{{url_for('bst')}}" target="_blank" rel="noopener noreferrer">BST</a></li>
-                        <li>avl</li>
-                        <li>btree</li>
-                        <li>dfs</li>
-                        <li>bfs</li>
+<body class="bg-gray-50 text-gray-800 font-sans leading-relaxed">
 
-                    </ul>
-                </li>
-                <li>sorting
-                    <ul>
-                        <li><a href="{{url_for('bubbleVisual')}}">bubble sort</a></li>
-                        <li><a href="{{url_for('selection')}}"></a>Selection sort</li>
-                        <li>merge sort</li>
-                        <li><a href="{{url_for('countVisual')}}">Count sort</a></li>
-                        <li>quick sort</li>
-                        <li>radix sort</li>
-                    </ul>
-                </li>
-                <li>Shortest path
-                    <ul>
-                    
-                        <li>mst
-                            <ul>
-                                <li>kruskal</li>
-                                <li>prims</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-        <li>os
-            <ul>
-                <li>scheduling
-                    <ul>
-                        <li><a href="{{url_for('scheduling')}}" target="_blank" rel="noopener noreferrer">Scheduling</a></li>
-                        <li>FCFS</li>
-                        <li>Shortest job first</li>
-                        <li>Robin round</li>
-                        <li>day-night mode</li>
-                        <li>login logout--backend</li>
-                        <li>responsive</li>
-                        <li>search bar</li>
-                    </ul>
-                </li>
-                <li>memory</li>
-            </ul>
-        </li>
-    </ul>
+    <!-- Dynamic Navbar Inclusion -->
+    <div id="include-content"></div>
+
+    <!-- Main Header -->
+    <header class="text-center py-12 bg-gray-100 shadow-md">
+        <h1 class="text-4xl font-semibold text-gray-700">Visualization Topics</h1>
+        <p class="text-lg text-gray-500 mt-2">Select a topic to explore data structures and algorithms interactively</p>
+    </header>
+
+    <!-- Topic List -->
+    <main class="max-w-4xl mx-auto p-8 bg-white shadow-lg rounded-lg mt-10">
+        <ul class="space-y-8">
+            <!-- Algorithms Section -->
+            <li>
+                <h2 class="text-2xl font-semibold text-blue-600 mb-4">Algorithms</h2>
+                <div class="grid grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Data Structures</h3>
+                        <ul class="text-gray-700 space-y-2">
+                            <a href="{{url_for('stackContent')}}" target="_blank" rel="noopener noreferrer" class="hover:underline">Stack</a></li>
+                            <a href="{{url_for('queueContent')}}" target="_blank" rel="noopener noreferrer" class="hover:underline">Queue</a></li>
+                            <li>Linked List
+                                <ul class="ml-5 list-disc text-blue-600">
+                                    <li><a href="{{url_for('singly')}}" target="_blank" rel="noopener noreferrer" class="hover:underline">Singly Linked List</a></li>
+                                    <li><a href="{{url_for('doubly')}}" target="_blank" rel="noopener noreferrer" class="hover:underline">Doubly Linked List</a></li>
+                                    <li>Circular Linked List</li>
+                                </ul>
+                            </li>
+                            <li>Tree
+                                <ul class="ml-5 list-disc text-blue-600">
+                                    <li><a href="{{url_for('bst')}}" target="_blank" rel="noopener noreferrer" class="hover:underline">Binary Search Tree (BST)</a></li>
+                                    <li>AVL Tree</li>
+                                    <li>B-tree</li>
+                                    <li>DFS</li>
+                                    <li>BFS</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Sorting Algorithms</h3>
+                        <ul class="text-blue-600 space-y-2">
+                            <li><a href="{{url_for('bubbleVisual')}}" class="hover:underline">Bubble Sort</a></li>
+                            <li><a href="{{url_for('selection')}}" class="hover:underline">Selection Sort</a></li>
+                            <li>Merge Sort</li>
+                            <li><a href="{{url_for('countVisual')}}" class="hover:underline">Count Sort</a></li>
+                            <li>Quick Sort</li>
+                            <li>Radix Sort</li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+
+            <!-- OS Section -->
+            <li>
+                <h2 class="text-2xl font-semibold text-blue-600 mb-4">Operating Systems</h2>
+                <div class="grid grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Scheduling</h3>
+                        <ul class="text-blue-600 space-y-2">
+                            <li><a href="{{url_for('scheduling')}}" target="_blank" rel="noopener noreferrer" class="hover:underline">General Scheduling</a></li>
+                            <li>First-Come, First-Served (FCFS)</li>
+                            <li>Shortest Job First</li>
+                            <li>Round Robin</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Other Concepts</h3>
+                        <ul class="text-gray-700 space-y-2">
+                            <li>Memory Management</li>
+                            <li>Responsive Design</li>
+                            <li>Search Functionality</li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </main>
+
+    <!-- JavaScript for Navbar Inclusion -->
     <script>
-        // Load navbar content
         fetch("{{url_for('logoNav')}}")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("include-content").innerHTML = data;
 
-                // Load mode.js after navbar is injected to ensure it has access to the toggle button
                 const modeScript = document.createElement("script");
-                modeScript.src = "/stctic/js/mode.js";
+                modeScript.src = "/static/js/mode.js";
                 document.body.appendChild(modeScript);
             })
-            .catch(error => console.error("Error loading navbar content:", error));    
+            .catch(error => console.error("Error loading navbar content:", error));
     </script>
+
 </body>
+
 </html>

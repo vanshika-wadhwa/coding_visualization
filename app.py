@@ -29,6 +29,20 @@ class register_db(db.Model):
 with app.app_context():
     db.create_all()
 
+
+@app.route('/')
+def Home():
+    # Check if the user is logged in (if session doesn't have 'user_id', redirect to login)
+    if 'user_id' not in session:
+        flash("You must be logged in to access the dashboard.", "warning")
+        return redirect(url_for('wixdash'))  # Redirect to login page if not logged in
+
+    return render_template('wixdash1.html')  # Show the dashboard if logged in
+
+@app.route("/wixdash")
+def wixdash():
+    return render_template('wixdash.html')
+
 # forgot 
 @app.route('/forgot', methods=['GET', 'POST'])
 def forgot_password():
@@ -56,14 +70,6 @@ def send_email(email, new_password):
 
 
 
-@app.route('/wixdash')
-def wixdash():
-    # Check if the user is logged in (if session doesn't have 'user_id', redirect to login)
-    if 'user_id' not in session:
-        flash("You must be logged in to access the dashboard.", "warning")
-        return redirect(url_for('login'))  # Redirect to login page if not logged in
-
-    return render_template('wixdash1.html')  # Show the dashboard if logged in
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -144,6 +150,15 @@ def visualization():
 @app.route('/scheduling')
 def scheduling():
     return render_template('scheduling.html')
+    
+
+@app.route('/queueContent')
+def queueContent():
+    return render_template('queueContent.html')
+
+@app.route('/singly')
+def singly():
+    return render_template('singly.html')
 
 @app.route('/treeContent')
 def treeContent():
@@ -213,9 +228,6 @@ def selectionVisual():
 def selection():
     return render_template('selection.html')
 
-@app.route('/queueContent')
-def queueContent():
-    return render_template('queueContent.html')
 
 @app.route('/pracSession')
 def pracSession():

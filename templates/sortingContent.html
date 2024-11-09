@@ -1,184 +1,166 @@
- <!DOCTYPE html>
- <html lang="en">
- <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="this page is about details of data structure">
-    <title>Sorting dashboard</title>
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-    <link rel="stylesheet" href="/static/css/responsive.css">
-   </head>
- <body>
-   <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
-
-    <!-- <object type="text/html" data="navbarDashboard.html" width="100%" height="500px"></object> -->
-    <nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="description" content="This page is about the details of data structures">
+   <title>Sorting Dashboard</title>
+   <script src="https://cdn.tailwindcss.com"></script>
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+</head>
+<body>
+   <!-- Navigation Bar -->
+   <nav>
       <ul class="border-2 rounded-md border-solid justify-evenly list-none flex space-x-2.5 bg-slate-600 p-4">
-            <li><a href="{{url_for('insertion')}}" class="text-white">Insertion Sort</a></li>
-            <li><a href="{{url_for('bubble')}}" class="text-white">Bubble Sort</a></li>
-            <li><a href="{{url_for('selection')}}" class="text-white">Selection Sort</a></li>
-            <li><a href="{{url_for('merge')}}" class="text-white">Merge Sort</a></li>
-            <li><a href="{{url_for('quick')}}" class="text-white">Quick Sort</a></li>
-            <li><a href="{{url_for('count')}}" class="text-white">Count Sort</a></li>
-            <li><a href="{{url_for('radix')}}" class="text-white">Radix Sort</a></li>
-         </ul>
-      </nav>
-  
-   <h1>Sorting</h1>
-   <p>Sorting is a technique which sorts the data. There are many techniques which sort data with diferent time complexity and with different space complexity. Some techniques are written below:</p>
-   <ul>
-      <li>Insertion Sort</li>
-      <li>Bubble Sort</li>
-      <li>Selection Sort</li>
-     <li>Merge Sort</li>
-     <li>Quick Sort</li>
-     <li>Count Sort</li>
-     <li>Radix Sort</li>
-   </ul>
+         <li><a href="{{ url_for('insertion') }}" class="text-white">Insertion Sort</a></li>
+         <li><a href="{{ url_for('bubbleVisual') }}" class="text-white">Bubble Sort</a></li>
+         <li><a href="{{ url_for('selection') }}" class="text-white">Selection Sort</a></li>
+         <li><a href="{{ url_for('merge') }}" class="text-white">Merge Sort</a></li>
+         <li><a href="{{ url_for('quick') }}" class="text-white">Quick Sort</a></li>
+         <li><a href="{{ url_for('count') }}" class="text-white">Count Sort</a></li>
+         <li><a href="{{ url_for('radix') }}" class="text-white">Radix Sort</a></li>
+      </ul>
+   </nav>
 
-   <!-- definition list: like a dictionary i.e, dl, dd  -->
-   <dl>Insertion Sort:</dl>
-   <dd>Insertion sort is a simple, in-place, comparison-based algorithm that sorts a list by iteratively inserting elements into their correct position within a growing, initially empty, sorted portion.</dd>
-   <dd>
-      Craving for details <a target="_blank" href="{{url_for('insertion')}}">Insertion Sort</a>
-   </dd>
+   <!-- Main Content -->
+   <main class="p-8">
+      <h1 class="text-2xl font-bold">Sorting</h1>
+      <p class="mt-4">Sorting is a technique for arranging data in a specific order. Many sorting techniques have different time and space complexities. Below are some of the common sorting techniques:</p>
 
-   <dl>Bubble Sort</dl>
-   <dd>Bubble sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order, iterating until the list is sorted.</dd>
-   <dd>
-      Craving for details <a target="_blank" href="{{url_for('bubble')}}">Bubble Sort</a>
-   </dd>
+      <ul class="list-disc ml-8 mt-2">
+         <li>Insertion Sort</li>
+         <li>Bubble Sort</li>
+         <li>Selection Sort</li>
+         <li>Merge Sort</li>
+         <li>Quick Sort</li>
+         <li>Count Sort</li>
+         <li>Radix Sort</li>
+      </ul>
 
-   <dl>Selection Sort</dl>
-   <dd>Selection sort is a simple sorting algorithm that repeatedly finds the minimum element from the unsorted portion and swaps it with the first unsorted element, gradually building a sorted array.</dd>
-   <dd>
-      Craving for details <a target="_blank" href="{{url_for('selection')}}">Selection Sort</a>
-   </dd>
+      <!-- Sorting Definitions -->
+      <section class="mt-8">
+         <dl>
+            <dt class="font-semibold mt-4">Insertion Sort</dt>
+            <dd>Insertion sort is a simple, in-place, comparison-based algorithm that sorts a list by inserting elements into their correct position within a growing sorted portion.</dd>
+            <dd>Details: <a target="_blank" href="{{ url_for('insertion') }}" class="text-blue-500">Insertion Sort</a></dd>
 
-   <dl>Merge Sort</dl>
-   <dd>Merge sort is a divide-and-conquer sorting algorithm that recursively splits the array into halves, sorts each half, and then merges the sorted halves to produce a sorted array.</dd>
-   <dd>
-      Craving for details <a target="_blank" href="{{url_for('merge')}}">Merge Sort</a>
-   </dd>
+            <dt class="font-semibold mt-4">Bubble Sort</dt>
+            <dd>Bubble sort repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order, iterating until the list is sorted.</dd>
+            <dd>Details: <a target="_blank" href="{{ url_for('bubbleVisual') }}" class="text-blue-500">Bubble Sort</a></dd>
 
-   <dl>Quick Sort</dl>
-   <dd>Quick sort is a fast, efficient, divide-and-conquer sorting algorithm that selects a "pivot" element, partitions the array around the pivot, and recursively sorts the subarrays.</dd>
-   <dd>
-      Craving for details <a target="_blank" href="{{url_for('quick')}}">Quick Sort</a>
-   </dd>
+            <dt class="font-semibold mt-4">Selection Sort</dt>
+            <dd>Selection sort finds the minimum element from the unsorted portion and swaps it with the first unsorted element, gradually building a sorted array.</dd>
+            <dd>Details: <a target="_blank" href="{{ url_for('selection') }}" class="text-blue-500">Selection Sort</a></dd>
 
-   <dl>Count Sort</dl>
-   <dd>Count sort is an integer sorting algorithm that counts the occurrences of each value, using these counts to place the values in their correct positions in a sorted array.</dd>
-   <dd>
-      Craving for details <a target="_blank" href="{{url_for('count')}}">Count Sort</a>
-   </dd>
+            <dt class="font-semibold mt-4">Merge Sort</dt>
+            <dd>Merge sort is a divide-and-conquer algorithm that recursively splits the array, sorts each half, and then merges the sorted halves to produce a sorted array.</dd>
+            <dd>Details: <a target="_blank" href="{{ url_for('merge') }}" class="text-blue-500">Merge Sort</a></dd>
 
-   <dl>Radix Sort</dl>
-<dd>Radix sort is a non-comparative sorting algorithm that sorts integers by processing individual digits or bits from least significant to most significant, utilizing counting sort or bucket sort for each digit/bit.</dd>
-<dd>
-   Craving for details <a target="_blank" href="{{url_for('radix')}}">Radix Sort</a>
-</dd>
+            <dt class="font-semibold mt-4">Quick Sort</dt>
+            <dd>Quick sort is a divide-and-conquer algorithm that selects a pivot element, partitions the array around the pivot, and recursively sorts the subarrays.</dd>
+            <dd>Details: <a target="_blank" href="{{ url_for('quick') }}" class="text-blue-500">Quick Sort</a></dd>
 
-   <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fdevdojo.com%2Falgonoob%2Finsertion-sort&psig=AOvVaw1Flx8Yt8ars2QC1Uw_e0ku&ust=1719488231499000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCPiq7IOX-YYDFQAAAAAdAAAAABAE" alt="video server error">
-   <a target="_blank" href="https://www.google.com/"></a> <!--google open in new tab -->
-   <!-- sorting image  -->
-   <img src="data:image/png;base64,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" alt="insertion sorting"> <!-- alt display tb hoga jb image upload ni hogi -->
+            <dt class="font-semibold mt-4">Count Sort</dt>
+            <dd>Count sort is an integer sorting algorithm that counts occurrences of each value to place values in correct positions in a sorted array.</dd>
+            <dd>Details: <a target="_blank" href="{{ url_for('count') }}" class="text-blue-500">Count Sort</a></dd>
 
-
-   <!-- table tag -->
-   
-    <table>
-      <caption>Comparision techniques</caption>
-      <tr>
-         <th>Sorting</th>
-         <th>Swaping</th>
-         <th>Best Case</th>
-         <th>Average Case</th>
-         <th>Worst Case</th>
-         <th>Space Complexity</th>
-         <th>inplace</th>
-         <th>stable</th>
-      </tr>
-      <tr>
-         <td>Insertion Sort</td>
-         <td>yes</td>
-         <td colspan="2">O(n)</td>
-         <td>O(n^2)</td>
-         <td>O(1)</td>
-         <td colspan="2">yes</td>
-        
-      </tr>
-      
-      <tr>
-         <td>Bubble Sort</td>
-         <td>yes</td>
-         <td colspan="2">O(n)</td>
-         <td>O(n^2)</td>
-         <td>O(1)</td>
-         <td colspan="2">yes</td>
-      </tr>
-      <tr>
-         <td>Selection Sort</td>
-         <td>yes</td>
-         <td colspan="3">O(n^2)</td>
-         <td>O(1)</td>
-         <td colspan="2">yes</td>
-        
-      </tr>
-      <tr>
-         <td>Merge Sort</td>
-         <td>Pointers interchange</td>
-         <td colspan="3">O(logn)</td>
-         <td>O n(logn)</td>
-         <td colspan="2">No</td>
-         
-      </tr>
-      <tr>
-         <td>Quick Sort</td>
-         <td>pivot</td>
-         <td colspan="2">O(logn)</td>
-         <td>O(n^2)</td>
-         <td>O n(logn)</td>
-         <td colspan="2">yes</td>
-      </tr>
+            <dt class="font-semibold mt-4">Radix Sort</dt>
+            <dd>Radix sort is a non-comparative algorithm that sorts integers by processing individual digits from least significant to most significant.</dd>
+            <dd>Details: <a target="_blank" href="{{ url_for('radix') }}" class="text-blue-500">Radix Sort</a></dd>
+         </dl>
+      </section>
+      <!-- Tailwind CSS Comparison Table -->
+<div class="p-4">
+   <table class="min-w-full border border-gray-300 text-center rounded-lg overflow-hidden shadow-lg mb-6">
+      <caption class="bg-blue-600 text-white font-semibold py-3 text-lg">Comparison Techniques</caption>
+      <thead class="bg-blue-100">
+         <tr>
+            <th class="px-4 py-2 border border-gray-300">Sorting</th>
+            <th class="px-4 py-2 border border-gray-300">Swapping</th>
+            <th class="px-4 py-2 border border-gray-300">Best Case</th>
+            <th class="px-4 py-2 border border-gray-300">Average Case</th>
+            <th class="px-4 py-2 border border-gray-300">Worst Case</th>
+            <th class="px-4 py-2 border border-gray-300">Space Complexity</th>
+            <th class="px-4 py-2 border border-gray-300">In-place</th>
+            <th class="px-4 py-2 border border-gray-300">Stable</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr class="bg-white">
+            <td class="px-4 py-2 border border-gray-300">Insertion Sort</td>
+            <td class="px-4 py-2 border border-gray-300">Yes</td>
+            <td class="px-4 py-2 border border-gray-300" colspan="2">O(n)</td>
+            <td class="px-4 py-2 border border-gray-300">O(n^2)</td>
+            <td class="px-4 py-2 border border-gray-300">O(1)</td>
+            <td class="px-4 py-2 border border-gray-300" colspan="2">Yes</td>
+         </tr>
+         <tr class="bg-gray-50">
+            <td class="px-4 py-2 border border-gray-300">Bubble Sort</td>
+            <td class="px-4 py-2 border border-gray-300">Yes</td>
+            <td class="px-4 py-2 border border-gray-300" colspan="2">O(n)</td>
+            <td class="px-4 py-2 border border-gray-300">O(n^2)</td>
+            <td class="px-4 py-2 border border-gray-300">O(1)</td>
+            <td class="px-4 py-2 border border-gray-300" colspan="2">Yes</td>
+         </tr>
+         <tr class="bg-white">
+            <td class="px-4 py-2 border border-gray-300">Selection Sort</td>
+            <td class="px-4 py-2 border border-gray-300">Yes</td>
+            <td class="px-4 py-2 border border-gray-300" colspan="3">O(n^2)</td>
+            <td class="px-4 py-2 border border-gray-300">O(1)</td>
+            <td class="px-4 py-2 border border-gray-300" colspan="2">Yes</td>
+         </tr>
+         <tr class="bg-gray-50">
+            <td class="px-4 py-2 border border-gray-300">Merge Sort</td>
+            <td class="px-4 py-2 border border-gray-300">Pointers interchange</td>
+            <td class="px-4 py-2 border border-gray-300" colspan="3">O(log n)</td>
+            <td class="px-4 py-2 border border-gray-300">O(n log n)</td>
+            <td class="px-4 py-2 border border-gray-300" colspan="2">No</td>
+         </tr>
+         <tr class="bg-white">
+            <td class="px-4 py-2 border border-gray-300">Quick Sort</td>
+            <td class="px-4 py-2 border border-gray-300">Pivot</td>
+            <td class="px-4 py-2 border border-gray-300" colspan="2">O(log n)</td>
+            <td class="px-4 py-2 border border-gray-300">O(n^2)</td>
+            <td class="px-4 py-2 border border-gray-300">O(n log n)</td>
+            <td class="px-4 py-2 border border-gray-300" colspan="2">Yes</td>
+         </tr>
+      </tbody>
    </table>
 
-   <br>
-   <table>
-      <caption>Non-Comparision techniques</caption>
-      <tr>
-      <th>Sorting</th>
-         <th>Swaping</th>
-         <th>Best Case</th>
-         <th>Average Case</th>
-         <th>Worst Case</th>
-         <th>Space Complexity</th>
-         <th>inplace</th>
-         <th>stable</th>
-      </tr>
-      <tr>
-         <td>Count Sort</td>
-         <td>-</td>
-         <td colspan="3">O(n+k)</td>
-         <td rowspan="2">depends upon size of array, i.e, k</td>
-         <td>-</td>
-         <td>-</td>
-      </tr>
-      <tr>
-         <td>Radix Sort</td>
-         <td>-</td>
-         <td colspan="3">O d*(n+k)</td>
-         <td>-</td>
-         <td>-</td>
-         
-      </tr>
-    </table>
-    <script>
-      fetch("{{url_for('logoNav')}}")  // Adjust path if navbar.html is in a different folder
-          .then(response => response.text())
-          .then(data => {
-              document.getElementById("include-content").innerHTML = data;
-          });
-  </script>
- </body>
- </html>
+   <table class="min-w-full border border-gray-300 text-center rounded-lg overflow-hidden shadow-lg">
+      <caption class="bg-purple-600 text-white font-semibold py-3 text-lg">Non-Comparison Techniques</caption>
+      <thead class="bg-purple-100">
+         <tr>
+            <th class="px-4 py-2 border border-gray-300">Sorting</th>
+            <th class="px-4 py-2 border border-gray-300">Swapping</th>
+            <th class="px-4 py-2 border border-gray-300">Best Case</th>
+            <th class="px-4 py-2 border border-gray-300">Average Case</th>
+            <th class="px-4 py-2 border border-gray-300">Worst Case</th>
+            <th class="px-4 py-2 border border-gray-300">Space Complexity</th>
+            <th class="px-4 py-2 border border-gray-300">In-place</th>
+            <th class="px-4 py-2 border border-gray-300">Stable</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr class="bg-white">
+            <td class="px-4 py-2 border border-gray-300">Count Sort</td>
+            <td class="px-4 py-2 border border-gray-300">-</td>
+            <td class="px-4 py-2 border border-gray-300" colspan="3">O(n + k)</td>
+            <td class="px-4 py-2 border border-gray-300" rowspan="2">Depends on size of array (k)</td>
+            <td class="px-4 py-2 border border-gray-300">-</td>
+            <td class="px-4 py-2 border border-gray-300">-</td>
+         </tr>
+         <tr class="bg-gray-50">
+            <td class="px-4 py-2 border border-gray-300">Radix Sort</td>
+            <td class="px-4 py-2 border border-gray-300">-</td>
+            <td class="px-4 py-2 border border-gray-300" colspan="3">O(d * (n + k))</td>
+            <td class="px-4 py-2 border border-gray-300">-</td>
+            <td class="px-4 py-2 border border-gray-300">-</td>
+         </tr>
+      </tbody>
+   </table>
+</div>
+
+   </main>
+</body>
+</html>
