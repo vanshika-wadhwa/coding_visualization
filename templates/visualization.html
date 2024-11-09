@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>visualization page</title>
-    <link rel="stylesheet" href="/static/css/responsive.css">
+    <title>Visualization Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
     <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
@@ -74,18 +75,18 @@
         </li>
     </ul>
     <script>
-        // Load navbar content
         fetch("{{url_for('logoNav')}}")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("include-content").innerHTML = data;
 
-                // Load mode.js after navbar is injected to ensure it has access to the toggle button
                 const modeScript = document.createElement("script");
-                modeScript.src = "/stctic/js/mode.js";
+                modeScript.src = "/static/js/mode.js";
                 document.body.appendChild(modeScript);
             })
-            .catch(error => console.error("Error loading navbar content:", error));    
+            .catch(error => console.error("Error loading navbar content:", error));
     </script>
+
 </body>
+
 </html>

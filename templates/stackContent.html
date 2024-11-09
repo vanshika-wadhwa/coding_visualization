@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stacks in Data Structures</title>
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-    <link rel="stylesheet" href="/static/css/responsive.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
 
-    <header>
-        <h1>Introduction to Stacks in Data Structures</h1>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Dynamic Navbar Inclusion -->
+    <div id="include-content"></div>
+
+    <!-- Main Header -->
+    <header class="text-center py-10 bg-blue-500 text-white">
+        <h1 class="text-3xl font-bold">Introduction to Stacks in Data Structures</h1>
     </header>
 
-    <section>
-        <h2>What is a Stack?</h2>
-        <p>
+    <!-- What is a Stack Section -->
+    <section class="max-w-4xl mx-auto px-6 py-8">
+        <h2 class="text-2xl font-semibold text-blue-600 mb-4">What is a Stack?</h2>
+        <p class="text-lg leading-relaxed">
             In computer science, a <strong>Stack</strong> is a linear data structure that follows a specific order for 
             managing elements, known as the <strong>LIFO</strong> principle, or <em>Last In, First Out</em>. 
             This means that the last item added to the stack will be the first one removed, similar to a stack of plates 
@@ -24,9 +29,10 @@
         </p>
     </section>
 
-    <section>
-        <h2>Basic Stack Operations</h2>
-        <ul>
+    <!-- Basic Stack Operations Section -->
+    <section class="max-w-4xl mx-auto px-6 py-8">
+        <h2 class="text-2xl font-semibold text-blue-600 mb-4">Basic Stack Operations</h2>
+        <ul class="list-disc list-inside space-y-2 text-lg">
             <li><strong>Push:</strong> Adds an element to the top of the stack.</li>
             <li><strong>Pop:</strong> Removes the top element from the stack.</li>
             <li><strong>Peek (or Top):</strong> Retrieves the top element without removing it.</li>
@@ -34,20 +40,22 @@
         </ul>
     </section>
 
-    <section>
-        <h2>Key Characteristics of a Stack</h2>
-        <ul>
+    <!-- Key Characteristics of a Stack Section -->
+    <section class="max-w-4xl mx-auto px-6 py-8">
+        <h2 class="text-2xl font-semibold text-blue-600 mb-4">Key Characteristics of a Stack</h2>
+        <ul class="list-disc list-inside space-y-2 text-lg">
             <li><strong>LIFO (Last In, First Out):</strong> The last element added is the first one removed.</li>
             <li><strong>Single Access Point:</strong> All operations are performed at one end, known as the "top" of the stack.</li>
         </ul>
     </section>
 
-    <section>
-        <h2>Applications of Stacks</h2>
-        <p>
+    <!-- Applications of Stacks Section -->
+    <section class="max-w-4xl mx-auto px-6 py-8">
+        <h2 class="text-2xl font-semibold text-blue-600 mb-4">Applications of Stacks</h2>
+        <p class="text-lg leading-relaxed mb-4">
             Stacks are commonly used in various applications due to their LIFO nature:
         </p>
-        <ul>
+        <ul class="list-disc list-inside space-y-2 text-lg">
             <li><strong>Function Call Management:</strong> Stacks manage function calls and return points in programming.</li>
             <li><strong>Expression Evaluation:</strong> They help in evaluating expressions, particularly in compilers.</li>
             <li><strong>Undo Mechanism:</strong> Applications use stacks to store actions, allowing users to undo them.</li>
@@ -55,15 +63,77 @@
         </ul>
     </section>
 
-    <footer>
-        <p>Understanding stacks is essential as they are a foundational concept in many algorithms and applications!</p>
+    <!-- Stack Visualization Section -->
+    <section class="max-w-4xl mx-auto px-6 py-8 bg-gray-100 rounded-lg shadow-md">
+        <h2 class="text-2xl font-semibold text-blue-600 mb-4">Visualize Stack Operations</h2>
+        <div class="flex items-center space-x-4 mb-6">
+            <input type="text" id="stackValue" placeholder="Enter a value" class="p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+            <button onclick="pushToStack()" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Push</button>
+            <button onclick="popFromStack()" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">Pop</button>
+            <button onclick="peekStack()" class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600">Peek</button>
+            <button onclick="clearStack()" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600">Clear</button>
+        </div>
+        <div id="stackDisplay" class="bg-white p-4 border border-gray-300 rounded-md space-y-2 text-center">
+            <p class="text-lg font-semibold">Stack is empty.</p>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="text-center py-6 bg-blue-500 text-white">
+        <p class="text-lg">Understanding stacks is essential as they are a foundational concept in many algorithms and applications!</p>
     </footer>
+
+    <!-- JavaScript for Stack Visualization -->
     <script>
-        fetch("{{url_for('logoNav')}}")  // Adjust path if navbar.html is in a different folder
+        let stack = [];
+
+        function pushToStack() {
+            const input = document.getElementById("stackValue").value;
+            if (input) {
+                stack.push(input);
+                document.getElementById("stackValue").value = "";
+                displayStack();
+            }
+        }
+
+        function popFromStack() {
+            if (stack.length === 0) {
+                alert("Stack is empty. Nothing to pop.");
+            } else {
+                stack.pop();
+                displayStack();
+            }
+        }
+
+        function peekStack() {
+            if (stack.length === 0) {
+                alert("Stack is empty.");
+            } else {
+                alert("Top of the stack: " + stack[stack.length - 1]);
+            }
+        }
+
+        function clearStack() {
+            stack = [];
+            displayStack();
+        }
+
+        function displayStack() {
+            const display = document.getElementById("stackDisplay");
+            display.innerHTML = stack.length === 0
+                ? "<p class='text-lg font-semibold'>Stack is empty.</p>"
+                : stack.map(item => `<div class="p-2 bg-blue-100 rounded-md">${item}</div>`).reverse().join("");
+        }
+    </script>
+
+    <!-- JavaScript for Navbar Inclusion -->
+    <script>
+        fetch("{{url_for('logoNav')}}")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("include-content").innerHTML = data;
             });
     </script>
+
 </body>
 </html>

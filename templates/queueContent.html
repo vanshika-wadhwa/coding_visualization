@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Queues in Data Structures</title>
-    <link rel="stylesheet" href="/static/css/responsive.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
 
-    <header>
-        <h1>Introduction to Queues in Data Structures</h1>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Dynamic Navbar Inclusion -->
+    <div id="include-content"></div>
+
+    <!-- Main Header -->
+    <header class="text-center py-10 bg-blue-500 text-white">
+        <h1 class="text-3xl font-bold">Introduction to Queues in Data Structures</h1>
     </header>
 
-    <section>
-        <h2>What is a Queue?</h2>
-        <p>
+    <!-- What is a Queue Section -->
+    <section class="max-w-4xl mx-auto px-6 py-8">
+        <h2 class="text-2xl font-semibold text-blue-600 mb-4">What is a Queue?</h2>
+        <p class="text-lg leading-relaxed">
             In computer science, a <strong>Queue</strong> is a linear data structure that follows the <strong>FIFO</strong> 
             principle, or <em>First In, First Out</em>. This means that the first item added to the queue will be the 
             first one removed. You can think of a queue as a line at a ticket counter: people join at the end and leave 
@@ -23,9 +29,10 @@
         </p>
     </section>
 
-    <section>
-        <h2>Basic Queue Operations</h2>
-        <ul>
+    <!-- Basic Queue Operations Section -->
+    <section class="max-w-4xl mx-auto px-6 py-8">
+        <h2 class="text-2xl font-semibold text-blue-600 mb-4">Basic Queue Operations</h2>
+        <ul class="list-disc list-inside space-y-2 text-lg">
             <li><strong>Enqueue:</strong> Adds an element to the end of the queue.</li>
             <li><strong>Dequeue:</strong> Removes the element from the front of the queue.</li>
             <li><strong>Front:</strong> Retrieves the element at the front without removing it.</li>
@@ -33,20 +40,13 @@
         </ul>
     </section>
 
-    <section>
-        <h2>Key Characteristics of a Queue</h2>
-        <ul>
-            <li><strong>FIFO (First In, First Out):</strong> The first element added is the first one removed.</li>
-            <li><strong>Two Access Points:</strong> Elements are added at the rear (end) and removed from the front.</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Applications of Queues</h2>
-        <p>
+    <!-- Applications of Queues Section -->
+    <section class="max-w-4xl mx-auto px-6 py-8">
+        <h2 class="text-2xl font-semibold text-blue-600 mb-4">Applications of Queues</h2>
+        <p class="text-lg leading-relaxed mb-4">
             Queues are widely used in various applications due to their FIFO structure:
         </p>
-        <ul>
+        <ul class="list-disc list-inside space-y-2 text-lg">
             <li><strong>Scheduling Tasks:</strong> Queues manage processes in CPU scheduling, where tasks are completed in the order they arrive.</li>
             <li><strong>Printer Queue:</strong> In a printing system, jobs are processed in the order they're added.</li>
             <li><strong>Data Buffers:</strong> Queues are used in buffering data for streaming, where data arrives in a sequence.</li>
@@ -54,22 +54,105 @@
         </ul>
     </section>
 
-    <footer>
-        <p>Queues are fundamental structures, essential for managing sequential tasks efficiently in programming and real-world scenarios!</p>
+    <!-- Queue Visualization Section -->
+    <section class="max-w-4xl mx-auto px-6 py-8 bg-gray-100 rounded-lg shadow-md">
+        <h2 class="text-2xl font-semibold text-blue-600 mb-4">Visualize Queue Operations</h2>
+        
+        <!-- Input and Buttons -->
+        <div class="flex items-center space-x-4 mb-6">
+            <input type="text" id="queueValue" placeholder="Enter a value" class="p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+            <button onclick="enqueue()" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Enqueue</button>
+            <button onclick="dequeue()" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">Dequeue</button>
+            <button onclick="viewFront()" class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600">Front</button>
+            <button onclick="clearQueue()" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600">Clear</button>
+        </div>
+
+        <!-- Queue Display -->
+        <div id="queueDisplay" class="flex flex-wrap gap-4 p-4 border border-gray-300 rounded-md bg-white">
+            <p class="text-lg font-semibold text-gray-600">Queue is empty.</p>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="text-center py-6 bg-blue-500 text-white">
+        <p class="text-lg">Queues are fundamental structures, essential for managing sequential tasks efficiently in programming and real-world scenarios!</p>
     </footer>
+
+    <!-- JavaScript for Queue Visualization -->
     <script>
-        // Load navbar content
+        let queue = [];
+
+        function enqueue() {
+            const input = document.getElementById("queueValue").value;
+            if (input) {
+                queue.push(input);
+                document.getElementById("queueValue").value = "";
+                displayQueue();
+            }
+        }
+
+        function dequeue() {
+            if (queue.length === 0) {
+                alert("Queue is empty. Nothing to dequeue.");
+            } else {
+                queue.shift();
+                displayQueue();
+            }
+        }
+
+        function viewFront() {
+            if (queue.length === 0) {
+                alert("Queue is empty.");
+            } else {
+                alert("Front of the queue: " + queue[0]);
+            }
+        }
+
+        function clearQueue() {
+            queue = [];
+            displayQueue();
+        }
+
+        function displayQueue() {
+            const display = document.getElementById("queueDisplay");
+            display.innerHTML = "";
+
+            if (queue.length === 0) {
+                display.innerHTML = "<p class='text-lg font-semibold text-gray-600'>Queue is empty.</p>";
+                return;
+            }
+
+            queue.forEach((item, index) => {
+                const element = document.createElement("div");
+                element.className = "p-3 rounded-lg bg-blue-100 text-blue-800 shadow-md font-semibold text-center w-24";
+                element.innerText = item;
+
+                if (index === 0) {
+                    element.classList.add("border-2", "border-green-500");
+                    element.innerText += " (Front)";
+                } else if (index === queue.length - 1) {
+                    element.classList.add("border-2", "border-blue-500");
+                    element.innerText += " (Rear)";
+                }
+                display.appendChild(element);
+            });
+        }
+    </script>
+
+    <!-- JavaScript for Navbar Inclusion -->
+    <script>
         fetch("{{url_for('logoNav')}}")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("include-content").innerHTML = data;
 
-                // Load mode.js after navbar is injected to ensure it has access to the toggle button
                 const modeScript = document.createElement("script");
                 modeScript.src = "/script/js/mode.js";
                 document.body.appendChild(modeScript);
             })
-            .catch(error => console.error("Error loading navbar content:", error));    
+            .catch(error => console.error("Error loading navbar content:", error));
     </script>
+
 </body>
+
 </html>

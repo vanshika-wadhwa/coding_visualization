@@ -4,50 +4,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insertion sort</title>
-    <link rel="stylesheet" href="/static/responsive.css">
+    <title>Insertion Sort</title>
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Link Tailwind CSS CDN -->
 </head>
-<body>
-    <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
+<body class="bg-gray-100 text-gray-800">
 
-<h2>
-    <!-- <iframe src="navbar.html" width="10%" height="200px"></iframe> -->
-    <h1>Insertion Sort</h1>
-    <p>Insertion sort is a simple sorting algorithm that builds the final sorted array one item at a time. It works by repeatedly picking the next item and inserting it into the correct position among the already sorted items. This process is akin to sorting playing cards in your hand, where you take one card at a time and place it in the correct order relative to the cards you've already arranged.</p>
+    <!-- Navbar -->
+    <div id="include-content"></div> <!-- Including navbar with JS -->
 
-<h2>Key Characteristics:</h2>
-    <ul>       
-        <li><b>Simple and intuitive:</b> Easy to understand and implement.</li>
-        <li><b>Adaptive:</b> Efficient for small or nearly sorted datasets.</li>
-        <li><b>Stable:</b> Maintains the relative order of equal elements.</li>
-        <li><b>In-place:</b> Requires constant additional space.</li>
-        <li><h3>Time Complexity:</h3></li>
-        <ul><b>Worst-case:</b>O(n^2)</ul>
-        <ul><b>Average-case: </b>O(n^2)</ul>
-        <ul><b>Best-case:</b> O(n)</ul>
-    </ul>
+    <!-- Main Content -->
+    <div class="container mx-auto my-10 p-6 bg-white shadow-md rounded-lg">
+        <h1 class="text-3xl font-bold text-center text-blue-700 mb-6">Insertion Sort</h1>
+        <p class="text-lg text-gray-600 mb-4">
+            Insertion sort is a simple sorting algorithm that builds the final sorted array one item at a time. 
+            It works by repeatedly picking the next item and inserting it into the correct position among the 
+            already sorted items. This process is akin to sorting playing cards in your hand, where you take one 
+            card at a time and place it in the correct order relative to the cards you've already arranged.
+        </p>
 
-<h2>Example:</h2>
-<p>To sort the array [5, 2, 4, 6, 1, 3]:</p>
-<ol>
-<li>Start with the first element [5], already sorted.</li>
-<li>Insert 2 before 5: [2, 5].</li>
-<li>Insert 4 between 2 and 5: [2, 4, 5].</li>
-<li>Insert 6 after 5: [2, 4, 5, 6].</li>
-<li>Insert 1 before 2: [1, 2, 4, 5, 6].</li>
-<li>Insert 3 between 2 and 4: [1, 2, 3, 4, 5, 6].</li>
-</ol>
-    <div class="container">
-        <div>
-            
-            <label for="size">Enter no. of input:</label>
-            <input type="text" name="size"/>
-        </div>
-        <div>
-            <label for="element input">Enter input:</label>
-            <input type="text" name="element input"/>
+        <h2 class="text-2xl font-semibold text-blue-700 mb-3">Key Characteristics:</h2>
+        <ul class="list-disc list-inside ml-6 text-gray-700 space-y-2 mb-6">
+            <li><b>Simple and intuitive:</b> Easy to understand and implement.</li>
+            <li><b>Adaptive:</b> Efficient for small or nearly sorted datasets.</li>
+            <li><b>Stable:</b> Maintains the relative order of equal elements.</li>
+            <li><b>In-place:</b> Requires constant additional space.</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold text-blue-700 mb-2">Time Complexity:</h3>
+        <ul class="list-disc list-inside ml-6 text-gray-700 mb-6">
+            <li><b>Worst-case:</b> O(n²)</li>
+            <li><b>Average-case:</b> O(n²)</li>
+            <li><b>Best-case:</b> O(n)</li>
+        </ul>
+
+        <h2 class="text-2xl font-semibold text-blue-700 mb-3">Example:</h2>
+        <p class="text-lg text-gray-600 mb-2">To sort the array [5, 2, 4, 6, 1, 3]:</p>
+        <ol class="list-decimal list-inside ml-6 text-gray-700 space-y-1">
+            <li>Start with the first element [5], already sorted.</li>
+            <li>Insert 2 before 5: [2, 5].</li>
+            <li>Insert 4 between 2 and 5: [2, 4, 5].</li>
+            <li>Insert 6 after 5: [2, 4, 5, 6].</li>
+            <li>Insert 1 before 2: [1, 2, 4, 5, 6].</li>
+            <li>Insert 3 between 2 and 4: [1, 2, 3, 4, 5, 6].</li>
+        </ol>
+
+        <!-- Input Section -->
+        <div class="mt-8 p-4 bg-gray-50 rounded-lg shadow-inner">
+            <div class="mb-4">
+                <label for="size" class="block text-gray-700 font-semibold mb-2">Enter number of inputs:</label>
+                <input type="text" name="size" id="size" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <div>
+                <label for="element-input" class="block text-gray-700 font-semibold mb-2">Enter input:</label>
+                <input type="text" name="element-input" id="element-input" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
         </div>
     </div>
+
+    <!-- JavaScript to load navbar -->
     <script>
         // Load navbar content
         fetch("{{url_for('logoNav')}}")
