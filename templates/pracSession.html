@@ -5,33 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Practice Session</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
     <link rel="stylesheet" href="/static/responsive.css">
 </head>
 <body>
-    <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
-
-    <h1 class="text-3xl">Practice Session</h1>
+    <h1 class="text-3xl font-bold mb-1 text-white bg-gray-900">Practice Session</h1>
 
     <div class="grid grid-cols-2 h-screen">
         <!-- Left Side -->
-        <div class="flex bg-blue-100">
-            vanshika question
+        <div class="flex bg-gray-900 p-6 text-white">
+            <div>
+                <!-- Subheading for the problem title -->
+                <h2 class="text-2xl font-semibold mb-4">Linked List Insertion At End</h2>
+                <p class="text-base mb-4">
+                    Given the head of a Singly Linked List and a value x, insert that value x at the end of the LinkedList and return the modified Linked List.
+                </p>
+
+                <!-- Examples heading -->
+                <h4 class="text-xl font-semibold mb-2">Examples:</h4>
+
+                <!-- Example 1 -->
+                <div class="bg-gray-200 p-4 mb-4 rounded-md text-black">
+                    <p class="font-semibold">Input:</p>
+                    <p>LinkedList: 1->2->3->4->5 , x = 6</p>
+                    <p class="font-semibold mt-2">Output:</p>
+                    <p>1->2->3->4->5->6</p>
+                    <p class="font-semibold mt-2">Explanation:</p>
+                    <div class="mt-2">
+                        <img src="{{ url_for('static', filename='images/example1.png') }}" alt="exp1" class="w-full max-w-xs">
+                    </div>
+                    <p>We can see that 6 is inserted at the end of the linked list.</p>
+                </div>
+
+                <!-- Example 2 -->
+                <div class="bg-gray-200 p-4 mb-4 rounded-md text-black">
+                    <p class="font-semibold">Input:</p>
+                    <p>LinkedList: 5->4 , x = 1</p>
+                    <p class="font-semibold mt-2">Output:</p>
+                    <p>5->4->1</p>
+                    <p class="font-semibold mt-2">Explanation:</p>
+                    <div class="mt-2">
+                        <img src="{{ url_for('static', filename='images/example2.png') }}" alt="exp2" class="w-full max-w-xs">
+                    </div>
+                    <p>We can see that 1 is inserted at the end of the linked list.</p>
+                </div>
+
+                <!-- Time and Space Complexity -->
+                <h4 class="text-xl font-semibold mb-2">Expected Time Complexity: O(n)</h4>
+                <h4 class="text-xl font-semibold mb-2">Expected Auxiliary Space: O(1)</h4>
+                <h4 class="text-xl font-semibold mb-2">Constraints:</h4>
+                <p class="text-base">0 <= number of nodes <= 10<sup>5</sup></p>
+                <p class="text-base">1 <= node->data , x <= 10<sup>3</sup></p>
+            </div>
         </div>
 
         <!-- Right Side -->
         <div class="grid grid-rows-2">
             <!-- Right Top -->
-            <div class="flex items-center justify-center bg-red-100">
+            <div class="flex items-center justify-center bg-gray-700">
                 <div class="relative max-w-4xl w-full h-full p-1 mx-auto">
-                    <h1 class="text-xl font-semibold mb-2">Write Your Code</h1>
+                    <h1 class="text-xl font-semibold mb-2 text-white">Write Your Code</h1>
                     <div >
-                        <ul class="flex flex-inline list-none space-between">
+                        <ul class="flex flex-inline list-none">
                             <li><span class="material-icons">timer</span></li>
-                            <li><span class="material-icons">play_arrow</span></li>
-                            
+                            <li><span class="material-icons">play_arrow</span></li>                         
                         </ul>
                     </div>
-                    <textarea id="cppCodeInput" class="w-full h-96 p-2 text-sm font-mono bg-red-100 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="// Write your C++ code here..."></textarea>
+                    <textarea id="userCode" class="w-full h-96 p-2 text-sm font-mono bg-gray-800 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="// Write your C++ code here..."></textarea>
+                    <button id="runTest" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded">Run Test</button>
+                    <div id="results" class="mt-4 text-white"></div>
                     <!-- Image Positioned at the Right Corner -->
             <div class="fixed bottom-4 right-4">
                 <img src="{{ url_for('static', filename='images/chatbot.png') }}" alt="chatbot" width="50px" height="50px">
@@ -40,24 +83,68 @@
             </div>
 
             <!-- Right Bottom -->
-            <div class="flex bg-green-100">
-                <h1>Test Case</h1>
+            <div class="flex bg-gray-800 p-6 text-white">
+                <div>
+                    <h2 class="text-2xl font-semibold mb-4">Test Cases</h2>
+                    <div id="testCases" class="bg-gray-700 p-4 rounded-md">
+                        <h3 class="font-semibold">Test Case 1:</h3>
+                        <p><strong>Input:</strong> LinkedList: 1->2->3->4->5, x = 6</p>
+                        <p><strong>Expected Output:</strong> 1->2->3->4->5->6</p>
+                        
+                        <h3 class="font-semibold mt-4">Test Case 2:</h3>
+                        <p><strong>Input:</strong> LinkedList: 5->4, x = 1</p>
+                        <p><strong>Expected Output:</strong> 5->4->1</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <script>
-        // Load navbar content
-        fetch("{{url_for('logoNav')}}")
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById("include-content").innerHTML = data;
+        // Your JDoodle API credentials
+        const clientId = '7eef20e472fbb2c08c4f8a21fcdc3abf'; // Replace with your JDoodle Client ID
+        const clientSecret = '3bc18ce07b3f3908b43fb41f7975a8f2a36ba50c210b8f8075ca05515054b820'; // Replace with your JDoodle Client Secret
 
-                // Load mode.js after navbar is injected to ensure it has access to the toggle button
-                const modeScript = document.createElement("script");
-                modeScript.src = "/animation/js/mode.js";
-                document.body.appendChild(modeScript);
-            })
-            .catch(error => console.error("Error loading navbar content:", error));    
+        document.getElementById('runTest').addEventListener('click', async () => {
+            const userCode = document.getElementById('userCode').value;
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = ''; // Clear previous results
+
+            // Define the JDoodle API URL and parameters
+            const url = 'https://api.jdoodle.com/v1/execute';
+            const requestData = {
+                script: userCode,
+                language: 'cpp',
+                versionIndex: '0', // Choose the appropriate version index for C++
+                clientId: clientId,
+                clientSecret: clientSecret
+            };
+
+            try {
+                // Make the API request
+                const response = await fetch('https://cors-anywhere.herokuapp.com/https://api.jdoodle.com/v1/execute', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(requestData)
+                });
+
+
+                const data = await response.json();
+                
+                // Display the output or error
+                if (data.output) {
+                    resultsDiv.innerHTML = `<div><strong>Output:</strong> ${data.output}</div>`;
+                } else if (data.error) {
+                    resultsDiv.innerHTML = `<div><strong>Error:</strong> ${data.error}</div>`;
+                } else {
+                    resultsDiv.innerHTML = '<div>No output available.</div>';
+                }
+            } catch (error) {
+                resultsDiv.innerHTML = `<div><strong>Error:</strong> ${error.message}</div>`;
+            }
+        });
     </script>
 </body>
 </html>
+

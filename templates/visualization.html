@@ -7,86 +7,103 @@
     <title>Visualization Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div id="include-content"></div>   <!-- including main navbar file with js(written below) -->
 
-    <h1>On which topic u want to visualize?</h1>
-    <ul>
-        <li>algo
-            <ul>
-                <li>stack</li>
-                <li>queue</li>
-                <li>linked list
-                    <ul>
-                        <li><a href="{{url_for('singly')}}" target="_blank" rel="noopener noreferrer">Singly linked list</a></li>
-                        <li><a href="{{url_for('doubly')}}" target="_blank" rel="noopener noreferrer">Doubly linked list</a></li>
-                        <li><a href="{{url_for('circular')}}" target="_blank" rel="nopener norefrer">Circular linked list</a></li>
-                    </ul>
-                </li>
-                <li>tree
-                    <ul>
-                        <li><a href="{{url_for('bst')}}" target="_blank" rel="noopener noreferrer">BST</a></li>
-                        <li>avl</li>
-                        <li>btree</li>
-                        <li>dfs</li>
-                        <li>bfs</li>
+<body class="bg-gray-100 text-gray-900">
+    <!-- Navbar inclusion -->
+    <div id="include-content"></div> <!-- including main navbar file with JS (below) -->
 
-                    </ul>
-                </li>
-                <li>sorting
-                    <ul>
-                        <li><a href="{{url_for('bubbleVisual')}}">bubble sort</a></li>
-                        <li><a href="{{url_for('selection')}}"></a>Selection sort</li>
-                        <li>merge sort</li>
-                        <li><a href="{{url_for('countVisual')}}">Count sort</a></li>
-                        <li>quick sort</li>
-                        <li>radix sort</li>
-                    </ul>
-                </li>
-                <li>Shortest path
-                    <ul>
-                    
-                        <li>mst
-                            <ul>
-                                <li>kruskal</li>
-                                <li>prims</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-        <li>os
-            <ul>
-                <li>scheduling
-                    <ul>
-                        <li><a href="{{url_for('scheduling')}}" target="_blank" rel="noopener noreferrer">Scheduling</a></li>
-                        <li>FCFS</li>
-                        <li>Shortest job first</li>
-                        <li>Robin round</li>
-                        <li>day-night mode</li>
-                        <li>login logout--backend</li>
-                        <li>responsive</li>
-                        <li>search bar</li>
-                    </ul>
-                </li>
-                <li>memory</li>
-            </ul>
-        </li>
-    </ul>
+    <!-- Page Header -->
+    <header class="text-center my-10">
+        <h1 class="text-4xl font-bold text-blue-500">Choose a Topic to Visualize</h1>
+    </header>
+
+    <!-- Visualization Topics Section -->
+    <section class="mx-auto max-w-4xl px-6 mb-10">
+        <ul class="list-none text-lg space-y-6">
+            <!-- Algorithm Section -->
+            <li>
+                <div class="text-2xl font-semibold text-blue-400">Algorithm</div>
+                <ul class="pl-5 mt-2 space-y-3 list-disc list-inside text-blue-400">
+                    <li><a href="{{url_for('stackContent')}}" class="text-blue-500 hover:text-blue-700">Stack</a></li>
+                    <li><a href="{{url_for('queueContent')}}" class="text-blue-500 hover:text-blue-700">Queue</a></li>
+                    <li>
+                        <span class="font-semibold text-blue-500">Linked List</span>
+                        <ul class="pl-5 space-y-2 list-disc list-inside">
+                            <li><a href="{{url_for('singly')}}" class="text-blue-500 hover:text-blue-700">Singly Linked List</a></li>
+                            <li><a href="{{url_for('doubly')}}" class="text-blue-500 hover:text-blue-700">Doubly Linked List</a></li>
+                            <li><a href="{{url_for('circular')}}" class="text-blue-500 hover:text-blue-700">Circular Linked List</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="font-semibold text-blue-500">Tree</span>
+                        <ul class="pl-5 space-y-2 list-disc list-inside">
+                            <li><a href="{{url_for('bst')}}" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-700">Binary Search Tree (BST)</a></li>
+                            <li>AVL Tree</li>
+                            <li>B-Tree</li>
+                            <li>Depth-First Search (DFS)</li>
+                            <li>Breadth-First Search (BFS)</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="font-semibold text-blue-500">Sorting</span>
+                        <ul class="pl-5 space-y-2 list-disc list-inside">
+                            <li><a href="{{url_for('bubbleVisual')}}" class="text-blue-500 hover:text-blue-700">Bubble Sort</a></li>
+                            <li><a href="{{url_for('selection')}}" class="text-blue-500 hover:text-blue-700">Selection Sort</a></li>
+                            <li><a href="{{url_for('merge')}}" class="text-blue-500 hover:text-blue-700">Merge sort</a></li>
+                            <li><a href="{{url_for('countVisual')}}" class="text-blue-500 hover:text-blue-700">Count Sort</a></li>
+                            <li><a href="{{url_for('quick')}}" class="text-blue-500 hover:text-blue-700">Quick Sort</a></li>
+                            <li><a href="{{url_for('radix')}}" class="text-blue-500 hover:text-blue-700">Radix Sort</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="font-semibold text-blue-500">Shortest Path</span>
+                        <ul class="pl-5 space-y-2 list-disc list-inside">
+                            <li>
+                                <span class="font-semibold text-blue-500">Minimum Spanning Tree (MST)</span>
+                                <ul class="pl-5 space-y-1 list-disc list-inside">
+                                    <li>Kruskal's Algorithm</li>
+                                    <li>Prim's Algorithm</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Operating System Section -->
+            <li>
+                <div class="text-2xl font-semibold text-blue-400">Operating System</div>
+                <ul class="pl-5 mt-2 space-y-3 list-disc list-inside">
+                    <li>
+                        <span class="font-semibold text-blue-500">Scheduling</span>
+                        <ul class="pl-5 space-y-2 list-disc list-inside">
+                            <li><a href="{{url_for('scheduling')}}" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-700">Scheduling Overview</a></li>
+                            <li>First Come, First Serve (FCFS)</li>
+                            <li>Shortest Job First (SJF)</li>
+                            <li>Round Robin (RR)</li>
+                        </ul>
+                    </li>
+                    <li>Memory Management</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <!-- JavaScript for Navbar Inclusion -->
     <script>
+        // Load navbar content
         fetch("{{url_for('logoNav')}}")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("include-content").innerHTML = data;
 
+                // Load mode.js after navbar is injected
                 const modeScript = document.createElement("script");
                 modeScript.src = "/static/js/mode.js";
                 document.body.appendChild(modeScript);
             })
             .catch(error => console.error("Error loading navbar content:", error));
     </script>
-
 </body>
 
 </html>
